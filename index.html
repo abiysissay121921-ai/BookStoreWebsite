@@ -95,12 +95,12 @@
             <section class="relative bg-primary text-white py-20 lg:py-28 overflow-hidden">
                 <!-- Navigation Tabs Centered Inside the Green Hero Section -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-                    <!-- UPDATED: Solid white background, bold, clear, clickable -->
+                    <!-- FIXED: Fully visible, bold, clickable tabs -->
                     <nav class="flex items-center justify-center gap-4 lg:gap-6">
-                        <button onclick="switchPage('home')" id="nav-home" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 hover:text-secondary transition-all cursor-pointer shadow-md">Home</button>
-                        <button onclick="switchPage('books')" id="nav-books" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 hover:text-secondary transition-all cursor-pointer shadow-md">Books</button>
-                        <button onclick="switchPage('about')" id="nav-about" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 hover:text-secondary transition-all cursor-pointer shadow-md">About</button>
-                        <button onclick="switchPage('contact')" id="nav-contact" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 hover:text-secondary transition-all cursor-pointer shadow-md">Contact</button>
+                        <button onclick="switchPage('home')" id="nav-home" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 transition-all shadow-md cursor-pointer">Home</button>
+                        <button onclick="switchPage('books')" id="nav-books" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 transition-all shadow-md cursor-pointer">Books</button>
+                        <button onclick="switchPage('about')" id="nav-about" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 transition-all shadow-md cursor-pointer">About</button>
+                        <button onclick="switchPage('contact')" id="nav-contact" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 transition-all shadow-md cursor-pointer">Contact</button>
                     </nav>
                 </div>
                 
@@ -299,8 +299,9 @@
                 document.getElementById(`page-${p}`).classList.remove('active');
             });
             document.getElementById(`page-${pageId}`).classList.add('active');
+            // Update hero nav active state
             document.querySelectorAll('.nav-link').forEach(nav => {
-                nav.classList.remove('text-accent', 'bg-primary', 'text-white');
+                nav.classList.remove('bg-primary', 'text-white');
                 nav.classList.add('bg-white', 'text-primary');
             });
             const activeNav = document.getElementById(`nav-${pageId}`);
