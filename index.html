@@ -69,10 +69,10 @@
             </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-[#8B5E3C]/20 px-6 py-4 space-y-3 shadow-lg">
-            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Home</button>
-            <button onclick="switchPage('books'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Books</button>
-            <button onclick="switchPage('about'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">About</button>
-            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Contact</button>
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left text-primary font-bold py-1 hover:text-secondary">Home</button>
+            <button onclick="switchPage('books'); toggleMobileMenu();" class="block w-full text-left text-primary font-bold py-1 hover:text-secondary">Books</button>
+            <button onclick="switchPage('about'); toggleMobileMenu();" class="block w-full text-left text-primary font-bold py-1 hover:text-secondary">About</button>
+            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left text-primary font-bold py-1 hover:text-secondary">Contact</button>
             <div class="pt-3 border-t border-gray-100 flex items-center gap-2 text-secondary font-semibold text-sm">
                 <i class="fa-solid fa-phone"></i> 0939437332
             </div>
@@ -95,11 +95,11 @@
             <section class="relative bg-primary text-white py-20 lg:py-28 overflow-hidden">
                 <!-- Navigation Tabs Centered Inside the Green Hero Section -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-                    <nav class="flex items-center justify-center gap-8 lg:gap-12 font-medium text-lg lg:text-xl">
+                    <nav class="flex items-center justify-center gap-8 lg:gap-12 font-bold text-lg lg:text-xl">
                         <button onclick="switchPage('home')" id="nav-home" class="nav-link text-accent font-bold hover:text-white transition-colors cursor-pointer drop-shadow">Home</button>
-                        <button onclick="switchPage('books')" id="nav-books" class="nav-link text-white hover:text-accent transition-colors cursor-pointer drop-shadow">Books</button>
-                        <button onclick="switchPage('about')" id="nav-about" class="nav-link text-white hover:text-accent transition-colors cursor-pointer drop-shadow">About</button>
-                        <button onclick="switchPage('contact')" id="nav-contact" class="nav-link text-white hover:text-accent transition-colors cursor-pointer drop-shadow">Contact</button>
+                        <button onclick="switchPage('books')" id="nav-books" class="nav-link text-white font-bold hover:text-accent transition-colors cursor-pointer drop-shadow">Books</button>
+                        <button onclick="switchPage('about')" id="nav-about" class="nav-link text-white font-bold hover:text-accent transition-colors cursor-pointer drop-shadow">About</button>
+                        <button onclick="switchPage('contact')" id="nav-contact" class="nav-link text-white font-bold hover:text-accent transition-colors cursor-pointer drop-shadow">Contact</button>
                     </nav>
                 </div>
                 
@@ -151,16 +151,16 @@
                 
                 <!-- 4 FILTER TABS -->
                 <div class="flex flex-wrap justify-center items-center gap-4 mb-8">
-                    <button onclick="filterCategory('all')" id="btn-all" class="category-tab active-tab bg-primary text-white font-serif px-8 py-3 rounded-xl shadow-md transition-all font-semibold text-lg cursor-pointer">
+                    <button onclick="filterCategory('all')" id="btn-all" class="category-tab active-tab bg-primary text-white font-serif px-8 py-3 rounded-xl shadow-md transition-all font-bold text-lg cursor-pointer">
                         ሁሉም መጻሕፍት (All)
                     </button>
-                    <button onclick="filterCategory('regular')" id="btn-regular" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
+                    <button onclick="filterCategory('regular')" id="btn-regular" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-bold text-lg cursor-pointer">
                         መጻሕፍት
                     </button>
-                    <button onclick="filterCategory('children')" id="btn-children" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
+                    <button onclick="filterCategory('children')" id="btn-children" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-bold text-lg cursor-pointer">
                         ለሕጻናት
                     </button>
-                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
+                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-bold text-lg cursor-pointer">
                         የሳምንቱ አዲስ መጻሕፍት
                     </button>
                 </div>
@@ -299,8 +299,8 @@
             });
             document.getElementById(`page-${pageId}`).classList.add('active');
             document.querySelectorAll('.nav-link').forEach(nav => {
-                nav.classList.remove('text-accent', 'font-bold');
-                nav.classList.add('text-white');
+                nav.classList.remove('text-accent');
+                nav.classList.add('text-white', 'font-bold');
             });
             const activeNav = document.getElementById(`nav-${pageId}`);
             if (activeNav) {
