@@ -93,37 +93,12 @@
             </div>
         </section>
 
-        <!-- ================= STATISTICS & TRUST SECTION ================= -->
-        <section class="py-12 bg-white border-b border-gray-200/50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
-                    <div class="p-4 space-y-2">
-                        <div class="w-12 h-12 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-xl mb-3"><i class="fa-solid fa-book"></i></div>
-                        <h3 class="font-serif text-3xl font-bold text-primary">500+</h3>
-                        <p class="text-gray-600 text-sm font-medium">የተመረጡ መጻሕፍት</p>
-                    </div>
-                    <div class="p-4 space-y-2 pt-6 sm:pt-4">
-                        <div class="w-12 h-12 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-xl mb-3"><i class="fa-solid fa-users"></i></div>
-                        <h3 class="font-serif text-3xl font-bold text-primary">1,000+</h3>
-                        <p class="text-gray-600 text-sm font-medium">ረካ የንባብ ቤተሰቦች</p>
-                    </div>
-                    <div class="p-4 space-y-2 pt-6 sm:pt-4">
-                        <div class="w-12 h-12 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-xl mb-3"><i class="fa-solid fa-award"></i></div>
-                        <h3 class="font-serif text-3xl font-bold text-primary">5+</h3>
-                        <p class="text-gray-600 text-sm font-medium">ዓመታት የخدمة አገልግሎት</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- ================= SECTION: BOOKS (Primary Landing Page) ================= -->
         <section id="books" class="py-16 bg-warmwhite border-b border-gray-200/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
-                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">ካታሎግ</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-primary">የመጻሕፍት መደብር መዘርዝር</h2>
-                    <p class="text-gray-600 text-sm">ከዚህ በታች ያሉትን መጻሕፍት በመጫን ሙሉ መረጃዎችን ያግኙ።</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-primary">መጻሕፍት</h2>
                 </div>
 
                 <!-- FILTER TABS -->
@@ -159,43 +134,6 @@
                     <div class="text-5xl text-gray-300 mb-3"><i class="fa-solid fa-book-tanakh"></i></div>
                     <h3 class="font-serif text-xl font-bold text-gray-700">ምንም መጽሐፍ አልተገኘም</h3>
                     <p class="text-gray-500 text-sm mt-1">እባክዎ ፍለጋዎን ይቀይሩ ወይም ሌላ ምድብ ይምረጡ።</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= FEATURED BOOKS SECTION ================= -->
-        <section class="py-16 bg-white border-b border-gray-200/50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">ልዩ ምርጫ</span>
-                    <h2 class="font-serif text-3xl font-bold text-primary mt-2">ተወዳጅ መጻሕፍት</h2>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6" id="featured-grid">
-                    <!-- Dynamic rendering via script or curated display -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= BEST SELLERS SECTION ================= -->
-        <section class="py-16 bg-warmwhite border-b border-gray-200/50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">ተፈላጊ</span>
-                    <h2 class="font-serif text-3xl font-bold text-primary mt-2">በብዛት የተጠየቁ</h2>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6" id="bestsellers-grid">
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= RECENTLY ADDED BOOKS SECTION ================= -->
-        <section class="py-16 bg-white border-b border-gray-200/50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">አዳዲስ</span>
-                    <h2 class="font-serif text-3xl font-bold text-primary mt-2">በቅርብ ጊዜ የተጨመሩ</h2>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6" id="recent-grid">
                 </div>
             </div>
         </section>
@@ -577,20 +515,6 @@
             });
         }
 
-        function renderSpecialSections() {
-            const featuredGrid = document.getElementById('featured-grid');
-            const bestsellersGrid = document.getElementById('bestsellers-grid');
-            const recentGrid = document.getElementById('recent-grid');
-
-            const featuredBooks = books.filter(b => b.isFeatured).slice(0, 5);
-            const bestsellerBooks = books.filter(b => b.isBestSeller).slice(0, 5);
-            const recentBooks = books.filter(b => b.isNew).slice(0, 5);
-
-            if (featuredGrid) featuredGrid.innerHTML = featuredBooks.map(b => createBookCardHTML(b)).join('');
-            if (bestsellersGrid) bestsellersGrid.innerHTML = bestsellerBooks.map(b => createBookCardHTML(b)).join('');
-            if (recentGrid) recentGrid.innerHTML = recentBooks.map(b => createBookCardHTML(b)).join('');
-        }
-
         function filterCategory(category) {
             currentFilter = category;
             document.querySelectorAll('.category-tab').forEach(btn => {
@@ -690,7 +614,6 @@
         
         document.addEventListener('DOMContentLoaded', () => {
             renderBooks(books);
-            renderSpecialSections();
         });
     </script>
 </body>
