@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="am" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arganon Book Store | አርጋኖን መጻሕፍት መደብር</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAF7F2;
+            color: #333333;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-primary { background-color: #1F4D3B; }
+        .text-primary { color: #1F4D3B; }
+        .border-primary { border-color: #1F4D3B; }
+        
+        .bg-secondary { background-color: #8B5E3C; }
+        .text-secondary { color: #8B5E3C; }
+        
+        .bg-accent { background-color: #D4AF37; }
+        .text-accent { color: #D4AF37; }
+        
+        .bg-warmwhite { background-color: #FAF7F2; }
+        .page-view {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+        .page-view.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-warmwhite text-[#333333] antialiased selection:bg-[#1F4D3B] selection:text-white flex flex-col min-h-screen">
+    <!-- ================= NAVIGATION BAR ================= -->
+    <header class="sticky top-0 z-50 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#8B5E3C]/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <button onclick="switchPage('home')" class="flex items-center gap-3 group text-left cursor-pointer">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-book-open text-accent"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-2xl font-bold tracking-wide text-primary">Arganon</span>
+                    <span class="block text-xs uppercase tracking-widest text-secondary font-semibold">Book Store</span>
+                </div>
+            </button>
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm lg:text-base">
+                <button onclick="switchPage('home')" id="nav-home" class="nav-link text-primary font-bold hover:text-secondary transition-colors cursor-pointer">Home</button>
+                <button onclick="switchPage('books')" id="nav-books" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Books</button>
+                <button onclick="switchPage('about')" id="nav-about" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">About</button>
+                <button onclick="switchPage('contact')" id="nav-contact" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Contact</button>
+            </nav>
+            <div class="hidden lg:flex items-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-[#8B5E3C]/20">
+                <i class="fa-solid fa-phone text-secondary"></i>
+                <span class="text-sm font-semibold text-primary">0939437332</span>
+            </div>
+            <button id="menu-btn" class="md:hidden text-primary text-2xl focus:outline-none cursor-pointer">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-[#8B5E3C]/20 px-6 py-4 space-y-3 shadow-lg">
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Home</button>
+            <button onclick="switchPage('books'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Books</button>
+            <button onclick="switchPage('about'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">About</button>
+            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Contact</button>
+            <div class="pt-3 border-t border-gray-100 flex items-center gap-2 text-secondary font-semibold text-sm">
+                <i class="fa-solid fa-phone"></i> 0939437332
+            </div>
+        </div>
+    </header>
+    <!-- HORIZONTAL SLIDE CONTROLS -->
+    <div class="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-white/90 backdrop-blur-md p-1.5 rounded-full shadow-lg border border-[#8B5E3C]/30">
+        <button onclick="navigateSlide(-1)" title="Previous Page" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-[#153427] transition-colors cursor-pointer">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+        </button>
+        <span id="slide-indicator" class="text-xs font-bold text-primary px-3">1 / 4</span>
+        <button onclick="navigateSlide(1)" title="Next Page" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-[#153427] transition-colors cursor-pointer">
+            <i class="fa-solid fa-chevron-right text-sm"></i>
+        </button>
+    </div>
+    <!-- ================= PAGE CONTAINER ================= -->
+    <main class="flex-grow">
+        <!-- ================= PAGE 1: HOME ================= -->
+        <div id="page-home" class="page-view active">
+            <section class="relative bg-primary text-white py-20 lg:py-28 overflow-hidden">
+                <div class="absolute inset-0 opacity-15 bg-cover bg-center" style="background-image: url('images/bookshelf-bg.jpg');"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#1F4D3B] via-[#1F4D3B]/90 to-transparent"></div>
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-12">
+                    <div class="max-w-2xl space-y-6">
+                        <span class="inline-block bg-accent/20 text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-accent/30">
+                            አዲስ አበባ • 5 ኪሎ
+                        </span>
+                        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                            Discover Your Next Great Read at <span class="text-accent">Arganon</span>
+                        </h1>
+                        <p class="text-lg text-gray-200 font-light leading-relaxed">
+                            Welcome to Arganon Book Store. Explore our curated collection before visiting our physical store at 5 Kilo.
+                        </p>
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                            <button onclick="switchPage('books')" class="bg-accent hover:bg-[#c29f2e] text-[#1F4D3B] font-bold px-8 py-3.5 rounded-xl shadow-lg transition-all flex items-center gap-2 cursor-pointer">
+                                <span>Browse Catalog</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                            <button onclick="switchPage('contact')" class="bg-transparent hover:bg-white/10 text-white border-2 border-white/40 px-8 py-3.5 rounded-xl font-medium transition-all cursor-pointer">
+                                Store Location
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl shadow-inner">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold mb-2">Visit Our Store</h3>
+                        <p class="text-sm text-gray-200 mb-4">አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</p>
+                        <div class="text-xs bg-primary/60 py-2 px-3 rounded-lg border border-white/10 text-accent font-semibold">
+                            Open Always
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-white py-20 border-b border-[#8B5E3C]/10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <span class="text-secondary font-semibold uppercase tracking-widest text-xs">The Arganon Experience</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">Why Choose Arganon Book Store</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-warmwhite p-8 rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl mb-4"><i class="fa-solid fa-books"></i></div>
+                            <h3 class="font-serif text-xl font-bold text-primary mb-2">Large Collection</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Diverse selections spanning literature, history, fiction, and children's storybooks.</p>
+                        </div>
+                        <div class="bg-warmwhite p-8 rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl mb-4"><i class="fa-solid fa-certificate"></i></div>
+                            <h3 class="font-serif text-xl font-bold text-primary mb-2">Carefully Selected</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Every title is handpicked to ensure high quality and engaging enriching value.</p>
+                        </div>
+                        <div class="bg-warmwhite p-8 rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl mb-4"><i class="fa-solid fa-face-smile"></i></div>
+                            <h3 class="font-serif text-xl font-bold text-primary mb-2">Friendly Service</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Our knowledgeable staff is always eager to assist you in finding your books.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- ================= PAGE 2: BOOKS ================= -->
+        <div id="page-books" class="page-view py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">Complete Inventory</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">Books Page Catalog</h2>
+                    <p class="text-gray-600 mt-2">Filter between regular and children's books or search instantly.</p>
+                </div>
+                
+                <!-- ================= 5. UI/STYLING: 4 FILTER TABS ================= -->
+                <div class="flex flex-wrap justify-center items-center gap-4 mb-8">
+                    <button onclick="filterCategory('all')" id="btn-all" class="category-tab active-tab bg-primary text-white font-serif px-8 py-3 rounded-xl shadow-md transition-all font-semibold text-lg cursor-pointer">
+                        ሁሉም መጻሕፍት (All)
+                    </button>
+                    <button onclick="filterCategory('regular')" id="btn-regular" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
+                        መጻሕፍት
+                    </button>
+                    <button onclick="filterCategory('children')" id="btn-children" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
+                        ለሕጻናት
+                    </button>
+                    <!-- NEW 4TH TAB BUTTON -->
+                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
+                        የሳምንቱ አዲስ መጻሕፍት
+                    </button>
+                </div>
+                <div class="max-w-xl mx-auto mb-12">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" id="search-input" onkeyup="searchBooks()" placeholder="Search by Book Name or Author..." class="w-full pl-11 pr-4 py-3.5 bg-white rounded-xl border border-gray-200 shadow-sm focus:outline-none focus:border-primary text-sm">
+                    </div>
+                </div>
+                <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                <div id="no-results" class="hidden text-center py-16">
+                    <div class="text-5xl text-gray-300 mb-3"><i class="fa-solid fa-book-tanakh"></i></div>
+                    <h3 class="font-serif text-xl font-bold text-gray-700">No books found</h3>
+                    <p class="text-gray-500 text-sm mt-1">Try adjusting your search query or category filter.</p>
+                </div>
+            </div>
+        </div>
+        <!-- ================= PAGE 3: ABOUT ================= -->
+        <div id="page-about" class="page-view py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">Our Heritage</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">About Arganon Book Store</h2>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="space-y-6">
+                        <h3 class="font-serif text-2xl font-bold text-primary">Our Story</h3>
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Established in the academic neighborhood of 5 Kilo, Arganon Book Store was founded out of a deep passion for literature, education, and community enrichment.
+                        </p>
+                        <div class="grid grid-cols-2 gap-6 pt-4">
+                            <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                                <h4 class="font-serif font-bold text-primary text-lg mb-1">Our Mission</h4>
+                                <p class="text-xs text-gray-600 leading-relaxed">To promote reading culture by providing accessible, high-quality books.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                                <h4 class="font-serif font-bold text-primary text-lg mb-1">Our Vision</h4>
+                                <p class="text-xs text-gray-600 leading-relaxed">To become Ethiopia's most trusted neighborhood bookstore destination.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="images/about-store-1.jpg" alt="Interior" class="rounded-2xl shadow-md object-cover h-64 w-full">
+                        <img src="images/about-store-2.jpg" alt="Shelves" class="rounded-2xl shadow-md object-cover h-64 w-full mt-8">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ================= PAGE 4: CONTACT ================= -->
+        <div id="page-contact" class="page-view py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">Get In Touch</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">Contact Arganon Book Store</h2>
+                </div>
+                <div class="max-w-xl mx-auto">
+                    <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-100 space-y-6">
+                        <h3 class="font-serif text-2xl font-bold text-primary">Store Information</h3>
+                        <div class="space-y-5 text-sm">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-primary">Store Address</h4>
+                                    <p class="text-gray-600">አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-phone"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-primary">Phone</h4>
+                                    <p class="text-gray-600">0939437332</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-brands fa-telegram"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-primary">Telegram Channel</h4>
+                                    <a href="https://t.me/corpus_mysticum" target="_blank" class="text-secondary font-semibold hover:underline flex items-center gap-1.5 mt-0.5">
+                                        @corpus_mysticum <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- ================= BOOK DETAILS MODAL ================= -->
+    <div id="book-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div id="modal-content-box" class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col transform transition-all scale-95 opacity-0">
+            <button onclick="closeBookModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full flex items-center justify-center transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="p-6 sm:p-10 overflow-y-auto space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div class="bg-warmwhite p-6 rounded-2xl flex items-center justify-center border border-gray-100">
+                        <img id="modal-img" src="" alt="Book Cover" class="max-h-80 w-auto rounded-lg shadow-md object-cover">
+                    </div>
+                    <div class="space-y-4">
+                        <span id="modal-category" class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase"></span>
+                        <h2 id="modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-primary"></h2>
+                        <p id="modal-author" class="text-secondary font-medium text-base"></p>
+                        <div class="grid grid-cols-2 gap-3 pt-2 text-xs border-t border-b border-gray-100 py-4">
+                            <div><span class="text-gray-400 block">Language:</span> <strong id="modal-lang" class="text-gray-700"></strong></div>
+                            <div><span class="text-gray-400 block">Publisher:</span> <strong id="modal-publisher" class="text-gray-700"></strong></div>
+                            <div><span class="text-gray-400 block">Year:</span> <strong id="modal-year" class="text-gray-700"></strong></div>
+                            <div><span class="text-gray-400 block">Pages:</span> <strong id="modal-pages" class="text-gray-700"></strong></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="font-serif text-xl font-bold text-primary">Description</h3>
+                    <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-[#153427] text-white pt-12 pb-6 border-t border-[#8B5E3C]/30 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-400">
+            &copy; 2026 Arganon Book Store. All rights reserved. Addis Ababa, 5 Kilo.
+        </div>
+    </footer>
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        const pages = ['home', 'books', 'about', 'contact'];
+        let currentIndex = 0;
+        function switchPage(pageId) {
+            const index = pages.indexOf(pageId);
+            if (index !== -1) currentIndex = index;
+            pages.forEach(p => {
+                document.getElementById(`page-${p}`).classList.remove('active');
+            });
+            document.getElementById(`page-${pageId}`).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(nav => {
+                nav.classList.remove('text-primary', 'font-bold');
+                nav.classList.add('text-gray-600');
+            });
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if (activeNav) {
+                activeNav.classList.remove('text-gray-600');
+                activeNav.classList.add('text-primary', 'font-bold');
+            }
+            document.getElementById('slide-indicator').textContent = `${currentIndex + 1} / 4`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function navigateSlide(direction) {
+            currentIndex = (currentIndex + direction + pages.length) % pages.length;
+            switchPage(pages[currentIndex]);
+        }
+        
+        // ==========================================
+        // 1. BOOK DATA STRUCTURE (WITH NEW FIELDS: isNew & dateAdded)
+        // ==========================================
+        const books = [
+            {
+                id: 1,
+                title: "የኢትዮጵያ ታሪክ ማስታወሻ",
+                author: "ዮሐንስ መብራቴ",
+                category: "regular",
+                categoryName: "መጻሕፍት (Regular)",
+                rating: 5,
+                cover: "images/book1.jpg",
+                description: "A comprehensive journey through historical epochs and cultural heritage shaping modern Ethiopian identity.",
+                lang: "Amharic",
+                publisher: "Arganon",
+                year: "2024",
+                pages: "340",
+                isNew: false,
+                dateAdded: "2026-07-20"
+            },
+            {
+                id: 2,
+                title: "የልጆች ተረቶች እና ምሳሌዎች",
+                author: "ቤተልሔም ታደሰ",
+                category: "children",
+                categoryName: "ለሕጻናት (Children)",
+                rating: 5,
+                cover: "images/book2.jpg",
+                description: "An engaging collection of illustrated moral stories crafted specifically to inspire young minds.",
+                lang: "Amharic",
+                publisher: "Sunshine",
+                year: "2025",
+                pages: "112",
+                isNew: true,
+                dateAdded: "2026-07-25" // Within 7 days from current time (July 25, 2026)
+            },
+            {
+                id: 3,
+                title: "የሐዋርያው የቅዱስ ጳውሎስ መልእክታት",
+                author: "መጋቤ ሐዲስ ስቡሕ አዳምጤ",
+                category: "regular",
+                categoryName: "መጻሕፍት (Regular)",
+                rating: 5,
+                cover: "images/book3.jpg",
+                description: "An engaging collection of illustrated moral stories crafted specifically to inspire young minds.",
+                lang: "Amharic",
+                publisher: "Sunshine",
+                year: "2018",
+                pages: " ",
+                isNew: false,
+                dateAdded: "2026-07-25" // Within 7 days from current time (July 25, 2026)
+            },
+            {
+                id: 4,
+                title: "መራኁት",
+                author: "መጋቤ ጥበብ ይግዛው መኮንን",
+                category: "regular",
+                categoryName: "መጻሕፍት (Regular)",
+                rating: 5,
+                cover: "images/merahut.jpg",
+                description: "ኦርቶዶክሳዊ የትዳር እና የርካቤ ስነ-ልቡና",
+                lang: "Russian",
+                publisher: "Aragnon",
+                year: "2018",
+                pages: "_",
+                isNew: true,
+                dateAdded: "2026-07-25" // Within 7 days from current time (July 25, 2026)
+            }
+           ];
+        // ==========================================
+        // 4. HELPER FUNCTION TO CHECK IF A BOOK IS WITHIN 7 DAYS
+        // ==========================================
+        function isWithinLast7Days(dateString) {
+            if (!dateString) return false;
+            const today = new Date("2026-07-25"); // Using system current date
+            const bookDate = new Date(dateString);
+            
+            // Calculate difference in time (milliseconds)
+            const diffTime = today - bookDate;
+            const diffDays = diffTime / (1000 * 60 * 60 * 24);
+            
+            // Must be true and within 0 to 7 days inclusive
+            return diffDays >= 0 && diffDays <= 7;
+        }
+        let currentFilter = 'all';
+        function renderBooks(booksToDisplay) {
+            const grid = document.getElementById('books-grid');
+            const noResults = document.getElementById('no-results');
+            grid.innerHTML = '';
+            if (booksToDisplay.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+            booksToDisplay.forEach(book => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl transition-all flex flex-col justify-between group";
+                card.innerHTML = `
+                    <div>
+                        <div class="bg-warmwhite rounded-xl overflow-hidden mb-6 h-64 flex items-center justify-center p-4 border border-gray-50">
+                            <img src="${book.cover}" alt="${book.title}" class="max-h-full object-contain group-hover:scale-105 transition-transform duration-500 shadow-md">
+                        </div>
+                        <span class="text-xs font-bold text-secondary uppercase tracking-wider">${book.categoryName}</span>
+                        <h3 class="font-serif text-xl font-bold text-primary mt-1 mb-1">${book.title}</h3>
+                        <p class="text-gray-500 text-xs mb-3 font-medium">By ${book.author}</p>
+                        <p class="text-gray-600 text-xs line-clamp-2 mb-6">${book.description}</p>
+                    </div>
+                    <button onclick="openBookModal(${book.id})" class="w-full bg-[#FAF7F2] hover:bg-primary text-primary hover:text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-all flex items-center justify-between border border-primary/10 cursor-pointer">
+                        <span>View Details</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        // ==========================================
+        // 2 & 5. UPDATED filterCategory FUNCTION FOR UI TAB SWITCHING
+        // ==========================================
+        function filterCategory(category) {
+            currentFilter = category;
+            document.querySelectorAll('.category-tab').forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-primary', 'border', 'border-gray-200');
+            });
+            
+            const activeBtnId = category === 'new-week' ? 'btn-new-week' : `btn-${category}`;
+            const activeBtn = document.getElementById(activeBtnId);
+            
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white', 'text-primary', 'border', 'border-gray-200');
+                activeBtn.classList.add('bg-primary', 'text-white', 'shadow-md');
+            }
+            applyFilters();
+        }
+        function searchBooks() { applyFilters(); }
+        // ==========================================
+        // 2, 3 & 6. UPDATED applyFilters WITH NEW TAB LOGIC & SEARCH
+        // ==========================================
+        function applyFilters() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            let filtered = books.filter(book => {
+                let matchesCategory = false;
+                if (currentFilter === 'all') {
+                    matchesCategory = true;
+                } else if (currentFilter === 'regular' || currentFilter === 'children') {
+                    matchesCategory = book.category === currentFilter;
+                } else if (currentFilter === 'new-week') {
+                    // Logic: isNew must be true AND dateAdded must be within the last 7 days
+                    matchesCategory = book.isNew === true && isWithinLast7Days(book.dateAdded);
+                }
+                const matchesSearch = book.title.toLowerCase().includes(query) || book.author.toLowerCase().includes(query);
+                return matchesCategory && matchesSearch;
+            });
+            renderBooks(filtered);
+        }
+        function openBookModal(id) {
+            const book = books.find(b => b.id === id);
+            if (!book) return;
+            document.getElementById('modal-img').src = book.cover;
+            document.getElementById('modal-title').textContent = book.title;
+            document.getElementById('modal-author').textContent = `By ${book.author}`;
+            document.getElementById('modal-category').textContent = book.categoryName;
+            document.getElementById('modal-lang').textContent = book.lang;
+            document.getElementById('modal-publisher').textContent = book.publisher;
+            document.getElementById('modal-year').textContent = book.year;
+            document.getElementById('modal-pages').textContent = book.pages;
+            document.getElementById('modal-desc').textContent = book.description;
+            const modal = document.getElementById('book-modal');
+            const box = document.getElementById('modal-content-box');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                box.classList.remove('scale-95', 'opacity-0');
+                box.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+        function closeBookModal() {
+            const modal = document.getElementById('book-modal');
+            const box = document.getElementById('modal-content-box');
+            box.classList.remove('scale-100', 'opacity-100');
+            box.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 200);
+        }
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+        document.getElementById('menu-btn').addEventListener('click', toggleMobileMenu);
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBooks(books);
+        });
+    </script>
+</body>
+</html>
