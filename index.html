@@ -60,12 +60,6 @@
                     <span class="block text-xs uppercase tracking-widest text-secondary font-semibold">Book Store</span>
                 </div>
             </button>
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm lg:text-base">
-                <button onclick="switchPage('home')" id="nav-home" class="nav-link text-primary font-bold hover:text-secondary transition-colors cursor-pointer">Home</button>
-                <button onclick="switchPage('books')" id="nav-books" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Books</button>
-                <button onclick="switchPage('about')" id="nav-about" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">About</button>
-                <button onclick="switchPage('contact')" id="nav-contact" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Contact</button>
-            </nav>
             <div class="hidden lg:flex items-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-[#8B5E3C]/20">
                 <i class="fa-solid fa-phone text-secondary"></i>
                 <span class="text-sm font-semibold text-primary">0939437332</span>
@@ -75,10 +69,10 @@
             </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-[#8B5E3C]/20 px-6 py-4 space-y-3 shadow-lg">
-            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Home</button>
-            <button onclick="switchPage('books'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Books</button>
-            <button onclick="switchPage('about'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">About</button>
-            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Contact</button>
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left text-primary font-bold py-1 hover:text-secondary">Home</button>
+            <button onclick="switchPage('books'); toggleMobileMenu();" class="block w-full text-left text-primary font-bold py-1 hover:text-secondary">Books</button>
+            <button onclick="switchPage('about'); toggleMobileMenu();" class="block w-full text-left text-primary font-bold py-1 hover:text-secondary">About</button>
+            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left text-primary font-bold py-1 hover:text-secondary">Contact</button>
             <div class="pt-3 border-t border-gray-100 flex items-center gap-2 text-secondary font-semibold text-sm">
                 <i class="fa-solid fa-phone"></i> 0939437332
             </div>
@@ -99,6 +93,17 @@
         <!-- ================= PAGE 1: HOME ================= -->
         <div id="page-home" class="page-view active">
             <section class="relative bg-primary text-white py-20 lg:py-28 overflow-hidden">
+                <!-- Navigation Tabs Centered Inside the Green Hero Section -->
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+                    <!-- FIXED: Fully visible, bold, clickable tabs -->
+                    <nav class="flex items-center justify-center gap-4 lg:gap-6">
+                        <button onclick="switchPage('home')" id="nav-home" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 transition-all shadow-md cursor-pointer">Home</button>
+                        <button onclick="switchPage('books')" id="nav-books" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 transition-all shadow-md cursor-pointer">Books</button>
+                        <button onclick="switchPage('about')" id="nav-about" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 transition-all shadow-md cursor-pointer">About</button>
+                        <button onclick="switchPage('contact')" id="nav-contact" class="nav-link bg-white px-5 py-2.5 rounded-xl text-primary font-bold hover:bg-gray-100 transition-all shadow-md cursor-pointer">Contact</button>
+                    </nav>
+                </div>
+                
                 <div class="absolute inset-0 opacity-15 bg-cover bg-center" style="background-image: url('images/bookshelf-bg.jpg');"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-[#1F4D3B] via-[#1F4D3B]/90 to-transparent"></div>
                 <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-12">
@@ -117,13 +122,13 @@
                                 <span>Browse Catalog</span>
                                 <i class="fa-solid fa-arrow-right text-xs"></i>
                             </button>
-                            <a href="https://www.google.com/maps/search/?api=1&query=5+Kilo+Kidkiste+Maryam+Church+Addis+Ababa" target="_blank" class="bg-transparent hover:bg-white/10 text-white border-2 border-white/40 px-8 py-3.5 rounded-xl font-medium transition-all cursor-pointer inline-flex items-center justify-center">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+University+Sidist+Kilo+Campus" target="_blank" class="bg-transparent hover:bg-white/10 text-white border-2 border-white/40 px-8 py-3.5 rounded-xl font-medium transition-all cursor-pointer inline-flex items-center justify-center">
                                 Store Location
                             </a>
                         </div>
                     </div>
                     <!-- Clickable Store Location Card -->
-                    <a href="https://www.google.com/maps/search/?api=1&query=5+Kilo+Kidkiste+Maryam+Church+Addis+Ababa" target="_blank" class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl text-center block hover:bg-white/20 transition-all cursor-pointer group">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+University+Sidist+Kilo+Campus" target="_blank" class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl text-center block hover:bg-white/20 transition-all cursor-pointer group">
                         <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl shadow-inner group-hover:scale-105 transition-transform">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
@@ -145,19 +150,18 @@
                     <p class="text-gray-600 mt-2">Filter between regular and children's books or search instantly.</p>
                 </div>
                 
-                <!-- ================= 5. UI/STYLING: 4 FILTER TABS ================= -->
+                <!-- 4 FILTER TABS -->
                 <div class="flex flex-wrap justify-center items-center gap-4 mb-8">
-                    <button onclick="filterCategory('all')" id="btn-all" class="category-tab active-tab bg-primary text-white font-serif px-8 py-3 rounded-xl shadow-md transition-all font-semibold text-lg cursor-pointer">
+                    <button onclick="filterCategory('all')" id="btn-all" class="category-tab active-tab bg-primary text-white font-serif px-8 py-3 rounded-xl shadow-md transition-all font-bold text-lg cursor-pointer">
                         ሁሉም መጻሕፍት (All)
                     </button>
-                    <button onclick="filterCategory('regular')" id="btn-regular" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
+                    <button onclick="filterCategory('regular')" id="btn-regular" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-bold text-lg cursor-pointer">
                         መጻሕፍት
                     </button>
-                    <button onclick="filterCategory('children')" id="btn-children" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
+                    <button onclick="filterCategory('children')" id="btn-children" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-bold text-lg cursor-pointer">
                         ለሕጻናት
                     </button>
-                    <!-- NEW 4TH TAB BUTTON -->
-                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
+                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-bold text-lg cursor-pointer">
                         የሳምንቱ አዲስ መጻሕፍት
                     </button>
                 </div>
@@ -295,14 +299,15 @@
                 document.getElementById(`page-${p}`).classList.remove('active');
             });
             document.getElementById(`page-${pageId}`).classList.add('active');
+            // Update hero nav active state
             document.querySelectorAll('.nav-link').forEach(nav => {
-                nav.classList.remove('text-primary', 'font-bold');
-                nav.classList.add('text-gray-600');
+                nav.classList.remove('bg-primary', 'text-white');
+                nav.classList.add('bg-white', 'text-primary');
             });
             const activeNav = document.getElementById(`nav-${pageId}`);
             if (activeNav) {
-                activeNav.classList.remove('text-gray-600');
-                activeNav.classList.add('text-primary', 'font-bold');
+                activeNav.classList.remove('bg-white', 'text-primary');
+                activeNav.classList.add('bg-primary', 'text-white');
             }
             document.getElementById('slide-indicator').textContent = `${currentIndex + 1} / 4`;
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -312,9 +317,6 @@
             switchPage(pages[currentIndex]);
         }
         
-        // ==========================================
-        // 1. BOOK DATA STRUCTURE (WITH NEW FIELDS: isNew & dateAdded)
-        // ==========================================
         const books = [
             {
                 id: 1,
@@ -428,21 +430,19 @@
                 isNew: false,
                 dateAdded: "2026-07-25"
             }
-           ];
-        // ==========================================
-        // 4. HELPER FUNCTION TO CHECK IF A BOOK IS WITHIN 7 DAYS
-        // ==========================================
+        ];
+
         function isWithinLast7Days(dateString) {
             if (!dateString) return false;
             const today = new Date("2026-07-25");
             const bookDate = new Date(dateString);
-            
             const diffTime = today - bookDate;
             const diffDays = diffTime / (1000 * 60 * 60 * 24);
-            
             return diffDays >= 0 && diffDays <= 7;
         }
+
         let currentFilter = 'all';
+
         function renderBooks(booksToDisplay) {
             const grid = document.getElementById('books-grid');
             const noResults = document.getElementById('no-results');
@@ -474,9 +474,7 @@
                 grid.appendChild(card);
             });
         }
-        // ==========================================
-        // 2 & 5. UPDATED filterCategory FUNCTION FOR UI TAB SWITCHING
-        // ==========================================
+
         function filterCategory(category) {
             currentFilter = category;
             document.querySelectorAll('.category-tab').forEach(btn => {
@@ -493,10 +491,9 @@
             }
             applyFilters();
         }
+
         function searchBooks() { applyFilters(); }
-        // ==========================================
-        // 2, 3 & 6. UPDATED applyFilters WITH NEW TAB LOGIC & SEARCH
-        // ==========================================
+
         function applyFilters() {
             const query = document.getElementById('search-input').value.toLowerCase().trim();
             let filtered = books.filter(book => {
@@ -513,6 +510,7 @@
             });
             renderBooks(filtered);
         }
+
         function openBookModal(id) {
             const book = books.find(b => b.id === id);
             if (!book) return;
@@ -534,6 +532,7 @@
                 box.classList.add('scale-100', 'opacity-100');
             }, 10);
         }
+
         function closeBookModal() {
             const modal = document.getElementById('book-modal');
             const box = document.getElementById('modal-content-box');
@@ -544,6 +543,7 @@
                 modal.classList.add('hidden');
             }, 200);
         }
+
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         }
