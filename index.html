@@ -233,7 +233,7 @@
             <div class="p-6 sm:p-10 overflow-y-auto space-y-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                     <div class="bg-warmwhite p-6 rounded-2xl flex items-center justify-center border border-gray-100">
-                        <img id="modal-img" src="" alt="Book Cover" class="max-h-80 w-auto rounded-lg shadow-md object-cover">
+                        <img id="modal-img" src="" alt="Book Cover" class="max-h-80 w-auto rounded-lg shadow-md object-contain">
                     </div>
                     <div class="space-y-4">
                         <span id="modal-category" class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase"></span>
@@ -405,8 +405,8 @@
                 card.className = "bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl transition-all flex flex-col justify-between group";
                 card.innerHTML = `
                     <div>
-                        <div class="bg-warmwhite rounded-xl overflow-hidden mb-6 h-72 flex items-center justify-center p-2 border border-gray-50">
-                            <img src="${book.cover}" alt="${book.title}" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500 shadow-md">
+                        <div class="bg-warmwhite rounded-xl overflow-hidden mb-6 h-72 flex items-center justify-center p-3 border border-gray-50">
+                            <img src="${book.cover}" alt="${book.title}" class="max-h-full max-w-full object-contain rounded-lg group-hover:scale-105 transition-transform duration-500 shadow-md">
                         </div>
                         <span class="text-xs font-bold text-secondary uppercase tracking-wider">${book.categoryName}</span>
                         <h3 class="font-serif text-xl font-bold text-primary mt-1 mb-1">${book.title}</h3>
