@@ -40,7 +40,7 @@
     <!-- ================= NAVIGATION BAR ================= -->
     <header class="sticky top-0 z-50 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#8B5E3C]/20 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#home" class="flex items-center gap-3 group text-left cursor-pointer">
+            <a href="#books" class="flex items-center gap-3 group text-left cursor-pointer">
                 <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-book-open text-accent"></i>
                 </div>
@@ -49,10 +49,9 @@
                     <span class="block text-xs uppercase tracking-widest text-secondary font-semibold">Book Store</span>
                 </div>
             </a>
-            <!-- Enlarged Navigation Tabs -->
+            <!-- Navigation Tabs (Home removed) -->
             <nav class="hidden md:flex items-center gap-10 font-bold text-lg lg:text-xl">
-                <a href="#home" id="nav-home" class="nav-link text-primary hover:text-secondary transition-colors cursor-pointer">Home</a>
-                <a href="#books" id="nav-books" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Books</a>
+                <a href="#books" id="nav-books" class="nav-link text-primary hover:text-secondary transition-colors cursor-pointer">Books</a>
                 <a href="#about" id="nav-about" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">About</a>
                 <a href="#contact" id="nav-contact" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Contact</a>
             </nav>
@@ -65,7 +64,6 @@
             </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-[#8B5E3C]/20 px-6 py-4 space-y-3 shadow-lg">
-            <a href="#home" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">Home</a>
             <a href="#books" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">Books</a>
             <a href="#about" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">About</a>
             <a href="#contact" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">Contact</a>
@@ -75,50 +73,25 @@
         </div>
     </header>
 
-    <!-- ================= MAIN CONTAINER (SINGLE-PAGE SCROLLABLE SECTIONS) ================= -->
+    <!-- ================= MAIN CONTAINER ================= -->
     <main class="flex-grow">
-        <!-- ================= SECTION 1: HOME ================= -->
-        <section id="home" class="relative bg-primary text-white py-20 lg:py-28 overflow-hidden">
-            <div class="absolute inset-0 opacity-15 bg-cover bg-center" style="background-image: url('images/bookshelf-bg.jpg');"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-[#1F4D3B] via-[#1F4D3B]/90 to-transparent"></div>
-            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-12">
-                <div class="max-w-2xl space-y-6">
-                    <span class="inline-block bg-accent/20 text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-accent/30">
-                        አዲስ አበባ • 5 ኪሎ
-                    </span>
-                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                        እንኳን ወደ<span class="text-accent"> አርጋኖን </span>የመጻሕፍት ድህረ ገጽ በደህና መጡ!
-                    </h1>
-                    <p class="text-lg text-gray-200 font-light leading-relaxed">
-                      <p> ቀጣዩን ውብ ንባብዎን በአርጋኖን ያግኙ! <br> Explore our curated collection before visiting our physical store at 5 Kilo.</p>
-                    </p>
-                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
-                        <a href="#books" class="bg-accent hover:bg-[#c29f2e] text-[#1F4D3B] font-bold px-8 py-3.5 rounded-xl shadow-lg transition-all flex items-center gap-2 cursor-pointer">
-                            <span>Browse Catalog</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=5+Kilo+Kidkiste+Maryam+Church+Addis+Ababa" target="_blank" class="bg-transparent hover:bg-white/10 text-white border-2 border-white/40 px-8 py-3.5 rounded-xl font-medium transition-all cursor-pointer inline-flex items-center justify-center">
-                            Store Location
-                        </a>
-                    </div>
-                </div>
-                <!-- Clickable Store Location Card -->
-                <a href="https://www.google.com/maps/search/?api=1&query=5+Kilo+Kidkiste+Maryam+Church+Addis+Ababa" target="_blank" class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl text-center block hover:bg-white/20 transition-all cursor-pointer group">
-                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl shadow-inner group-hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold mb-2">Visit Our Store</h3>
-                    <p class="text-sm text-gray-200 mb-4">አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</p>
-                    <div class="text-xs bg-primary/60 py-2 px-3 rounded-lg border border-white/10 text-accent font-semibold">
-                        Open Always
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- ================= SECTION 2: BOOKS ================= -->
-        <section id="books" class="py-20 bg-warmwhite border-b border-gray-200/50">
+        <!-- ================= SECTION: BOOKS (Primary Landing Page) ================= -->
+        <section id="books" class="py-16 bg-warmwhite border-b border-gray-200/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Hero Heading Section as requested -->
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                    <h1 class="font-serif text-2xl sm:text-4xl font-bold text-primary leading-snug">
+                        እንኳን ወደ አርጋኖን የመጻሕፍት ድህረ ገጽ በደህና መጡ!
+                    </h1>
+                    <p class="text-secondary font-serif text-lg font-semibold">
+                        ቀጣዩን ውብ ንባብዎን በአርጋኖን ያግኙ!
+                    </p>
+                    <p class="text-gray-600 text-sm">
+                        Explore our curated collection before visiting our physical store at 5 Kilo.
+                    </p>
+                </div>
+
                 <!-- FILTER TABS -->
                 <div class="flex flex-wrap justify-center items-center gap-4 mb-8">
                     <button onclick="filterCategory('all')" id="btn-all" class="category-tab active-tab bg-primary text-white font-serif px-8 py-3 rounded-xl shadow-md transition-all font-semibold text-lg cursor-pointer">
@@ -151,7 +124,7 @@
             </div>
         </section>
 
-        <!-- ================= SECTION 3: ABOUT ================= -->
+        <!-- ================= SECTION: ABOUT ================= -->
         <section id="about" class="py-20 bg-white border-b border-gray-200/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
@@ -183,7 +156,7 @@
             </div>
         </section>
 
-        <!-- ================= SECTION 4: CONTACT ================= -->
+        <!-- ================= SECTION: CONTACT ================= -->
         <section id="contact" class="py-20 bg-warmwhite">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
@@ -232,6 +205,7 @@
             </button>
             <div class="p-6 sm:p-10 overflow-y-auto space-y-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <!-- Modal image layout updated to object-contain so full image fits completely without cropping -->
                     <div class="bg-warmwhite p-6 rounded-2xl flex items-center justify-center border border-gray-100">
                         <img id="modal-img" src="" alt="Book Cover" class="max-h-80 w-auto rounded-lg shadow-md object-contain">
                     </div>
@@ -268,7 +242,7 @@
             {
                 id: 1,
                 title: "የቤተ ክርስቲያን ታሪክ",
-                author: "ብጹዕ አቡነ ጎርጎርዮስ ",
+                author: "ብጹዕ አቡነ ጎርጎርዮስ",
                 category: "regular",
                 categoryName: "መጻሕፍት (Regular)",
                 rating: 5,
@@ -323,7 +297,7 @@
                 cover: "images/merahut.jpg",
                 description: "ኦርቶዶክሳዊ የትዳር እና የርካቤ ስነ-ልቡና",
                 lang: "Russian",
-                publisher: "Aragnon",
+                publisher: "Arganon",
                 year: "2018",
                 pages: "_",
                 isNew: true,
@@ -339,7 +313,7 @@
                 cover: "images/book5.jpg",
                 description: "ቅዱስ ዲዮናስዮስ እና ሌሎች",
                 lang: "አማርኛ",
-                publisher: "Aragnon",
+                publisher: "Arganon",
                 year: "2018",
                 pages: " ",
                 isNew: false,
@@ -355,7 +329,7 @@
                 cover: "images/book6.jpg",
                 description: "ነገረ ክርስቶስ",
                 lang: "አማርኛ",
-                publisher: "Aragnon",
+                publisher: "Arganon",
                 year: "2017",
                 pages: " ",
                 isNew: false,
@@ -371,23 +345,23 @@
                 cover: "images/book7.jpg",
                 description: "የኦርቶዶክሳዊው ነገረ መለኮት መቅድማዊ ነጥቦች",
                 lang: "አማርኛ",
-                publisher: "Aragnon",
+                publisher: "Arganon",
                 year: "2017",
                 pages: " ",
                 isNew: false,
                 dateAdded: "2026-07-25"
             },
-             {
+            {
                 id: 8,
-                title: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት፣ ስርዓተ አምልኮ እና የውጭ ግንኙነት ",
+                title: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት፣ ስርዓተ አምልኮ እና የውጭ ግንኙነት",
                 author: "",
                 category: "regular",
                 categoryName: "መጻሕፍት (Regular)",
                 rating: 5,
                 cover: "images/book8.jpg",
-                description: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት፣ ስርዓተ አምልኮ እና የውጭ ግንኙነት ",
+                description: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት፣ ስርዓተ አምልኮ እና የውጭ ግንኙነት",
                 lang: "አማርኛ",
-                publisher: "Aragnon",
+                publisher: "Arganon",
                 year: "2017",
                 pages: " ",
                 isNew: false,
@@ -403,7 +377,7 @@
                 cover: "images/book9.jpg",
                 description: " ",
                 lang: "አማርኛ",
-                publisher: "Aragnon",
+                publisher: "Arganon",
                 year: "2017",
                 pages: " ",
                 isNew: false,
@@ -417,15 +391,15 @@
                 categoryName: "መጻሕፍት (Regular)",
                 rating: 5,
                 cover: "images/book10.jpg",
-                description: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ከኤፌሶን እስከ ዕብራውያን ትርጓሜ/ማብራርያ ",
+                description: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ከኤፌሶን እስከ ዕብራውያን ትርጓሜ/ማብራርያ",
                 lang: "አማርኛ",
-                publisher: "Aragnon",
+                publisher: "Arganon",
                 year: "2017",
                 pages: " ",
                 isNew: false,
                 dateAdded: "2026-07-25"
             },
-             {
+            {
                 id: 11,
                 title: "ከመዝ ነአምን እንዲህ እናምናለን",
                 author: "በመምህር ገብረ መድኅን እንየው",
@@ -435,7 +409,7 @@
                 cover: "images/book11.jpg",
                 description: "",
                 lang: "አማርኛ",
-                publisher: "Aragnon",
+                publisher: "Arganon",
                 year: "2017",
                 pages: " ",
                 isNew: false,
@@ -469,6 +443,7 @@
                 card.className = "bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl transition-all flex flex-col justify-between group";
                 card.innerHTML = `
                     <div>
+                        <!-- object-contain ensures images fit fully in their container without cutting off any parts -->
                         <div class="bg-warmwhite rounded-xl overflow-hidden mb-6 h-72 flex items-center justify-center p-3 border border-gray-50">
                             <img src="${book.cover}" alt="${book.title}" class="max-h-full max-w-full object-contain rounded-lg group-hover:scale-105 transition-transform duration-500 shadow-md">
                         </div>
