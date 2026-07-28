@@ -79,16 +79,16 @@
         <section id="books" class="py-16 bg-warmwhite border-b border-gray-200/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <!-- Hero Heading Section -->
+                <!-- Persuasive Book Store Header -->
                 <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
-                    <h1 class="font-serif text-2xl sm:text-4xl font-bold text-primary leading-snug">
-                        እንኳን ወደ አርጋኖን የመጻሕፍት ድህረ ገጽ በደህና መጡ!
+                    <h1 class="font-serif text-3xl sm:text-5xl font-extrabold text-primary leading-tight tracking-tight">
+                        ነፍስን የሚያድስ፣ ሕሊናን የሚያበለጽግ <br class="hidden sm:inline">የንባብ ዓለም በአርጋኖን!
                     </h1>
-                    <p class="text-secondary font-serif text-lg font-semibold">
-                        ቀጣዩን ውብ ንባብዎን በአርጋኖን ያግኙ!
+                    <p class="text-secondary font-serif text-xl font-semibold italic">
+                        "አንድ ጥሩ መጽሐፍ የሕይወት አቅጣጫን ይለውጣል፤ ዛሬውኑ የእርስዎን ይምረጡ።"
                     </p>
-                    <p class="text-gray-600 text-sm">
-                        Explore our curated collection before visiting our physical store at 5 Kilo.
+                    <p class="text-gray-600 text-sm max-w-xl mx-auto">
+                        በአዲስ አበባ 5 ኪሎ ከሚገኘው መደብራችን በአካል በመገኘት ወይም በመረጡት መጽሐፍ ላይ በመጫን ዝርዝር መረጃዎችን ያግኙ።
                     </p>
                 </div>
 
@@ -112,14 +112,15 @@
                         <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </span>
-                        <input type="text" id="search-input" onkeyup="searchBooks()" placeholder="Search by Book Name or Author..." class="w-full pl-11 pr-4 py-3.5 bg-white rounded-xl border border-gray-200 shadow-sm focus:outline-none focus:border-primary text-sm">
+                        <input type="text" id="search-input" onkeyup="searchBooks()" placeholder="የሚፈልጉትን መጽሐፍ ወይም ደራሲ ስም ይፈልጉ..." class="w-full pl-11 pr-4 py-3.5 bg-white rounded-xl border border-gray-200 shadow-sm focus:outline-none focus:border-primary text-sm">
                     </div>
                 </div>
-                <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                <!-- Grid layout optimized precisely to match the reference E-commerce card layout -->
+                <div id="books-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"></div>
                 <div id="no-results" class="hidden text-center py-16">
                     <div class="text-5xl text-gray-300 mb-3"><i class="fa-solid fa-book-tanakh"></i></div>
-                    <h3 class="font-serif text-xl font-bold text-gray-700">No books found</h3>
-                    <p class="text-gray-500 text-sm mt-1">Try adjusting your search query or category filter.</p>
+                    <h3 class="font-serif text-xl font-bold text-gray-700">ምንም መጽሐፍ አልተገኘም</h3>
+                    <p class="text-gray-500 text-sm mt-1">እባክዎ ፍለጋዎን ይቀይሩ ወይም ሌላ ምድብ ይምረጡ።</p>
                 </div>
             </div>
         </section>
@@ -128,23 +129,23 @@
         <section id="about" class="py-20 bg-white border-b border-gray-200/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">Our Heritage</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">About Arganon Book Store</h2>
+                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">ታሪካችን</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">ስለ አርጋኖን መጻሕፍት መደብር</h2>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
                     <div class="space-y-6">
-                        <h3 class="font-serif text-2xl font-bold text-primary">Our Story</h3>
+                        <h3 class="font-serif text-2xl font-bold text-primary">እውቀትን ለትውልድ ማዳረስ</h3>
                         <p class="text-gray-700 text-sm leading-relaxed">
-                            Established in the academic neighborhood of 5 Kilo, Arganon Book Store was founded out of a deep passion for literature, education, and community enrichment.
+                            በታሪካዊው የአዲስ አበባ 5 ኪሎ አካባቢ የተመሰረተው አርጋኖን መጻሕፍት መደብር፤ ለንባብ ባለቤቶች ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍትን በማቅረብ ላይ ይገኛል።
                         </p>
                         <div class="grid grid-cols-2 gap-6 pt-4">
                             <div class="bg-warmwhite p-6 rounded-xl border border-gray-100 shadow-sm">
-                                <h4 class="font-serif font-bold text-primary text-lg mb-1">Our Mission</h4>
-                                <p class="text-xs text-gray-600 leading-relaxed">To promote reading culture by providing accessible, high-quality books.</p>
+                                <h4 class="font-serif font-bold text-primary text-lg mb-1">ተልእኮአችን</h4>
+                                <p class="text-xs text-gray-600 leading-relaxed">የንባብ ባህልን በማጎልበት እውቀት የተሞላ ማኅበረሰብ መፍጠር።</p>
                             </div>
                             <div class="bg-warmwhite p-6 rounded-xl border border-gray-100 shadow-sm">
-                                <h4 class="font-serif font-bold text-primary text-lg mb-1">Our Vision</h4>
-                                <p class="text-xs text-gray-600 leading-relaxed">To become Ethiopia's most trusted neighborhood bookstore destination.</p>
+                               <h4 class="font-serif font-bold text-primary text-lg mb-1">ራዕያችን</h4>
+                               <p class="text-xs text-gray-600 leading-relaxed">በሀገራችን የታመነ እና ተመራጭ የመጻሕፍት መዳረሻ መሆን።</p>
                             </div>
                         </div>
                     </div>
@@ -160,31 +161,31 @@
         <section id="contact" class="py-20 bg-warmwhite">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">Get In Touch</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">Contact Arganon Book Store</h2>
+                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">ያግኙን</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">ከአርጋኖን ጋር ይገናኙ</h2>
                 </div>
                 <div class="max-w-xl mx-auto">
                     <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-100 space-y-6">
-                        <h3 class="font-serif text-2xl font-bold text-primary">Store Information</h3>
+                        <h3 class="font-serif text-2xl font-bold text-primary">የመደብራችን አድራሻ</h3>
                         <div class="space-y-5 text-sm">
                             <div class="flex items-start gap-4">
                                 <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-location-dot"></i></div>
                                 <div>
-                                    <h4 class="font-bold text-primary">Store Address</h4>
+                                    <h4 class="font-bold text-primary">አድራሻ</h4>
                                     <p class="text-gray-600">አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-phone"></i></div>
                                 <div>
-                                    <h4 class="font-bold text-primary">Phone</h4>
+                                    <h4 class="font-bold text-primary">ስልክ ቁጥር</h4>
                                     <p class="text-gray-600">0939437332</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-brands fa-telegram"></i></div>
                                 <div>
-                                    <h4 class="font-bold text-primary">Telegram Channel</h4>
+                                    <h4 class="font-bold text-primary">ቴሌግራም ቻናል</h4>
                                     <a href="https://t.me/corpus_mysticum" target="_blank" class="text-secondary font-semibold hover:underline flex items-center gap-1.5 mt-0.5">
                                         @corpus_mysticum <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                                     </a>
@@ -213,15 +214,15 @@
                         <h2 id="modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-primary"></h2>
                         <p id="modal-author" class="text-secondary font-medium text-base"></p>
                         <div class="grid grid-cols-2 gap-3 pt-2 text-xs border-t border-b border-gray-100 py-4">
-                            <div><span class="text-gray-400 block">Language:</span> <strong id="modal-lang" class="text-gray-700"></strong></div>
-                            <div><span class="text-gray-400 block">Publisher:</span> <strong id="modal-publisher" class="text-gray-700"></strong></div>
-                            <div><span class="text-gray-400 block">Year:</span> <strong id="modal-year" class="text-gray-700"></strong></div>
-                            <div><span class="text-gray-400 block">Pages:</span> <strong id="modal-pages" class="text-gray-700"></strong></div>
+                            <div><span class="text-gray-400 block">ቋንቋ (Language):</span> <strong id="modal-lang" class="text-gray-700"></strong></div>
+                            <div><span class="text-gray-400 block">አሳታሚ (Publisher):</span> <strong id="modal-publisher" class="text-gray-700"></strong></div>
+                            <div><span class="text-gray-400 block">ዓመተ ምህረት:</span> <strong id="modal-year" class="text-gray-700"></strong></div>
+                            <div><span class="text-gray-400 block">ገጾች:</span> <strong id="modal-pages" class="text-gray-700"></strong></div>
                         </div>
                     </div>
                 </div>
                 <div class="space-y-2">
-                    <h3 class="font-serif text-xl font-bold text-primary">Description</h3>
+                    <h3 class="font-serif text-xl font-bold text-primary">መግለጫ (Description)</h3>
                     <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed"></p>
                 </div>
             </div>
@@ -243,11 +244,10 @@
                 title: "የቤተ ክርስቲያን ታሪክ",
                 author: "ብጹዕ አቡነ ጎርጎርዮስ",
                 category: "regular",
-                categoryName: "መጻሕፍት (Regular)",
-                rating: 5,
+                categoryName: "መጻሕፍት",
                 cover: "images/book1.jpg",
                 description: "አርትኦት፡ መምህር በአማን ነጸረ እና ተመስገን ዋና",
-                lang: "Amharic",
+                lang: "አማርኛ",
                 publisher: "Arganon",
                 year: "",
                 pages: " ",
@@ -259,11 +259,10 @@
                 title: "የልጆች ተረቶች እና ምሳሌዎች",
                 author: "ቤተልሔም ታደሰ",
                 category: "children",
-                categoryName: "ለሕጻናት (Children)",
-                rating: 5,
+                categoryName: "ለሕጻናት",
                 cover: "images/book2.jpg",
-                description: "An engaging collection of illustrated moral stories crafted specifically to inspire young minds.",
-                lang: "Amharic",
+                description: "ለታዳጊዎች የሚሆን ውብ እና አስተማሪ የስዕል ተረቶች ስብስብ።",
+                lang: "አማርኛ",
                 publisher: "Sunshine",
                 year: "2025",
                 pages: "112",
@@ -275,11 +274,10 @@
                 title: "የሐዋርያው የቅዱስ ጳውሎስ መልእክታት ቁጥር 1",
                 author: "መጋቤ ሐዲስ ስቡሕ አዳምጤ",
                 category: "regular",
-                categoryName: "መጻሕፍት (Regular)",
-                rating: 5,
+                categoryName: "መጻሕፍት",
                 cover: "images/book3.jpg",
-                description: "ትርጓሜ (ማብራርያ)",
-                lang: "Amharic",
+                description: "ትርጓሜ እና ጥልቅ ማብራርያ",
+                lang: "አማርኛ",
                 publisher: "Sunshine",
                 year: "2018",
                 pages: " ",
@@ -291,11 +289,10 @@
                 title: "መራኁት",
                 author: "መጋቤ ጥበብ ይግዛው መኮንን",
                 category: "regular",
-                categoryName: "መጻሕፍት (Regular)",
-                rating: 5,
+                categoryName: "መጻሕፍት",
                 cover: "images/merahut.jpg",
                 description: "ኦርቶዶክሳዊ የትዳር እና የርካቤ ስነ-ልቡና",
-                lang: "Russian",
+                lang: "አማርኛ",
                 publisher: "Arganon",
                 year: "2018",
                 pages: "_",
@@ -307,10 +304,9 @@
                 title: "ሐዋርያን አበው",
                 author: "ዲ/ን ዘሚካኤል ሐጎስ",
                 category: "regular",
-                categoryName: "መጻሕፍት (Regular)",
-                rating: 5,
+                categoryName: "መጻሕፍት",
                 cover: "images/book5.jpg",
-                description: "ቅዱስ ዲዮናስዮስ እና ሌሎች",
+                description: "ቅዱስ ዲዮናስዮስ እና ሌሎች ታላላቅ አበው",
                 lang: "አማርኛ",
                 publisher: "Arganon",
                 year: "2018",
@@ -323,8 +319,7 @@
                 title: "ቃለ አብ ሕያው",
                 author: "መምህር ሰናይ ጊዜ",
                 category: "regular",
-                categoryName: "መጻሕፍት (Regular)",
-                rating: 5,
+                categoryName: "መጻሕፍት",
                 cover: "images/book6.jpg",
                 description: "ነገረ ክርስቶስ",
                 lang: "አማርኛ",
@@ -339,8 +334,7 @@
                 title: "ማስያስ",
                 author: "ዲ/ን ሚኪያስ አስረስ",
                 category: "regular",
-                categoryName: "መጻሕፍት (Regular)",
-                rating: 5,
+                categoryName: "መጻሕፍት",
                 cover: "images/book7.jpg",
                 description: "የኦርቶዶክሳዊው ነገረ መለኮት መቅድማዊ ነጥቦች",
                 lang: "አማርኛ",
@@ -353,10 +347,9 @@
             {
                 id: 8,
                 title: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት፣ ስርዓተ አምልኮ እና የውጭ ግንኙነት",
-                author: "",
+                author: "የተለያዩ ደራሲያን",
                 category: "regular",
-                categoryName: "መጻሕፍት (Regular)",
-                rating: 5,
+                categoryName: "መጻሕፍት",
                 cover: "images/book8.jpg",
                 description: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት፣ ስርዓተ አምልኮ እና የውጭ ግንኙነት",
                 lang: "አማርኛ",
@@ -371,10 +364,9 @@
                 title: "የዮሐንስ ወንጌል በቅዱስ ዮሐንስ አፈወርቅ",
                 author: "ትርጓሚ፡ ዲ/ን ሽመልስ መርጊያ",
                 category: "regular",
-                categoryName: "መጻሕፍት (Regular)",
-                rating: 5,
+                categoryName: "መጻሕፍት",
                 cover: "images/book9.jpg",
-                description: " ",
+                description: "ጥልቅ ትርጓሜ እና አስተምህሮ",
                 lang: "አማርኛ",
                 publisher: "Arganon",
                 year: "2017",
@@ -387,8 +379,7 @@
                 title: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ከኤፌሶን እስከ ዕብራውያን ቁጥር 2",
                 author: "መጋቤ ሐዲስ ስቡሕ አዳምጤ",
                 category: "regular",
-                categoryName: "መጻሕፍት (Regular)",
-                rating: 5,
+                categoryName: "መጻሕፍት",
                 cover: "images/book10.jpg",
                 description: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ከኤፌሶን እስከ ዕብራውያን ትርጓሜ/ማብራርያ",
                 lang: "አማርኛ",
@@ -403,10 +394,9 @@
                 title: "ከመዝ ነአምን እንዲህ እናምናለን",
                 author: "በመምህር ገብረ መድኅን እንየው",
                 category: "regular",
-                categoryName: "መጻሕፍት (Regular)",
-                rating: 5,
+                categoryName: "መጻሕፍት",
                 cover: "images/book11.jpg",
-                description: "",
+                description: "የእምነት መሠረቶች እና ማብራርያ",
                 lang: "አማርኛ",
                 publisher: "Arganon",
                 year: "2017",
@@ -439,20 +429,20 @@
             }
             booksToDisplay.forEach(book => {
                 const card = document.createElement('div');
-                // Clean white card layout matching the reference image structure exactly
-                card.className = "bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col justify-between group";
+                // Exact compact card proportion matching the professional e-commerce product card layout
+                card.className = "bg-white rounded-xl p-3 shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col justify-between group";
                 card.innerHTML = `
                     <div>
-                        <!-- Structured box matching the reference image layout ratio for the cover image with drop-shadow and clean border -->
-                        <div class="bg-white rounded-lg overflow-hidden mb-4 h-72 flex items-center justify-center p-2 border border-gray-100 shadow-sm">
+                        <!-- Consistent book cover frame matching standard professional layout proportion -->
+                        <div class="bg-white rounded-lg overflow-hidden mb-3 h-56 sm:h-64 flex items-center justify-center p-1 border border-gray-100 shadow-sm">
                             <img src="${book.cover}" alt="${book.title}" class="h-full w-auto object-contain rounded drop-shadow-md group-hover:scale-105 transition-transform duration-300">
                         </div>
-                        <h3 class="font-serif text-base font-bold text-primary mt-1 mb-1 line-clamp-2">${book.title}</h3>
-                        <p class="text-gray-500 text-xs mb-4 font-medium">By ${book.author || 'Arganon'}</p>
+                        <h3 class="font-serif text-sm sm:text-base font-bold text-primary mt-1 mb-0.5 line-clamp-2 leading-snug">${book.title}</h3>
+                        <p class="text-gray-500 text-xs mb-3 font-medium truncate">${book.author || 'አርጋኖን'}</p>
                     </div>
-                    <button onclick="openBookModal(${book.id})" class="w-full bg-[#FAF7F2] hover:bg-primary text-primary hover:text-white font-bold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-between border border-primary/10 cursor-pointer">
-                        <span>View Details</span>
-                        <i class="fa-solid fa-arrow-right"></i>
+                    <button onclick="openBookModal(${book.id})" class="w-full bg-[#FAF7F2] hover:bg-primary text-primary hover:text-white font-bold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-between border border-primary/15 cursor-pointer">
+                        <span>ዝርዝር ይመልከቱ</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </button>
                 `;
                 grid.appendChild(card);
@@ -500,13 +490,13 @@
             if (!book) return;
             document.getElementById('modal-img').src = book.cover;
             document.getElementById('modal-title').textContent = book.title;
-            document.getElementById('modal-author').textContent = `By ${book.author}`;
+            document.getElementById('modal-author').textContent = `ደራሲ፡ ${book.author}`;
             document.getElementById('modal-category').textContent = book.categoryName;
             document.getElementById('modal-lang').textContent = book.lang;
             document.getElementById('modal-publisher').textContent = book.publisher;
-            document.getElementById('modal-year').textContent = book.year;
-            document.getElementById('modal-pages').textContent = book.pages;
-            document.getElementById('modal-desc').textContent = book.description;
+            document.getElementById('modal-year').textContent = book.year || '-';
+            document.getElementById('modal-pages').textContent = book.pages || '-';
+            document.getElementById('modal-desc').textContent = book.description || 'ዝርዝር መግለጫ አልተሰጠም።';
             const modal = document.getElementById('book-modal');
             const box = document.getElementById('modal-content-box');
             modal.classList.remove('hidden');
