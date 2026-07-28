@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="am" class="h-full">
+<html lang="am" class="h-full scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,24 +34,13 @@
         .text-accent { color: #D4AF37; }
         
         .bg-warmwhite { background-color: #FAF7F2; }
-        .page-view {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out forwards;
-        }
-        .page-view.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body class="bg-warmwhite text-[#333333] antialiased selection:bg-[#1F4D3B] selection:text-white flex flex-col min-h-screen">
     <!-- ================= NAVIGATION BAR ================= -->
     <header class="sticky top-0 z-50 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#8B5E3C]/20 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <button onclick="switchPage('home')" class="flex items-center gap-3 group text-left cursor-pointer">
+            <a href="#home" class="flex items-center gap-3 group text-left cursor-pointer">
                 <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-book-open text-accent"></i>
                 </div>
@@ -59,12 +48,13 @@
                     <span class="font-serif text-2xl font-bold tracking-wide text-primary">Arganon</span>
                     <span class="block text-xs uppercase tracking-widest text-secondary font-semibold">Book Store</span>
                 </div>
-            </button>
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm lg:text-base">
-                <button onclick="switchPage('home')" id="nav-home" class="nav-link text-primary font-bold hover:text-secondary transition-colors cursor-pointer">Home</button>
-                <button onclick="switchPage('books')" id="nav-books" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Books</button>
-                <button onclick="switchPage('about')" id="nav-about" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">About</button>
-                <button onclick="switchPage('contact')" id="nav-contact" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Contact</button>
+            </a>
+            <!-- Enlarged Navigation Tabs -->
+            <nav class="hidden md:flex items-center gap-10 font-bold text-lg lg:text-xl">
+                <a href="#home" id="nav-home" class="nav-link text-primary hover:text-secondary transition-colors cursor-pointer">Home</a>
+                <a href="#books" id="nav-books" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Books</a>
+                <a href="#about" id="nav-about" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">About</a>
+                <a href="#contact" id="nav-contact" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Contact</a>
             </nav>
             <div class="hidden lg:flex items-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-[#8B5E3C]/20">
                 <i class="fa-solid fa-phone text-secondary"></i>
@@ -75,77 +65,67 @@
             </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-[#8B5E3C]/20 px-6 py-4 space-y-3 shadow-lg">
-            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Home</button>
-            <button onclick="switchPage('books'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Books</button>
-            <button onclick="switchPage('about'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">About</button>
-            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left text-primary font-medium py-1 hover:text-secondary">Contact</button>
+            <a href="#home" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">Home</a>
+            <a href="#books" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">Books</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">About</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">Contact</a>
             <div class="pt-3 border-t border-gray-100 flex items-center gap-2 text-secondary font-semibold text-sm">
                 <i class="fa-solid fa-phone"></i> 0939437332
             </div>
         </div>
     </header>
-    <!-- HORIZONTAL SLIDE CONTROLS -->
-    <div class="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-white/90 backdrop-blur-md p-1.5 rounded-full shadow-lg border border-[#8B5E3C]/30">
-        <button onclick="navigateSlide(-1)" title="Previous Page" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-[#153427] transition-colors cursor-pointer">
-            <i class="fa-solid fa-chevron-left text-sm"></i>
-        </button>
-        <span id="slide-indicator" class="text-xs font-bold text-primary px-3">1 / 4</span>
-        <button onclick="navigateSlide(1)" title="Next Page" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-[#153427] transition-colors cursor-pointer">
-            <i class="fa-solid fa-chevron-right text-sm"></i>
-        </button>
-    </div>
-    <!-- ================= PAGE CONTAINER ================= -->
+
+    <!-- ================= MAIN CONTAINER (SINGLE-PAGE SCROLLABLE SECTIONS) ================= -->
     <main class="flex-grow">
-        <!-- ================= PAGE 1: HOME ================= -->
-        <div id="page-home" class="page-view active">
-            <section class="relative bg-primary text-white py-20 lg:py-28 overflow-hidden">
-                <div class="absolute inset-0 opacity-15 bg-cover bg-center" style="background-image: url('images/bookshelf-bg.jpg');"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-[#1F4D3B] via-[#1F4D3B]/90 to-transparent"></div>
-                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-12">
-                    <div class="max-w-2xl space-y-6">
-                        <span class="inline-block bg-accent/20 text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-accent/30">
-                            አዲስ አበባ • 5 ኪሎ
-                        </span>
-                        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                            Discover Your Next Great Read at <span class="text-accent">Arganon</span>
-                        </h1>
-                        <p class="text-lg text-gray-200 font-light leading-relaxed">
-                            Welcome to Arganon Book Store. Explore our curated collection before visiting our physical store at 5 Kilo.
-                        </p>
-                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
-                            <button onclick="switchPage('books')" class="bg-accent hover:bg-[#c29f2e] text-[#1F4D3B] font-bold px-8 py-3.5 rounded-xl shadow-lg transition-all flex items-center gap-2 cursor-pointer">
-                                <span>Browse Catalog</span>
-                                <i class="fa-solid fa-arrow-right text-xs"></i>
-                            </button>
-                            <a href="https://www.google.com/maps/search/?api=1&query=5+Kilo+Kidkiste+Maryam+Church+Addis+Ababa" target="_blank" class="bg-transparent hover:bg-white/10 text-white border-2 border-white/40 px-8 py-3.5 rounded-xl font-medium transition-all cursor-pointer inline-flex items-center justify-center">
-                                Store Location
-                            </a>
-                        </div>
+        <!-- ================= SECTION 1: HOME ================= -->
+        <section id="home" class="relative bg-primary text-white py-20 lg:py-28 overflow-hidden">
+            <div class="absolute inset-0 opacity-15 bg-cover bg-center" style="background-image: url('images/bookshelf-bg.jpg');"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#1F4D3B] via-[#1F4D3B]/90 to-transparent"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="max-w-2xl space-y-6">
+                    <span class="inline-block bg-accent/20 text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-accent/30">
+                        አዲስ አበባ • 5 ኪሎ
+                    </span>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                        Discover Your Next Great Read at <span class="text-accent">Arganon</span>
+                    </h1>
+                    <p class="text-lg text-gray-200 font-light leading-relaxed">
+                        Welcome to Arganon Book Store. Explore our curated collection before visiting our physical store at 5 Kilo.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#books" class="bg-accent hover:bg-[#c29f2e] text-[#1F4D3B] font-bold px-8 py-3.5 rounded-xl shadow-lg transition-all flex items-center gap-2 cursor-pointer">
+                            <span>Browse Catalog</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=5+Kilo+Kidkiste+Maryam+Church+Addis+Ababa" target="_blank" class="bg-transparent hover:bg-white/10 text-white border-2 border-white/40 px-8 py-3.5 rounded-xl font-medium transition-all cursor-pointer inline-flex items-center justify-center">
+                            Store Location
+                        </a>
                     </div>
-                    <!-- Clickable Store Location Card -->
-                    <a href="https://www.google.com/maps/search/?api=1&query=5+Kilo+Kidkiste+Maryam+Church+Addis+Ababa" target="_blank" class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl text-center block hover:bg-white/20 transition-all cursor-pointer group">
-                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl shadow-inner group-hover:scale-105 transition-transform">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <h3 class="font-serif text-xl font-bold mb-2">Visit Our Store</h3>
-                        <p class="text-sm text-gray-200 mb-4">አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</p>
-                        <div class="text-xs bg-primary/60 py-2 px-3 rounded-lg border border-white/10 text-accent font-semibold">
-                            Open Always
-                        </div>
-                    </a>
                 </div>
-            </section>
-        </div>
-        <!-- ================= PAGE 2: BOOKS ================= -->
-        <div id="page-books" class="page-view py-16">
+                <!-- Clickable Store Location Card -->
+                <a href="https://www.google.com/maps/search/?api=1&query=5+Kilo+Kidkiste+Maryam+Church+Addis+Ababa" target="_blank" class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl text-center block hover:bg-white/20 transition-all cursor-pointer group">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl shadow-inner group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-2">Visit Our Store</h3>
+                    <p class="text-sm text-gray-200 mb-4">አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</p>
+                    <div class="text-xs bg-primary/60 py-2 px-3 rounded-lg border border-white/10 text-accent font-semibold">
+                        Open Always
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 2: BOOKS ================= -->
+        <section id="books" class="py-20 bg-warmwhite border-b border-gray-200/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-12">
                     <span class="text-secondary font-semibold uppercase tracking-widest text-xs">Complete Inventory</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">Books Page Catalog</h2>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">Books Catalog</h2>
                     <p class="text-gray-600 mt-2">Filter between regular and children's books or search instantly.</p>
                 </div>
                 
-                <!-- ================= 5. UI/STYLING: 4 FILTER TABS ================= -->
+                <!-- FILTER TABS -->
                 <div class="flex flex-wrap justify-center items-center gap-4 mb-8">
                     <button onclick="filterCategory('all')" id="btn-all" class="category-tab active-tab bg-primary text-white font-serif px-8 py-3 rounded-xl shadow-md transition-all font-semibold text-lg cursor-pointer">
                         ሁሉም መጻሕፍት (All)
@@ -156,7 +136,6 @@
                     <button onclick="filterCategory('children')" id="btn-children" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
                         ለሕጻናት
                     </button>
-                    <!-- NEW 4TH TAB BUTTON -->
                     <button onclick="filterCategory('new-week')" id="btn-new-week" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-8 py-3 rounded-xl shadow-sm transition-all font-semibold text-lg cursor-pointer">
                         የሳምንቱ አዲስ መጻሕፍት
                     </button>
@@ -176,9 +155,10 @@
                     <p class="text-gray-500 text-sm mt-1">Try adjusting your search query or category filter.</p>
                 </div>
             </div>
-        </div>
-        <!-- ================= PAGE 3: ABOUT ================= -->
-        <div id="page-about" class="page-view py-20">
+        </section>
+
+        <!-- ================= SECTION 3: ABOUT ================= -->
+        <section id="about" class="py-20 bg-white border-b border-gray-200/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <span class="text-secondary font-semibold uppercase tracking-widest text-xs">Our Heritage</span>
@@ -191,11 +171,11 @@
                             Established in the academic neighborhood of 5 Kilo, Arganon Book Store was founded out of a deep passion for literature, education, and community enrichment.
                         </p>
                         <div class="grid grid-cols-2 gap-6 pt-4">
-                            <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                            <div class="bg-warmwhite p-6 rounded-xl border border-gray-100 shadow-sm">
                                 <h4 class="font-serif font-bold text-primary text-lg mb-1">Our Mission</h4>
                                 <p class="text-xs text-gray-600 leading-relaxed">To promote reading culture by providing accessible, high-quality books.</p>
                             </div>
-                            <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                            <div class="bg-warmwhite p-6 rounded-xl border border-gray-100 shadow-sm">
                                 <h4 class="font-serif font-bold text-primary text-lg mb-1">Our Vision</h4>
                                 <p class="text-xs text-gray-600 leading-relaxed">To become Ethiopia's most trusted neighborhood bookstore destination.</p>
                             </div>
@@ -207,9 +187,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- ================= PAGE 4: CONTACT ================= -->
-        <div id="page-contact" class="page-view py-20">
+        </section>
+
+        <!-- ================= SECTION 4: CONTACT ================= -->
+        <section id="contact" class="py-20 bg-warmwhite">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <span class="text-secondary font-semibold uppercase tracking-widest text-xs">Get In Touch</span>
@@ -246,8 +227,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
+
     <!-- ================= BOOK DETAILS MODAL ================= -->
     <div id="book-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
         <div id="modal-content-box" class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col transform transition-all scale-95 opacity-0">
@@ -278,43 +260,16 @@
             </div>
         </div>
     </div>
+
     <!-- ================= FOOTER ================= -->
     <footer class="bg-[#153427] text-white pt-12 pb-6 border-t border-[#8B5E3C]/30 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-400">
             &copy; 2026 Arganon Book Store. All rights reserved. Addis Ababa, 5 Kilo.
         </div>
     </footer>
+
     <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
-        const pages = ['home', 'books', 'about', 'contact'];
-        let currentIndex = 0;
-        function switchPage(pageId) {
-            const index = pages.indexOf(pageId);
-            if (index !== -1) currentIndex = index;
-            pages.forEach(p => {
-                document.getElementById(`page-${p}`).classList.remove('active');
-            });
-            document.getElementById(`page-${pageId}`).classList.add('active');
-            document.querySelectorAll('.nav-link').forEach(nav => {
-                nav.classList.remove('text-primary', 'font-bold');
-                nav.classList.add('text-gray-600');
-            });
-            const activeNav = document.getElementById(`nav-${pageId}`);
-            if (activeNav) {
-                activeNav.classList.remove('text-gray-600');
-                activeNav.classList.add('text-primary', 'font-bold');
-            }
-            document.getElementById('slide-indicator').textContent = `${currentIndex + 1} / 4`;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        function navigateSlide(direction) {
-            currentIndex = (currentIndex + direction + pages.length) % pages.length;
-            switchPage(pages[currentIndex]);
-        }
-        
-        // ==========================================
-        // 1. BOOK DATA STRUCTURE (WITH NEW FIELDS: isNew & dateAdded)
-        // ==========================================
         const books = [
             {
                 id: 1,
@@ -396,7 +351,7 @@
                 isNew: false,
                 dateAdded: "2026-07-25"
             },
-             {
+            {
                 id: 6,
                 title: "ቃለ አብ ሕያው",
                 author: "መምህር ሰናይ ጊዜ",
@@ -412,7 +367,7 @@
                 isNew: false,
                 dateAdded: "2026-07-25"
             }, 
-             {
+            {
                 id: 7,
                 title: "ማስያስ",
                 author: "ዲ/ን ሚኪያስ አስረስ",
@@ -428,21 +383,19 @@
                 isNew: false,
                 dateAdded: "2026-07-25"
             }
-           ];
-        // ==========================================
-        // 4. HELPER FUNCTION TO CHECK IF A BOOK IS WITHIN 7 DAYS
-        // ==========================================
+        ];
+
         function isWithinLast7Days(dateString) {
             if (!dateString) return false;
             const today = new Date("2026-07-25");
             const bookDate = new Date(dateString);
-            
             const diffTime = today - bookDate;
             const diffDays = diffTime / (1000 * 60 * 60 * 24);
-            
             return diffDays >= 0 && diffDays <= 7;
         }
+
         let currentFilter = 'all';
+
         function renderBooks(booksToDisplay) {
             const grid = document.getElementById('books-grid');
             const noResults = document.getElementById('no-results');
@@ -474,9 +427,7 @@
                 grid.appendChild(card);
             });
         }
-        // ==========================================
-        // 2 & 5. UPDATED filterCategory FUNCTION FOR UI TAB SWITCHING
-        // ==========================================
+
         function filterCategory(category) {
             currentFilter = category;
             document.querySelectorAll('.category-tab').forEach(btn => {
@@ -493,10 +444,9 @@
             }
             applyFilters();
         }
+
         function searchBooks() { applyFilters(); }
-        // ==========================================
-        // 2, 3 & 6. UPDATED applyFilters WITH NEW TAB LOGIC & SEARCH
-        // ==========================================
+
         function applyFilters() {
             const query = document.getElementById('search-input').value.toLowerCase().trim();
             let filtered = books.filter(book => {
@@ -513,6 +463,7 @@
             });
             renderBooks(filtered);
         }
+
         function openBookModal(id) {
             const book = books.find(b => b.id === id);
             if (!book) return;
@@ -534,6 +485,7 @@
                 box.classList.add('scale-100', 'opacity-100');
             }, 10);
         }
+
         function closeBookModal() {
             const modal = document.getElementById('book-modal');
             const box = document.getElementById('modal-content-box');
@@ -544,10 +496,34 @@
                 modal.classList.add('hidden');
             }, 200);
         }
+
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         }
         document.getElementById('menu-btn').addEventListener('click', toggleMobileMenu);
+
+        // Highlight active navigation link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 120) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'font-bold');
+                link.classList.add('text-gray-600');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-gray-600');
+                    link.classList.add('text-primary', 'font-bold');
+                }
+            });
+        });
         
         document.addEventListener('DOMContentLoaded', () => {
             renderBooks(books);
