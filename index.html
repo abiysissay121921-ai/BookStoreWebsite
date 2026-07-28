@@ -117,13 +117,14 @@
                                 <span>Browse Catalog</span>
                                 <i class="fa-solid fa-arrow-right text-xs"></i>
                             </button>
-                            <button onclick="switchPage('contact')" class="bg-transparent hover:bg-white/10 text-white border-2 border-white/40 px-8 py-3.5 rounded-xl font-medium transition-all cursor-pointer">
+                            <a href="https://www.google.com/maps/search/?api=1&query=5+Kilo+Kidkiste+Maryam+Church+Addis+Ababa" target="_blank" class="bg-transparent hover:bg-white/10 text-white border-2 border-white/40 px-8 py-3.5 rounded-xl font-medium transition-all cursor-pointer inline-flex items-center justify-center">
                                 Store Location
-                            </button>
+                            </a>
                         </div>
                     </div>
-                    <div class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl text-center">
-                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl shadow-inner">
+                    <!-- Clickable Store Location Card -->
+                    <a href="https://www.google.com/maps/search/?api=1&query=5+Kilo+Kidkiste+Maryam+Church+Addis+Ababa" target="_blank" class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl text-center block hover:bg-white/20 transition-all cursor-pointer group">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl shadow-inner group-hover:scale-105 transition-transform">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
                         <h3 class="font-serif text-xl font-bold mb-2">Visit Our Store</h3>
@@ -131,32 +132,7 @@
                         <div class="text-xs bg-primary/60 py-2 px-3 rounded-lg border border-white/10 text-accent font-semibold">
                             Open Always
                         </div>
-                    </div>
-                </div>
-            </section>
-            <section class="bg-white py-20 border-b border-[#8B5E3C]/10">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-16">
-                        <span class="text-secondary font-semibold uppercase tracking-widest text-xs">The Arganon Experience</span>
-                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">Why Choose Arganon Book Store</h2>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="bg-warmwhite p-8 rounded-2xl border border-gray-100 shadow-sm">
-                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl mb-4"><i class="fa-solid fa-books"></i></div>
-                            <h3 class="font-serif text-xl font-bold text-primary mb-2">Large Collection</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">Diverse selections spanning literature, history, fiction, and children's storybooks.</p>
-                        </div>
-                        <div class="bg-warmwhite p-8 rounded-2xl border border-gray-100 shadow-sm">
-                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl mb-4"><i class="fa-solid fa-certificate"></i></div>
-                            <h3 class="font-serif text-xl font-bold text-primary mb-2">Carefully Selected</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">Every title is handpicked to ensure high quality and engaging enriching value.</p>
-                        </div>
-                        <div class="bg-warmwhite p-8 rounded-2xl border border-gray-100 shadow-sm">
-                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl mb-4"><i class="fa-solid fa-face-smile"></i></div>
-                            <h3 class="font-serif text-xl font-bold text-primary mb-2">Friendly Service</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">Our knowledgeable staff is always eager to assist you in finding your books.</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </section>
         </div>
@@ -370,7 +346,7 @@
                 year: "2025",
                 pages: "112",
                 isNew: true,
-                dateAdded: "2026-07-25" // Within 7 days from current time (July 25, 2026)
+                dateAdded: "2026-07-25"
             },
             {
                 id: 3,
@@ -386,7 +362,7 @@
                 year: "2018",
                 pages: " ",
                 isNew: false,
-                dateAdded: "2026-07-25" // Within 7 days from current time (July 25, 2026)
+                dateAdded: "2026-07-25"
             },
             {
                 id: 4,
@@ -402,7 +378,7 @@
                 year: "2018",
                 pages: "_",
                 isNew: true,
-                dateAdded: "2026-07-25" // Within 7 days from current time (July 25, 2026)
+                dateAdded: "2026-07-25"
             },
             {
                 id: 5,
@@ -418,7 +394,7 @@
                 year: "2018",
                 pages: " ",
                 isNew: false,
-                dateAdded: "2026-07-25" // Within 7 days from current time (July 25, 2026)
+                dateAdded: "2026-07-25"
             },
              {
                 id: 6,
@@ -434,7 +410,7 @@
                 year: "2017",
                 pages: " ",
                 isNew: false,
-                dateAdded: "2026-07-25" // Within 7 days from current time (July 25, 2026)
+                dateAdded: "2026-07-25"
             }, 
              {
                 id: 7,
@@ -450,7 +426,7 @@
                 year: "2017",
                 pages: " ",
                 isNew: false,
-                dateAdded: "2026-07-25" // Within 7 days from current time (July 25, 2026)
+                dateAdded: "2026-07-25"
             }
            ];
         // ==========================================
@@ -458,14 +434,12 @@
         // ==========================================
         function isWithinLast7Days(dateString) {
             if (!dateString) return false;
-            const today = new Date("2026-07-25"); // Using system current date
+            const today = new Date("2026-07-25");
             const bookDate = new Date(dateString);
             
-            // Calculate difference in time (milliseconds)
             const diffTime = today - bookDate;
             const diffDays = diffTime / (1000 * 60 * 60 * 24);
             
-            // Must be true and within 0 to 7 days inclusive
             return diffDays >= 0 && diffDays <= 7;
         }
         let currentFilter = 'all';
@@ -532,7 +506,6 @@
                 } else if (currentFilter === 'regular' || currentFilter === 'children') {
                     matchesCategory = book.category === currentFilter;
                 } else if (currentFilter === 'new-week') {
-                    // Logic: isNew must be true AND dateAdded must be within the last 7 days
                     matchesCategory = book.isNew === true && isWithinLast7Days(book.dateAdded);
                 }
                 const matchesSearch = book.title.toLowerCase().includes(query) || book.author.toLowerCase().includes(query);
