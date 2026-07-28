@@ -49,7 +49,7 @@
                     <span class="block text-xs uppercase tracking-widest text-secondary font-semibold">Book Store</span>
                 </div>
             </a>
-            <!-- Navigation Tabs (Home removed) -->
+            <!-- Navigation Tabs -->
             <nav class="hidden md:flex items-center gap-10 font-bold text-lg lg:text-xl">
                 <a href="#books" id="nav-books" class="nav-link text-primary hover:text-secondary transition-colors cursor-pointer">Books</a>
                 <a href="#about" id="nav-about" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">About</a>
@@ -79,7 +79,7 @@
         <section id="books" class="py-16 bg-warmwhite border-b border-gray-200/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <!-- Hero Heading Section as requested -->
+                <!-- Hero Heading Section -->
                 <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
                     <h1 class="font-serif text-2xl sm:text-4xl font-bold text-primary leading-snug">
                         እንኳን ወደ አርጋኖን የመጻሕፍት ድህረ ገጽ በደህና መጡ!
@@ -115,7 +115,7 @@
                         <input type="text" id="search-input" onkeyup="searchBooks()" placeholder="Search by Book Name or Author..." class="w-full pl-11 pr-4 py-3.5 bg-white rounded-xl border border-gray-200 shadow-sm focus:outline-none focus:border-primary text-sm">
                     </div>
                 </div>
-                <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
                 <div id="no-results" class="hidden text-center py-16">
                     <div class="text-5xl text-gray-300 mb-3"><i class="fa-solid fa-book-tanakh"></i></div>
                     <h3 class="font-serif text-xl font-bold text-gray-700">No books found</h3>
@@ -205,7 +205,6 @@
             </button>
             <div class="p-6 sm:p-10 overflow-y-auto space-y-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                    <!-- Modal image layout updated to object-contain so full image fits completely without cropping -->
                     <div class="bg-warmwhite p-6 rounded-2xl flex items-center justify-center border border-gray-100">
                         <img id="modal-img" src="" alt="Book Cover" class="max-h-80 w-auto rounded-lg shadow-md object-contain">
                     </div>
@@ -440,19 +439,18 @@
             }
             booksToDisplay.forEach(book => {
                 const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl transition-all flex flex-col justify-between group";
+                // Clean white card layout matching the reference image structure exactly
+                card.className = "bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col justify-between group";
                 card.innerHTML = `
                     <div>
-                        <!-- object-contain ensures images fit fully in their container without cutting off any parts -->
-                        <div class="bg-warmwhite rounded-xl overflow-hidden mb-6 h-72 flex items-center justify-center p-3 border border-gray-50">
-                            <img src="${book.cover}" alt="${book.title}" class="max-h-full max-w-full object-contain rounded-lg group-hover:scale-105 transition-transform duration-500 shadow-md">
+                        <!-- Structured box matching the reference image layout ratio for the cover image with drop-shadow and clean border -->
+                        <div class="bg-white rounded-lg overflow-hidden mb-4 h-72 flex items-center justify-center p-2 border border-gray-100 shadow-sm">
+                            <img src="${book.cover}" alt="${book.title}" class="h-full w-auto object-contain rounded drop-shadow-md group-hover:scale-105 transition-transform duration-300">
                         </div>
-                        <span class="text-xs font-bold text-secondary uppercase tracking-wider">${book.categoryName}</span>
-                        <h3 class="font-serif text-xl font-bold text-primary mt-1 mb-1">${book.title}</h3>
-                        <p class="text-gray-500 text-xs mb-3 font-medium">By ${book.author}</p>
-                        <p class="text-gray-600 text-xs line-clamp-2 mb-6">${book.description}</p>
+                        <h3 class="font-serif text-base font-bold text-primary mt-1 mb-1 line-clamp-2">${book.title}</h3>
+                        <p class="text-gray-500 text-xs mb-4 font-medium">By ${book.author || 'Arganon'}</p>
                     </div>
-                    <button onclick="openBookModal(${book.id})" class="w-full bg-[#FAF7F2] hover:bg-primary text-primary hover:text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-all flex items-center justify-between border border-primary/10 cursor-pointer">
+                    <button onclick="openBookModal(${book.id})" class="w-full bg-[#FAF7F2] hover:bg-primary text-primary hover:text-white font-bold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-between border border-primary/10 cursor-pointer">
                         <span>View Details</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
