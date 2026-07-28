@@ -96,10 +96,10 @@
                 <!-- Navigation Tabs Centered Inside the Green Hero Section -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
                     <nav class="flex items-center justify-center gap-8 lg:gap-12 font-medium text-lg lg:text-xl">
-                        <button onclick="switchPage('home')" id="nav-home" class="nav-link text-accent font-bold hover:text-white transition-colors cursor-pointer">Home</button>
-                        <button onclick="switchPage('books')" id="nav-books" class="nav-link text-gray-200 hover:text-accent transition-colors cursor-pointer">Books</button>
-                        <button onclick="switchPage('about')" id="nav-about" class="nav-link text-gray-200 hover:text-accent transition-colors cursor-pointer">About</button>
-                        <button onclick="switchPage('contact')" id="nav-contact" class="nav-link text-gray-200 hover:text-accent transition-colors cursor-pointer">Contact</button>
+                        <button onclick="switchPage('home')" id="nav-home" class="nav-link text-accent font-bold hover:text-white transition-colors cursor-pointer drop-shadow">Home</button>
+                        <button onclick="switchPage('books')" id="nav-books" class="nav-link text-white hover:text-accent transition-colors cursor-pointer drop-shadow">Books</button>
+                        <button onclick="switchPage('about')" id="nav-about" class="nav-link text-white hover:text-accent transition-colors cursor-pointer drop-shadow">About</button>
+                        <button onclick="switchPage('contact')" id="nav-contact" class="nav-link text-white hover:text-accent transition-colors cursor-pointer drop-shadow">Contact</button>
                     </nav>
                 </div>
                 
@@ -126,7 +126,7 @@
                             </a>
                         </div>
                     </div>
-                    <!-- Clickable Store Location Card (Updated Map Link) -->
+                    <!-- Clickable Store Location Card -->
                     <a href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+University+Sidist+Kilo+Campus" target="_blank" class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl text-center block hover:bg-white/20 transition-all cursor-pointer group">
                         <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl shadow-inner group-hover:scale-105 transition-transform">
                             <i class="fa-solid fa-location-dot"></i>
@@ -300,11 +300,11 @@
             document.getElementById(`page-${pageId}`).classList.add('active');
             document.querySelectorAll('.nav-link').forEach(nav => {
                 nav.classList.remove('text-accent', 'font-bold');
-                nav.classList.add('text-gray-200');
+                nav.classList.add('text-white');
             });
             const activeNav = document.getElementById(`nav-${pageId}`);
             if (activeNav) {
-                activeNav.classList.remove('text-gray-200');
+                activeNav.classList.remove('text-white');
                 activeNav.classList.add('text-accent', 'font-bold');
             }
             document.getElementById('slide-indicator').textContent = `${currentIndex + 1} / 4`;
