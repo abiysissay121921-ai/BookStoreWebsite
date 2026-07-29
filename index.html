@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arganon Book Store | አርጋኖን መጻሕፍት መደብር </title>
+    <title>Arganon Book Store | አርጋኖን መጻሕፍት መደብር</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
@@ -245,27 +245,6 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
-        .book-card .card-rating {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            margin-bottom: 12px;
-        }
-        .book-card .card-rating .stars {
-            color: var(--accent);
-            display: flex;
-            gap: 1px;
-        }
-        .book-card .card-rating .stars svg {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-        }
-        .book-card .card-rating .rating-num {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text);
         }
         .book-card .card-price {
             font-size: 17px;
@@ -1028,11 +1007,8 @@
                         <h2 id="modal-title" class="text-2xl sm:text-3xl font-bold text-[#1F3A5F] leading-snug"></h2>
                         <p id="modal-author" class="text-[#6B7280] font-medium"></p>
 
+                        <!-- Rating removed; only price remains -->
                         <div class="flex items-center gap-4 pt-1">
-                            <div class="flex items-center gap-1 text-[#C89B3C]">
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <span id="modal-rating" class="text-sm font-semibold text-[#1F3A5F]"></span>
-                            </div>
                             <span id="modal-price" class="text-lg font-bold text-[#1F3A5F]"></span>
                         </div>
 
@@ -1159,7 +1135,7 @@
         // ─── Lucide ───
         lucide.createIcons();
 
-        // ─── Books Data ───
+        // ─── Books Data ─── (rating property removed)
         const books = [{
             id: 1,
             title: "የቤተ ክርስቲያን ታሪክ",
@@ -1376,12 +1352,7 @@
                     <div class="card-body">
                         <h3 class="card-title">${book.title}</h3>
                         <p class="card-author">${book.author || 'አርጋኖን'}</p>
-                        <div class="card-rating">
-                            <span class="stars">
-                                <i data-lucide="star" class="w-3.5 h-3.5"></i>
-                            </span>
-                            <span class="rating-num">${book.rating}</span>
-                        </div>
+                        <!-- Rating removed -->
                         <p class="card-price">${book.price}</p>
                         <button onclick="openBookModal(${book.id})" class="card-btn">
                             <i data-lucide="eye" class="w-3.5 h-3.5"></i>
@@ -1467,7 +1438,7 @@
             document.getElementById('modal-year').textContent = book.year || '-';
             document.getElementById('modal-pages').textContent = book.pages || '-';
             document.getElementById('modal-desc').textContent = book.description || 'ዝርዝር መግለጫ አልተሰጠም።';
-            document.getElementById('modal-rating').textContent = book.rating;
+            // rating removed
             document.getElementById('modal-price').textContent = book.price;
 
             const modal = document.getElementById('book-modal');
