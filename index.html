@@ -1,209 +1,673 @@
 <!DOCTYPE html>
 <html lang="am" class="h-full scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arganon Book Store | አርጋኖን መጻሕፍት መደብር</title>
-    
+
     <!-- Tailwind CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
     <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
+    <script src="https://unpkg.com/lucide@latest">
+    </script>
+
     <style>
+        /* ─── Root Variables ─── */
         :root {
             --primary: #1F3A5F;
-            --primary-dark: #162d4a;
+            --primary-light: #2a4d7a;
             --accent: #C89B3C;
-            --accent-hover: #b58a32;
+            --accent-light: #d9ad4e;
             --bg: #F8F9FA;
-            --bg-alt: #F4F4F4;
+            --bg-alt: #F1F3F5;
             --card: #FFFFFF;
-            --text: #222222;
+            --text: #1A1A1A;
             --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
             --border: #E5E7EB;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
         }
-        
+
+        /* ─── Base ─── */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             overflow-x: hidden;
-            line-height: 1.65;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        
-        .bg-primary { background-color: var(--primary); }
-        .text-primary { color: var(--primary); }
-        .border-primary { border-color: var(--primary); }
-        .bg-accent { background-color: var(--accent); }
-        .text-accent { color: var(--accent); }
-        .bg-page { background-color: var(--bg-alt); }
-        
-        /* Premium transitions */
-        .transition-premium {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        /* Book cards – refined floating feel */
-        .book-card {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.03);
-            border-radius: 18px;
-        }
-        .book-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.04);
-        }
-        .book-card:hover .book-img {
-            transform: scale(1.05);
-        }
-        
-        /* Filter pills */
-        .filter-pill {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .filter-pill.active {
+
+        .bg-primary {
             background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 4px 14px rgba(31, 58, 95, 0.28);
         }
-        .filter-pill:not(.active):hover {
-            border-color: var(--primary);
+        .text-primary {
             color: var(--primary);
-            background-color: #fff;
         }
-        
-        /* Focus states */
-        a:focus-visible, button:focus-visible, input:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
+        .border-primary {
+            border-color: var(--primary);
         }
-        
-        /* Hero overlay – richer gradient */
-        .hero-overlay {
-            background: linear-gradient(
-                160deg,
-                rgba(15, 30, 50, 0.78) 0%,
-                rgba(15, 30, 50, 0.82) 50%,
-                rgba(20, 40, 65, 0.88) 100%
-            );
+        .bg-accent {
+            background-color: var(--accent);
         }
-        
-        /* Fade-in */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .text-accent {
+            color: var(--accent);
         }
-        .animate-fade-in {
-            animation: fadeInUp 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        .bg-page {
+            background-color: #F4F4F6;
         }
-        .animate-delay-1 { animation-delay: 0.12s; opacity: 0; }
-        .animate-delay-2 { animation-delay: 0.24s; opacity: 0; }
-        
-        /* Subtle decorative blobs */
-        .decor-blob {
+
+        /* ─── Scrollbar ─── */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0;
+        }
+
+        /* ─── Utilities ─── */
+        .transition-premium {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .shadow-premium {
+            box-shadow: var(--shadow-lg);
+        }
+        .shadow-premium-hover:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* ─── Decorative blobs ─── */
+        .blob-1 {
             position: absolute;
+            width: 600px;
+            height: 600px;
             border-radius: 50%;
+            background: radial-gradient(circle at 30% 40%, rgba(31, 58, 95, 0.04), rgba(200, 155, 60, 0.02));
             filter: blur(80px);
             pointer-events: none;
             z-index: 0;
         }
-        
-        /* Soft section dividers */
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        .blob-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 70% 60%, rgba(200, 155, 60, 0.05), rgba(31, 58, 95, 0.02));
+            filter: blur(70px);
+            pointer-events: none;
+            z-index: 0;
         }
-        
-        /* Modal scrollbar */
-        #modal-content-box::-webkit-scrollbar { width: 5px; }
-        #modal-content-box::-webkit-scrollbar-track { background: transparent; }
-        #modal-content-box::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
-        
-        /* Newsletter input icon positioning */
+
+        .section-blob {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ─── Book Cards ─── */
+        .book-card {
+            background: var(--card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: transparent;
+        }
+        .book-card:hover .book-img {
+            transform: scale(1.06);
+        }
+        .book-card .book-img-wrap {
+            overflow: hidden;
+            background: #f5f6f8;
+            position: relative;
+        }
+        .book-card .book-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+        }
+        .book-card .book-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 4px 12px;
+            border-radius: 100px;
+            box-shadow: 0 2px 8px rgba(200, 155, 60, 0.35);
+        }
+        .book-card .card-body {
+            padding: 18px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .book-card .card-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--primary);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.6rem;
+            margin-bottom: 4px;
+        }
+        .book-card .card-author {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .book-card .card-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+        .book-card .card-rating .stars {
+            color: var(--accent);
+            display: flex;
+            gap: 1px;
+        }
+        .book-card .card-rating .stars svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+        .book-card .card-rating .rating-num {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .book-card .card-price {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 14px;
+        }
+        .book-card .card-btn {
+            width: 100%;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 11px 0;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .book-card .card-btn:hover {
+            background: #162d4a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(31, 58, 95, 0.25);
+        }
+        .book-card .card-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ─── Filter Pills ─── */
+        .filter-pill {
+            padding: 8px 22px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            background: #fff;
+            color: var(--text-secondary);
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+        }
+        .filter-pill:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .filter-pill.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(31, 58, 95, 0.25);
+        }
+        .filter-pill.active:hover {
+            background: #162d4a;
+            box-shadow: 0 8px 28px rgba(31, 58, 95, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* ─── Search ─── */
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 56px;
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 1.5px solid var(--border);
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+            color: var(--text);
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(31, 58, 95, 0.08), var(--shadow-md);
+        }
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* ─── Hero ─── */
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(15, 30, 50, 0.80) 0%, rgba(15, 30, 50, 0.65) 100%);
+        }
+
+        /* ─── Animations ─── */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+        .animate-fade-in {
+            animation: fadeInUp 0.7s ease-out forwards;
+        }
+        .animate-fade-in-delay-1 {
+            animation: fadeInUp 0.7s ease-out 0.12s forwards;
+            opacity: 0;
+        }
+        .animate-fade-in-delay-2 {
+            animation: fadeInUp 0.7s ease-out 0.24s forwards;
+            opacity: 0;
+        }
+        .animate-fade-in-delay-3 {
+            animation: fadeInUp 0.7s ease-out 0.36s forwards;
+            opacity: 0;
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* ─── Newsletter ─── */
+        .newsletter-wrap {
+            background: linear-gradient(145deg, #1F3A5F 0%, #2a4d7a 100%);
+            border-radius: var(--radius-xl);
+            padding: 48px 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(31, 58, 95, 0.25);
+        }
+        .newsletter-wrap::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 155, 60, 0.10), transparent 70%);
+            pointer-events: none;
+        }
+        .newsletter-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.04), transparent 70%);
+            pointer-events: none;
+        }
+        .newsletter-wrap .newsletter-content {
+            position: relative;
+            z-index: 2;
+        }
         .newsletter-input-wrap {
             position: relative;
+            flex: 1;
         }
         .newsletter-input-wrap .input-icon {
             position: absolute;
-            left: 16px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: #9CA3AF;
+            color: var(--text-muted);
             pointer-events: none;
         }
         .newsletter-input-wrap input {
-            padding-left: 46px;
+            width: 100%;
+            padding: 16px 20px 16px 52px;
+            border-radius: var(--radius-sm);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        /* Premium button elevation */
-        .btn-primary {
-            box-shadow: 0 2px 8px rgba(31, 58, 95, 0.18);
+        .newsletter-input-wrap input::placeholder {
+            color: rgba(255, 255, 255, 0.50);
         }
-        .btn-primary:hover {
-            box-shadow: 0 6px 20px rgba(31, 58, 95, 0.28);
-            transform: translateY(-1px);
+        .newsletter-input-wrap input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 0 0 4px rgba(200, 155, 60, 0.15);
         }
-        
-        .btn-accent {
-            box-shadow: 0 2px 10px rgba(200, 155, 60, 0.25);
+        .newsletter-btn {
+            padding: 16px 36px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 16px rgba(200, 155, 60, 0.30);
         }
-        .btn-accent:hover {
-            box-shadow: 0 6px 22px rgba(200, 155, 60, 0.35);
-            transform: translateY(-1px);
+        .newsletter-btn:hover {
+            background: #b58a32;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(200, 155, 60, 0.40);
+        }
+        .newsletter-trust {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .newsletter-trust svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* ─── Modal ─── */
+        #modal-content-box {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .modal-backdrop {
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(8px);
+        }
+
+        /* ─── Nav ─── */
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2.5px;
+            background: var(--accent);
+            border-radius: 4px;
+            transform: scaleX(1);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2.5px;
+            background: var(--accent);
+            border-radius: 4px;
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* ─── Responsive tweaks ─── */
+        @media (max-width: 640px) {
+            .newsletter-wrap {
+                padding: 32px 20px;
+            }
+            .newsletter-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .book-card .card-body {
+                padding: 14px 16px 16px;
+            }
+            .book-card .card-title {
+                font-size: 13px;
+                min-height: 2.2rem;
+            }
+            .book-card .card-price {
+                font-size: 15px;
+            }
+            .filter-pill {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .newsletter-input-wrap {
+                min-width: 280px;
+            }
+        }
+
+        /* ─── Section backgrounds ─── */
+        .section-white {
+            background: #fff;
+        }
+        .section-gray {
+            background: #F8F9FA;
+        }
+        .section-cream {
+            background: #FBF8F3;
+        }
+        .section-alt {
+            background: #F1F3F5;
+        }
+
+        /* ─── Misc ─── */
+        .divider-glow {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 4px;
+            margin: 0 auto 16px;
+        }
+        .section-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+        .section-sub {
+            font-size: clamp(16px, 1.2vw, 19px);
+            color: var(--text-secondary);
+            margin-top: 12px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Toast for newsletter */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1F3A5F;
+            color: #fff;
+            padding: 16px 28px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-xl);
+            font-weight: 500;
+            font-size: 14px;
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
         }
     </style>
 </head>
-<body class="bg-page text-[#222222] antialiased selection:bg-[#1F3A5F] selection:text-white flex flex-col min-h-screen">
+
+<body class="bg-page text-[#1A1A1A] antialiased selection:bg-[#1F3A5F] selection:text-white flex flex-col min-h-screen">
 
     <!-- ================= NAVIGATION ================= -->
-    <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-[#E5E7EB]/80 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[4.5rem] sm:h-20 flex items-center justify-between">
+    <header class="sticky top-0 z-50 bg-white/75 backdrop-blur-xl border-b border-[#E5E7EB]/60 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
             <!-- Logo -->
             <a href="#books" class="flex items-center gap-3 group" aria-label="Arganon Book Store Home">
                 <div class="w-10 h-10 rounded-xl bg-[#1F3A5F] flex items-center justify-center shadow-md group-hover:scale-105 transition-premium">
                     <i data-lucide="book-open" class="w-5 h-5 text-[#C89B3C]"></i>
                 </div>
                 <div>
-                    <span class="text-xl sm:text-2xl font-bold tracking-tight text-[#1F3A5F]">Arganon</span>
+                    <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-[#1F3A5F]">Arganon</span>
                     <span class="block text-[10px] sm:text-xs uppercase tracking-[0.18em] text-[#6B7280] font-medium">Book Store</span>
                 </div>
             </a>
-            
+
             <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center gap-9" aria-label="Main navigation">
-                <a href="#books" id="nav-books" class="nav-link relative text-[#1F3A5F] font-semibold text-[15px] hover:text-[#C89B3C] transition-premium after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:bg-[#C89B3C] after:rounded-full after:scale-x-100 after:origin-left after:transition-transform after:duration-300">Books</a>
-                <a href="#about" id="nav-about" class="nav-link relative text-[#6B7280] font-medium text-[15px] hover:text-[#1F3A5F] transition-premium after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:bg-[#C89B3C] after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">About</a>
-                <a href="#contact" id="nav-contact" class="nav-link relative text-[#6B7280] font-medium text-[15px] hover:text-[#1F3A5F] transition-premium after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:bg-[#C89B3C] after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">Contact</a>
+            <nav class="hidden md:flex items-center gap-10" aria-label="Main navigation">
+                <a href="#books" id="nav-books" class="nav-link active">Books</a>
+                <a href="#about" id="nav-about" class="nav-link">About</a>
+                <a href="#contact" id="nav-contact" class="nav-link">Contact</a>
             </nav>
-            
+
             <!-- Phone + CTA -->
-            <div class="hidden lg:flex items-center gap-5">
+            <div class="hidden lg:flex items-center gap-4">
                 <a href="tel:0939437332" class="flex items-center gap-2 text-sm font-medium text-[#1F3A5F] hover:text-[#C89B3C] transition-premium">
                     <i data-lucide="phone" class="w-4 h-4"></i>
                     <span>0939437332</span>
                 </a>
-                <a href="#books" class="btn-primary bg-[#1F3A5F] hover:bg-[#162d4a] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-premium">
+                <a href="#books" class="bg-[#1F3A5F] hover:bg-[#162d4a] text-white text-sm font-semibold px-6 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-premium hover:-translate-y-0.5">
                     Browse Books
                 </a>
             </div>
-            
+
             <!-- Mobile menu button -->
-            <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#1F3A5F] rounded-xl hover:bg-gray-100 transition-premium" aria-label="Toggle menu">
+            <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#1F3A5F] rounded-lg hover:bg-gray-100 transition-premium" aria-label="Toggle menu">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
-        
+
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#E5E7EB] px-6 py-5 space-y-1 shadow-lg">
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm border-t border-[#E5E7EB] px-6 py-5 space-y-1 shadow-lg">
             <a href="#books" onclick="toggleMobileMenu()" class="block py-3 text-[#1F3A5F] font-semibold text-base hover:text-[#C89B3C] transition-premium">Books</a>
             <a href="#about" onclick="toggleMobileMenu()" class="block py-3 text-[#1F3A5F] font-semibold text-base hover:text-[#C89B3C] transition-premium">About</a>
             <a href="#contact" onclick="toggleMobileMenu()" class="block py-3 text-[#1F3A5F] font-semibold text-base hover:text-[#C89B3C] transition-premium">Contact</a>
@@ -214,28 +678,36 @@
     </header>
 
     <main class="flex-grow">
+
         <!-- ================= HERO ================= -->
-        <section class="relative min-h-[68vh] sm:min-h-[74vh] flex items-center justify-center overflow-hidden">
+        <section class="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center overflow-hidden">
+            <!-- Decorative blobs -->
+            <div class="absolute inset-0 pointer-events-none z-0">
+                <div class="blob-1 top-[-20%] left-[-10%]"></div>
+                <div class="blob-2 bottom-[-20%] right-[-10%]"></div>
+            </div>
+
+            <!-- Background image -->
             <div class="absolute inset-0">
-                <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-                     alt="Premium library bookshelves" 
-                     class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="Premium library bookshelves"
+                class="w-full h-full object-cover" />
                 <div class="absolute inset-0 hero-overlay"></div>
             </div>
-            
+
             <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] font-bold text-white leading-[1.12] tracking-tight animate-fade-in">
-                    Discover Your Next<br class="hidden sm:block"> Favorite Book
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight animate-fade-in">
+                    Discover Your Next<br class="hidden sm:block" /> Favorite Book
                 </h1>
-                <p class="mt-6 sm:mt-7 text-lg sm:text-xl text-white/88 max-w-2xl mx-auto font-normal leading-relaxed animate-fade-in animate-delay-1">
+                <p class="mt-6 text-lg sm:text-xl text-white/85 max-w-2xl mx-auto font-light leading-relaxed animate-fade-in-delay-1">
                     እንኳን ወደ አርጋኖን የመጻሕፍት ድህረ ገጽ በሰላም መጡ! የንባብ ዓለምን እንዲያስሱ እና የሚወዷቸውን መጻሕፍት በቀላሉ እንዲያገኙ ተጋብዘዋል።
                 </p>
-                <div class="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in animate-delay-2">
-                    <a href="#books" class="btn-accent inline-flex items-center gap-2.5 bg-[#C89B3C] hover:bg-[#b58a32] text-white font-semibold text-base px-8 py-4 rounded-xl transition-premium">
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-delay-2">
+                    <a href="#books" class="inline-flex items-center gap-2.5 bg-[#C89B3C] hover:bg-[#b58a32] text-white font-semibold text-base px-9 py-4 rounded-xl shadow-lg hover:shadow-xl transition-premium transform hover:-translate-y-1">
                         <i data-lucide="book-open" class="w-5 h-5"></i>
                         Browse Books
                     </a>
-                    <a href="#contact" class="inline-flex items-center gap-2.5 bg-white/12 hover:bg-white/22 text-white font-semibold text-base px-8 py-4 rounded-xl border border-white/25 backdrop-blur-sm transition-premium">
+                    <a href="#contact" class="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-9 py-4 rounded-xl border border-white/30 backdrop-blur-sm transition-premium hover:-translate-y-1">
                         Contact Us
                     </a>
                 </div>
@@ -243,53 +715,48 @@
         </section>
 
         <!-- ================= BOOKS SECTION ================= -->
-        <section id="books" class="relative py-20 sm:py-24 bg-[#F4F4F4] overflow-hidden">
-            <!-- Subtle decorative blobs -->
-            <div class="decor-blob w-[420px] h-[420px] bg-[#1F3A5F]/[0.04] -top-32 -right-32"></div>
-            <div class="decor-blob w-[300px] h-[300px] bg-[#C89B3C]/[0.05] bottom-20 -left-20"></div>
-            
+        <section id="books" class="py-20 sm:py-24 section-gray relative">
+            <!-- Decorative blobs -->
+            <div class="section-blob">
+                <div class="blob-1 top-[-30%] right-[-15%]"></div>
+                <div class="blob-2 bottom-[-20%] left-[-10%]"></div>
+            </div>
+
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Section Header -->
                 <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-[0.15em] mb-3">Our Collection</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-[#1F3A5F] tracking-tight">Explore Our Books</h2>
-                    <p class="mt-4 text-[#6B7280] text-base sm:text-lg leading-relaxed">ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍት</p>
+                    <span class="section-label">Our Collection</span>
+                    <h2 class="section-title">Explore Our Books</h2>
+                    <p class="section-sub">ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍት</p>
+                    <div class="divider-glow"></div>
                 </div>
-                
+
                 <!-- Filter Pills -->
                 <div class="flex flex-wrap justify-center items-center gap-2.5 sm:gap-3 mb-10">
-                    <button onclick="filterCategory('all')" id="btn-all" class="filter-pill active px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold border border-transparent cursor-pointer">
-                        ሁሉም መጻሕፍት
-                    </button>
-                    <button onclick="filterCategory('regular')" id="btn-regular" class="filter-pill px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-[#1F3A5F] border border-[#E5E7EB] cursor-pointer">
-                        የአማርኛ መጻሕፍት
-                    </button>
-                    <button onclick="filterCategory('children')" id="btn-children" class="filter-pill px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-[#1F3A5F] border border-[#E5E7EB] cursor-pointer">
-                        English Books
-                    </button>
-                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="filter-pill px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-[#1F3A5F] border border-[#E5E7EB] cursor-pointer">
-                        የሳምንቱ አዲስ መጻሕፍት
-                    </button>
+                    <button onclick="filterCategory('all')" id="btn-all" class="filter-pill active">ሁሉም መጻሕፍት</button>
+                    <button onclick="filterCategory('regular')" id="btn-regular" class="filter-pill">የአማርኛ መጻሕፍት</button>
+                    <button onclick="filterCategory('children')" id="btn-children" class="filter-pill">English Books</button>
+                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="filter-pill">የሳምንቱ አዲስ</button>
                 </div>
-                
+
                 <!-- Search -->
                 <div class="max-w-xl mx-auto mb-14">
                     <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-[#9CA3AF]">
+                        <span class="search-icon">
                             <i data-lucide="search" class="w-5 h-5"></i>
                         </span>
-                        <input type="text" 
-                               id="search-input" 
-                               onkeyup="searchBooks()" 
-                               placeholder="የሚፈልጉትን መጽሐፍ ወይም ደራሲ ስም ይፈልጉ..." 
-                               class="w-full pl-14 pr-5 py-4 bg-white rounded-2xl border border-[#E5E7EB] shadow-[0_2px_10px_rgba(0,0,0,0.04)] focus:outline-none focus:border-[#1F3A5F] focus:ring-4 focus:ring-[#1F3A5F]/[0.08] text-[15px] transition-premium"
-                               aria-label="Search books">
+                        <input type="text"
+                        id="search-input"
+                        onkeyup="searchBooks()"
+                        placeholder="የሚፈልጉትን መጽሐፍ ወይም ደራሲ ስም ይፈልጉ..."
+                        class="search-input"
+                        aria-label="Search books" />
                     </div>
                 </div>
-                
+
                 <!-- Books Grid -->
                 <div id="books-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 sm:gap-6 lg:gap-7"></div>
-                
+
                 <!-- No results -->
                 <div id="no-results" class="hidden text-center py-20">
                     <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-gray-100 flex items-center justify-center">
@@ -302,18 +769,22 @@
         </section>
 
         <!-- ================= TESTIMONIALS ================= -->
-        <section class="relative py-20 sm:py-24 bg-white overflow-hidden">
-            <div class="decor-blob w-[380px] h-[380px] bg-[#C89B3C]/[0.04] top-10 -right-24"></div>
-            
+        <section class="py-20 sm:py-24 section-white relative">
+            <div class="section-blob">
+                <div class="blob-1 top-[-20%] left-[-10%]"></div>
+                <div class="blob-2 bottom-[-20%] right-[-10%]"></div>
+            </div>
+
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-14">
-                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-[0.15em] mb-3">የደንበኞች አስተያየት</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-[#1F3A5F] tracking-tight">ደንበኞቻችን ምን ይላሉ?</h2>
+                    <span class="section-label">የደንበኞች አስተያየት</span>
+                    <h2 class="section-title">ደንበኞቻችን ምን ይላሉ?</h2>
+                    <div class="divider-glow"></div>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                     <!-- Testimonial 1 -->
-                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)] transition-premium">
+                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] hover:shadow-lg transition-premium hover:-translate-y-1.5">
                         <div class="flex gap-1 mb-5 text-[#C89B3C]">
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -327,9 +798,9 @@
                             <h4 class="font-semibold text-[#1F3A5F]">ዮሐንስ ታደሰ</h4>
                         </div>
                     </div>
-                    
+
                     <!-- Testimonial 2 -->
-                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)] transition-premium">
+                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] hover:shadow-lg transition-premium hover:-translate-y-1.5">
                         <div class="flex gap-1 mb-5 text-[#C89B3C]">
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -343,9 +814,9 @@
                             <h4 class="font-semibold text-[#1F3A5F]">ሄለን መኮንን</h4>
                         </div>
                     </div>
-                    
+
                     <!-- Testimonial 3 -->
-                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)] transition-premium">
+                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] hover:shadow-lg transition-premium hover:-translate-y-1.5">
                         <div class="flex gap-1 mb-5 text-[#C89B3C]">
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -364,31 +835,35 @@
         </section>
 
         <!-- ================= ABOUT ================= -->
-        <section id="about" class="relative py-20 sm:py-24 bg-[#F4F4F4] overflow-hidden">
-            <div class="decor-blob w-[360px] h-[360px] bg-[#1F3A5F]/[0.04] -bottom-20 -left-16"></div>
-            
+        <section id="about" class="py-20 sm:py-24 section-alt relative">
+            <div class="section-blob">
+                <div class="blob-1 top-[-25%] right-[-10%]"></div>
+                <div class="blob-2 bottom-[-25%] left-[-10%]"></div>
+            </div>
+
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-14">
-                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-[0.15em] mb-3">ታሪካችን</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-[#1F3A5F] tracking-tight">ስለ አርጋኖን መጻሕፍት መደብር</h2>
+                    <span class="section-label">ታሪካችን</span>
+                    <h2 class="section-title">ስለ አርጋኖን መጻሕፍት መደብር</h2>
+                    <div class="divider-glow"></div>
                 </div>
-                
+
                 <div class="max-w-4xl mx-auto">
-                    <div class="bg-white p-8 sm:p-12 lg:p-14 rounded-3xl border border-[#E5E7EB] shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-center">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-[#1F3A5F] mb-6 tracking-tight">እውቀትን ለትውልድ ማዳረስ</h3>
+                    <div class="bg-white p-8 sm:p-12 lg:p-14 rounded-3xl border border-[#E5E7EB] shadow-premium hover:shadow-xl transition-premium text-center">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-[#1F3A5F] mb-6">እውቀትን ለትውልድ ማዳረስ</h3>
                         <p class="text-[#4B5563] text-base sm:text-lg leading-relaxed max-w-3xl mx-auto mb-10">
                             በታሪካዊው የአዲስ አበባ 5 ኪሎ አካባቢ የተመሰረተው አርጋኖን መጻሕፍት መደብር፤ ለአንባቢዎች ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍትን በማቅረብ ላይ ይገኛል።
                         </p>
-                        
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                            <div class="bg-[#F8F9FA] p-7 rounded-2xl border border-[#E5E7EB]">
+                            <div class="bg-[#F8F9FA] p-7 rounded-2xl border border-[#E5E7EB] hover:shadow-md transition-premium">
                                 <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center mb-4">
                                     <i data-lucide="target" class="w-5 h-5 text-[#1F3A5F]"></i>
                                 </div>
                                 <h4 class="font-bold text-[#1F3A5F] text-lg mb-2">ተልእኮአችን</h4>
                                 <p class="text-sm text-[#6B7280] leading-relaxed">የእኛ ተልዕኮ የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን መንፈሳዊ እና ታሪክ የሚያንጸባርቁ መጻሕፍትን ለሁሉም በቀላሉ ተደራሽ በማድረግ እምነትን፣ ዕውቀትን እና የንባብ ባህልን ማጠናከር ነው።</p>
                             </div>
-                            <div class="bg-[#F8F9FA] p-7 rounded-2xl border border-[#E5E7EB]">
+                            <div class="bg-[#F8F9FA] p-7 rounded-2xl border border-[#E5E7EB] hover:shadow-md transition-premium">
                                 <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center mb-4">
                                     <i data-lucide="eye" class="w-5 h-5 text-[#1F3A5F]"></i>
                                 </div>
@@ -402,22 +877,26 @@
         </section>
 
         <!-- ================= CONTACT ================= -->
-        <section id="contact" class="relative py-20 sm:py-24 bg-white overflow-hidden">
-            <div class="decor-blob w-[320px] h-[320px] bg-[#C89B3C]/[0.04] top-16 -right-20"></div>
-            
+        <section id="contact" class="py-20 sm:py-24 section-white relative">
+            <div class="section-blob">
+                <div class="blob-1 top-[-20%] left-[-10%]"></div>
+                <div class="blob-2 bottom-[-20%] right-[-10%]"></div>
+            </div>
+
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-14">
-                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-[0.15em] mb-3">ያግኙን</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-[#1F3A5F] tracking-tight">ከአርጋኖን ጋር ይገናኙ</h2>
+                    <span class="section-label">ያግኙን</span>
+                    <h2 class="section-title">ከአርጋኖን ጋር ይገናኙ</h2>
+                    <div class="divider-glow"></div>
                 </div>
-                
+
                 <div class="max-w-xl mx-auto">
-                    <div class="bg-[#F8F9FA] p-8 sm:p-10 rounded-3xl border border-[#E5E7EB] shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+                    <div class="bg-[#F8F9FA] p-8 sm:p-10 rounded-3xl border border-[#E5E7EB] shadow-premium hover:shadow-xl transition-premium">
                         <h3 class="text-xl font-bold text-[#1F3A5F] mb-3">የመደብራችን አድራሻ</h3>
                         <p class="text-[#6B7280] text-sm leading-relaxed mb-8">
                             በአዲስ አበባ 5 ኪሎ ከሚገኘው መደብራችን በአካል በመገኘት ወይም ከታች ባሉት አማራጮች ያግኙን።
                         </p>
-                        
+
                         <div class="space-y-5">
                             <div class="flex items-start gap-4">
                                 <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0">
@@ -428,7 +907,7 @@
                                     <p class="text-[#6B7280] text-sm mt-0.5">አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start gap-4">
                                 <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0">
                                     <i data-lucide="phone" class="w-5 h-5"></i>
@@ -438,7 +917,7 @@
                                     <a href="tel:0939437332" class="text-[#6B7280] text-sm mt-0.5 hover:text-[#C89B3C] transition-premium">0939437332</a>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start gap-4">
                                 <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0">
                                     <i data-lucide="send" class="w-5 h-5"></i>
@@ -456,25 +935,72 @@
                 </div>
             </div>
         </section>
+
+        <!-- ================= NEWSLETTER ================= -->
+        <section class="py-20 sm:py-24 section-gray relative">
+            <div class="section-blob">
+                <div class="blob-1 top-[-30%] right-[-15%]"></div>
+                <div class="blob-2 bottom-[-30%] left-[-15%]"></div>
+            </div>
+
+            <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="newsletter-wrap">
+                    <div class="newsletter-content text-center">
+                        <div class="flex justify-center mb-4">
+                            <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
+                                <i data-lucide="mail" class="w-7 h-7 text-[#C89B3C]"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Newsletter</h3>
+                        <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+                            አዲስ መጻሕፍት፣ ልዩ ቅናሾች እና ዜናዎች ለመቀበል ይመዝገቡ።
+                        </p>
+
+                        <form id="newsletter-form" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleNewsletter(event)">
+                            <div class="newsletter-input-wrap w-full sm:flex-1">
+                                <span class="input-icon">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                </span>
+                                <input type="email"
+                                id="newsletter-email"
+                                placeholder="Enter your email address"
+                                required
+                                aria-label="Email address" />
+                            </div>
+                            <button type="submit" class="newsletter-btn w-full sm:w-auto">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                Subscribe Now
+                            </button>
+                        </form>
+
+                        <div class="newsletter-trust justify-center mt-5">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            <span>We respect your privacy. No spam, unsubscribe anytime.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- ================= BOOK DETAILS MODAL ================= -->
-    <div id="book-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div id="modal-content-box" class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col transform transition-all duration-300 scale-95 opacity-0">
+    <div id="book-modal" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div id="modal-content-box" class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col scale-95 opacity-0">
             <button onclick="closeBookModal()" class="absolute top-5 right-5 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full flex items-center justify-center transition-premium" aria-label="Close modal">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
-            
+
             <div class="p-6 sm:p-10 overflow-y-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-start">
                     <div class="bg-[#F8F9FA] p-6 rounded-2xl flex items-center justify-center border border-[#E5E7EB]">
-                        <img id="modal-img" src="" alt="Book Cover" class="max-h-80 w-auto rounded-lg shadow-md object-contain">
+                        <img id="modal-img" src="" alt="Book Cover" class="max-h-80 w-auto rounded-lg shadow-md object-contain" />
                     </div>
                     <div class="space-y-5">
                         <span id="modal-category" class="inline-block bg-[#1F3A5F]/10 text-[#1F3A5F] text-xs font-semibold px-3 py-1.5 rounded-full"></span>
                         <h2 id="modal-title" class="text-2xl sm:text-3xl font-bold text-[#1F3A5F] leading-snug"></h2>
                         <p id="modal-author" class="text-[#6B7280] font-medium"></p>
-                        
+
                         <div class="flex items-center gap-4 pt-1">
                             <div class="flex items-center gap-1 text-[#C89B3C]">
                                 <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -482,7 +1008,7 @@
                             </div>
                             <span id="modal-price" class="text-lg font-bold text-[#1F3A5F]"></span>
                         </div>
-                        
+
                         <div class="grid grid-cols-2 gap-4 pt-4 border-t border-[#E5E7EB] text-sm">
                             <div>
                                 <span class="text-[#9CA3AF] block text-xs mb-0.5">ቋንቋ</span>
@@ -501,14 +1027,14 @@
                                 <strong id="modal-pages" class="text-[#374151]"></strong>
                             </div>
                         </div>
-                        
-                        <button class="btn-primary w-full mt-2 bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-semibold py-3.5 rounded-xl transition-premium flex items-center justify-center gap-2">
+
+                        <button class="w-full mt-2 bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-semibold py-3.5 rounded-xl transition-premium flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5">
                             <i data-lucide="shopping-cart" class="w-4 h-4"></i>
                             Add to Cart
                         </button>
                     </div>
                 </div>
-                
+
                 <div class="mt-8 pt-6 border-t border-[#E5E7EB]">
                     <h3 class="text-lg font-bold text-[#1F3A5F] mb-3">መግለጫ</h3>
                     <p id="modal-desc" class="text-[#6B7280] text-[15px] leading-relaxed"></p>
@@ -517,10 +1043,13 @@
         </div>
     </div>
 
+    <!-- ================= TOAST ================= -->
+    <div id="toast" class="toast">✅ Successfully subscribed!</div>
+
     <!-- ================= FOOTER ================= -->
-    <footer class="bg-[#1A2F4D] text-white pt-16 pb-8">
+    <footer class="bg-[#1A2D47] text-white pt-16 pb-8 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-14">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
                 <!-- Brand -->
                 <div class="space-y-5">
                     <div class="flex items-center gap-3">
@@ -528,11 +1057,11 @@
                             <i data-lucide="book-open" class="w-5 h-5 text-[#C89B3C]"></i>
                         </div>
                         <div>
-                            <span class="text-xl font-bold">Arganon</span>
-                            <span class="block text-xs uppercase tracking-[0.18em] text-white/55">Book Store</span>
+                            <span class="text-xl font-extrabold">Arganon</span>
+                            <span class="block text-xs uppercase tracking-widest text-white/50">Book Store</span>
                         </div>
                     </div>
-                    <p class="text-white/65 text-sm leading-relaxed max-w-xs">
+                    <p class="text-white/60 text-sm leading-relaxed max-w-xs">
                         ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍትን ለአንባቢዎች በማቅረብ ላይ።
                     </p>
                     <div class="flex gap-3">
@@ -544,79 +1073,51 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Categories -->
                 <div>
-                    <h4 class="font-semibold text-sm uppercase tracking-[0.12em] text-white/90 mb-5">Categories</h4>
-                    <ul class="space-y-3 text-sm text-white/65">
+                    <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-5">Categories</h4>
+                    <ul class="space-y-3 text-sm text-white/60">
                         <li><a href="#books" onclick="filterCategory('all')" class="hover:text-[#C89B3C] transition-premium">ሁሉም መጻሕፍት</a></li>
                         <li><a href="#books" onclick="filterCategory('regular')" class="hover:text-[#C89B3C] transition-premium">የአማርኛ መጻሕፍት</a></li>
                         <li><a href="#books" onclick="filterCategory('children')" class="hover:text-[#C89B3C] transition-premium">English Books</a></li>
                         <li><a href="#books" onclick="filterCategory('new-week')" class="hover:text-[#C89B3C] transition-premium">የሳምንቱ አዲስ</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Contact -->
                 <div>
-                    <h4 class="font-semibold text-sm uppercase tracking-[0.12em] text-white/90 mb-5">Contact</h4>
-                    <ul class="space-y-3.5 text-sm text-white/65">
-                        <li class="flex items-start gap-2.5">
-                            <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0 opacity-80"></i>
+                    <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-5">Contact</h4>
+                    <ul class="space-y-3 text-sm text-white/60">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0"></i>
                             <span>አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</span>
                         </li>
-                        <li class="flex items-center gap-2.5">
-                            <i data-lucide="phone" class="w-4 h-4 shrink-0 opacity-80"></i>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 shrink-0"></i>
                             <a href="tel:0939437332" class="hover:text-[#C89B3C] transition-premium">0939437332</a>
                         </li>
-                        <li class="flex items-center gap-2.5">
-                            <i data-lucide="send" class="w-4 h-4 shrink-0 opacity-80"></i>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="send" class="w-4 h-4 shrink-0"></i>
                             <a href="https://t.me/corpus_mysticum" target="_blank" class="hover:text-[#C89B3C] transition-premium">@corpus_mysticum</a>
                         </li>
                     </ul>
                 </div>
-                
-                <!-- Newsletter – completely redesigned -->
+
+                <!-- About Footer -->
                 <div>
-                    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#243f63] to-[#1a2f4d] p-6 border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-                        <!-- Soft decorative shapes -->
-                        <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-[#C89B3C]/10 blur-xl pointer-events-none"></div>
-                        <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-white/5 blur-lg pointer-events-none"></div>
-                        
-                        <div class="relative z-10">
-                            <div class="flex items-center gap-2 mb-3">
-                                <i data-lucide="mail" class="w-4.5 h-4.5 text-[#C89B3C]"></i>
-                                <h4 class="font-semibold text-sm uppercase tracking-[0.1em] text-white">Join Our Newsletter</h4>
-                            </div>
-                            <p class="text-white/70 text-sm mb-5 leading-relaxed">
-                                አዲስ መጻሕፍት እና ዜናዎች ለመቀበል ይመዝገቡ። Get early access to new releases.
-                            </p>
-                            
-                            <form class="space-y-3" onsubmit="event.preventDefault();">
-                                <div class="newsletter-input-wrap">
-                                    <span class="input-icon">
-                                        <i data-lucide="mail" class="w-4 h-4"></i>
-                                    </span>
-                                    <input type="email" 
-                                           placeholder="Enter your email address" 
-                                           required
-                                           class="w-full py-3 pr-4 rounded-xl bg-white/10 border border-white/15 text-sm text-white placeholder-white/45 focus:outline-none focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/20 transition-premium">
-                                </div>
-                                <button type="submit" class="btn-accent w-full py-3 bg-[#C89B3C] hover:bg-[#b58a32] rounded-xl text-sm font-semibold text-white transition-premium flex items-center justify-center gap-2">
-                                    <i data-lucide="send" class="w-4 h-4"></i>
-                                    Subscribe Now
-                                </button>
-                            </form>
-                            
-                            <p class="mt-3.5 text-[11px] text-white/45 leading-snug text-center">
-                                We respect your privacy. No spam, unsubscribe anytime.
-                            </p>
-                        </div>
-                    </div>
+                    <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-5">About</h4>
+                    <ul class="space-y-3 text-sm text-white/60">
+                        <li><a href="#about" class="hover:text-[#C89B3C] transition-premium">ስለ እኛ</a></li>
+                        <li><a href="#contact" class="hover:text-[#C89B3C] transition-premium">ያግኙን</a></li>
+                        <li><a href="#" class="hover:text-[#C89B3C] transition-premium">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-[#C89B3C] transition-premium">Terms of Service</a></li>
+                    </ul>
                 </div>
             </div>
-            
+
             <!-- Bottom bar -->
-            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/45">
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
                 <p>&copy; 2026 Arganon Book Store. All rights reserved. Addis Ababa, 5 Kilo.</p>
                 <div class="flex gap-6">
                     <a href="#" class="hover:text-white transition-premium">Privacy Policy</a>
@@ -628,221 +1129,211 @@
 
     <!-- ================= JAVASCRIPT ================= -->
     <script>
-        // Initialize Lucide icons
+        // ─── Lucide ───
         lucide.createIcons();
-        
-        const books = [
-            {
-                id: 1,
-                title: "የቤተ ክርስቲያን ታሪክ",
-                author: "ብጹዕ አቡነ ጎርጎርዮስ",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/book1.jpg",
-                description: "አርትኦት፡ መምህር በአማን ነጸረ እና ተመስገን ዋና",
-                lang: "አማርኛ",
-                publisher: "Arganon",
-                year: "",
-                pages: " ",
-                isNew: false,
-                isFeatured: true,
-                isBestSeller: true,
-                dateAdded: "2026-07-20",
-                rating: 4.9,
-                price: "320 ብር"
-            },
-            {
-                id: 2,
-                title: "ፈላስፋው ሰማዕት ቅዱስ ዮስጢኖስ",
-                author: "ዲ/ን መስፍን ተከሥተ",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/book2.jpg",
-                description: "የፈላስፋው ሰማዕት ቅዱስ ዮስጢኖስ ሕይወቱ እና ስራዎቹ ከ 100 - 165 ዐ.ም",
-                lang: "አማርኛ",
-                publisher: " ",
-                year: "2018 ዐ.ም ሰኔ",
-                pages: " ",
-                isNew: true,
-                isFeatured: true,
-                isBestSeller: true,
-                dateAdded: "2026-07-29",
-                rating: 4.8,
-                price: "280 ብር"
-            },
-            {
-                id: 3,
-                title: "የሐዋርያው የቅዱስ ጳውሎስ መልእክታት ቁጥር 1",
-                author: "መጋቤ ሐዲስ ስቡሕ አዳምጤ",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/book3.jpg",
-                description: "ትርጓሜ እና ጥልቅ ማብራርያ",
-                lang: "አማርኛ",
-                publisher: " ",
-                year: "2018",
-                pages: " ",
-                isNew: false,
-                isFeatured: false,
-                isBestSeller: true,
-                dateAdded: "2026-07-25",
-                rating: 4.7,
-                price: "350 ብር"
-            },
-            {
-                id: 4,
-                title: "መራኁት",
-                author: "መጋቤ ጥበብ ይግዛው መኮንን",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/merahut.jpg",
-                description: "ኦርቶዶክሳዊ የትዳር እና የርካቤ ስነ-ልቡና",
-                lang: "አማርኛ",
-                publisher: "Arganon",
-                year: "2018",
-                pages: "_",
-                isNew: true,
-                isFeatured: true,
-                isBestSeller: true,
-                dateAdded: "2026-07-25",
-                rating: 5.0,
-                price: "260 ብር"
-            },
-            {
-                id: 5,
-                title: "ሐዋርያን አበው",
-                author: "ዲ/ን ዘሚካኤል ሐጎስ",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/book5.jpg",
-                description: "ቅዱስ ዲዮናስዮስ እና ሌሎች ታላላቅ አበው",
-                lang: "አማርኛ",
-                publisher: "Arganon",
-                year: "2018",
-                pages: " ",
-                isNew: false,
-                isFeatured: false,
-                isBestSeller: false,
-                dateAdded: "2026-07-25",
-                rating: 4.6,
-                price: "240 ብር"
-            },
-            {
-                id: 6,
-                title: "ቃለ አብ ሕያው",
-                author: "መምህር ሰናይ ጊዜ",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/book6.jpg",
-                description: "ነገረ ክርስቶስ",
-                lang: "አማርኛ",
-                publisher: "Arganon",
-                year: "2017",
-                pages: " ",
-                isNew: false,
-                isFeatured: false,
-                isBestSeller: false,
-                dateAdded: "2026-07-25",
-                rating: 4.5,
-                price: "220 ብር"
-            },
-            {
-                id: 7,
-                title: "ማስያስ",
-                author: "ዲ/ን ሚኪያስ አስረስ",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/book7.jpg",
-                description: "የኦርቶዶክሳዊው ነገረ መለኮት መቅድማዊ ነጥቦች",
-                lang: "አማርኛ",
-                publisher: "Arganon",
-                year: "2017",
-                pages: " ",
-                isNew: false,
-                isFeatured: true,
-                isBestSeller: false,
-                dateAdded: "2026-07-25",
-                rating: 4.8,
-                price: "290 ብር"
-            },
-            {
-                id: 8,
-                title: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት",
-                author: "የተለያዩ ደራሲያን",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/book8.jpg",
-                description: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት፣ ስርዓተ አምልኮ እና የውጭ ግንኙነት",
-                lang: "አማርኛ",
-                publisher: "Arganon",
-                year: "2017",
-                pages: " ",
-                isNew: false,
-                isFeatured: false,
-                isBestSeller: true,
-                dateAdded: "2026-07-25",
-                rating: 4.9,
-                price: "380 ብር"
-            },
-            {
-                id: 9,
-                title: "የዮሐንስ ወንጌል በቅዱስ ዮሐንስ አፈወርቅ",
-                author: "ትርጓሚ፡ ዲ/ን ሽመልስ መርጊያ",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/book9.jpg",
-                description: "ጥልቅ ትርጓሜ እና አስተምህሮ",
-                lang: "አማርኛ",
-                publisher: "Arganon",
-                year: "2017",
-                pages: " ",
-                isNew: false,
-                isFeatured: false,
-                isBestSeller: false,
-                dateAdded: "2026-07-25",
-                rating: 4.7,
-                price: "310 ብር"
-            },
-            {
-                id: 10,
-                title: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ቁጥር 2",
-                author: "መጋቤ ሐዲስ ስቡሕ አዳምጤ",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/book10.jpg",
-                description: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ከኤፌሶን እስከ ዕብራውያን ትርጓሜ/ማብራርያ",
-                lang: "አማርኛ",
-                publisher: "Arganon",
-                year: "2017",
-                pages: " ",
-                isNew: false,
-                isFeatured: true,
-                isBestSeller: false,
-                dateAdded: "2026-07-25",
-                rating: 4.8,
-                price: "340 ብር"
-            },
-            {
-                id: 11,
-                title: "ከመዝ ነአምን እንዲህ እናምናለን",
-                author: "በመምህር ገብረ መድኅን እንየው",
-                category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
-                cover: "images/book11.jpg",
-                description: "የእምነት መሠረቶች እና ማብራርያ",
-                lang: "አማርኛ",
-                publisher: "Arganon",
-                year: "2017",
-                pages: " ",
-                isNew: true,
-                isFeatured: false,
-                isBestSeller: true,
-                dateAdded: "2026-07-25",
-                rating: 4.6,
-                price: "250 ብር"
-            }
-        ];
-        
+
+        // ─── Books Data ───
+        const books = [{
+            id: 1,
+            title: "የቤተ ክርስቲያን ታሪክ",
+            author: "ብጹዕ አቡነ ጎርጎርዮስ",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/book1.jpg",
+            description: "አርትኦት፡ መምህር በአማን ነጸረ እና ተመስገን ዋና",
+            lang: "አማርኛ",
+            publisher: "Arganon",
+            year: "",
+            pages: " ",
+            isNew: false,
+            isFeatured: true,
+            isBestSeller: true,
+            dateAdded: "2026-07-20",
+            rating: 4.9,
+            price: "320 ብር"
+        }, {
+            id: 2,
+            title: "ፈላስፋው ሰማዕት ቅዱስ ዮስጢኖስ",
+            author: "ዲ/ን መስፍን ተከሥተ",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/book2.jpg",
+            description: "የፈላስፋው ሰማዕት ቅዱስ ዮስጢኖስ ሕይወቱ እና ስራዎቹ ከ 100 - 165 ዐ.ም",
+            lang: "አማርኛ",
+            publisher: " ",
+            year: "2018 ዐ.ም ሰኔ",
+            pages: " ",
+            isNew: true,
+            isFeatured: true,
+            isBestSeller: true,
+            dateAdded: "2026-07-29",
+            rating: 4.8,
+            price: "280 ብር"
+        }, {
+            id: 3,
+            title: "የሐዋርያው የቅዱስ ጳውሎስ መልእክታት ቁጥር 1",
+            author: "መጋቤ ሐዲስ ስቡሕ አዳምጤ",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/book3.jpg",
+            description: "ትርጓሜ እና ጥልቅ ማብራርያ",
+            lang: "አማርኛ",
+            publisher: " ",
+            year: "2018",
+            pages: " ",
+            isNew: false,
+            isFeatured: false,
+            isBestSeller: true,
+            dateAdded: "2026-07-25",
+            rating: 4.7,
+            price: "350 ብር"
+        }, {
+            id: 4,
+            title: "መራኁት",
+            author: "መጋቤ ጥበብ ይግዛው መኮንን",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/merahut.jpg",
+            description: "ኦርቶዶክሳዊ የትዳር እና የርካቤ ስነ-ልቡና",
+            lang: "አማርኛ",
+            publisher: "Arganon",
+            year: "2018",
+            pages: "_",
+            isNew: true,
+            isFeatured: true,
+            isBestSeller: true,
+            dateAdded: "2026-07-25",
+            rating: 5.0,
+            price: "260 ብር"
+        }, {
+            id: 5,
+            title: "ሐዋርያን አበው",
+            author: "ዲ/ን ዘሚካኤል ሐጎስ",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/book5.jpg",
+            description: "ቅዱስ ዲዮናስዮስ እና ሌሎች ታላላቅ አበው",
+            lang: "አማርኛ",
+            publisher: "Arganon",
+            year: "2018",
+            pages: " ",
+            isNew: false,
+            isFeatured: false,
+            isBestSeller: false,
+            dateAdded: "2026-07-25",
+            rating: 4.6,
+            price: "240 ብር"
+        }, {
+            id: 6,
+            title: "ቃለ አብ ሕያው",
+            author: "መምህር ሰናይ ጊዜ",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/book6.jpg",
+            description: "ነገረ ክርስቶስ",
+            lang: "አማርኛ",
+            publisher: "Arganon",
+            year: "2017",
+            pages: " ",
+            isNew: false,
+            isFeatured: false,
+            isBestSeller: false,
+            dateAdded: "2026-07-25",
+            rating: 4.5,
+            price: "220 ብር"
+        }, {
+            id: 7,
+            title: "ማስያስ",
+            author: "ዲ/ን ሚኪያስ አስረስ",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/book7.jpg",
+            description: "የኦርቶዶክሳዊው ነገረ መለኮት መቅድማዊ ነጥቦች",
+            lang: "አማርኛ",
+            publisher: "Arganon",
+            year: "2017",
+            pages: " ",
+            isNew: false,
+            isFeatured: true,
+            isBestSeller: false,
+            dateAdded: "2026-07-25",
+            rating: 4.8,
+            price: "290 ብር"
+        }, {
+            id: 8,
+            title: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት",
+            author: "የተለያዩ ደራሲያን",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/book8.jpg",
+            description: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት፣ ስርዓተ አምልኮ እና የውጭ ግንኙነት",
+            lang: "አማርኛ",
+            publisher: "Arganon",
+            year: "2017",
+            pages: " ",
+            isNew: false,
+            isFeatured: false,
+            isBestSeller: true,
+            dateAdded: "2026-07-25",
+            rating: 4.9,
+            price: "380 ብር"
+        }, {
+            id: 9,
+            title: "የዮሐንስ ወንጌል በቅዱስ ዮሐንስ አፈወርቅ",
+            author: "ትርጓሚ፡ ዲ/ን ሽመልስ መርጊያ",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/book9.jpg",
+            description: "ጥልቅ ትርጓሜ እና አስተምህሮ",
+            lang: "አማርኛ",
+            publisher: "Arganon",
+            year: "2017",
+            pages: " ",
+            isNew: false,
+            isFeatured: false,
+            isBestSeller: false,
+            dateAdded: "2026-07-25",
+            rating: 4.7,
+            price: "310 ብር"
+        }, {
+            id: 10,
+            title: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ቁጥር 2",
+            author: "መጋቤ ሐዲስ ስቡሕ አዳምጤ",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/book10.jpg",
+            description: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ከኤፌሶን እስከ ዕብራውያን ትርጓሜ/ማብራርያ",
+            lang: "አማርኛ",
+            publisher: "Arganon",
+            year: "2017",
+            pages: " ",
+            isNew: false,
+            isFeatured: true,
+            isBestSeller: false,
+            dateAdded: "2026-07-25",
+            rating: 4.8,
+            price: "340 ብር"
+        }, {
+            id: 11,
+            title: "ከመዝ ነአምን እንዲህ እናምናለን",
+            author: "በመምህር ገብረ መድኅን እንየው",
+            category: "regular",
+            categoryName: "የአማርኛ መጻሕፍት",
+            cover: "images/book11.jpg",
+            description: "የእምነት መሠረቶች እና ማብራርያ",
+            lang: "አማርኛ",
+            publisher: "Arganon",
+            year: "2017",
+            pages: " ",
+            isNew: true,
+            isFeatured: false,
+            isBestSeller: true,
+            dateAdded: "2026-07-25",
+            rating: 4.6,
+            price: "250 ብር"
+        }];
+
+        // ─── Helpers ───
         function isWithinLast7Days(dateString) {
             if (!dateString) return false;
             const today = new Date("2026-07-29");
@@ -851,86 +1342,83 @@
             const diffDays = diffTime / (1000 * 60 * 60 * 24);
             return diffDays >= 0 && diffDays <= 7;
         }
-        
+
         let currentFilter = 'all';
-        
+
+        // ─── Render ───
         function createBookCardHTML(book) {
             return `
-                <div class="book-card bg-white overflow-hidden border border-[#E5E7EB] flex flex-col h-full transition-premium group">
-                    <div class="relative w-full aspect-[3/4] overflow-hidden bg-gray-50">
-                        <img src="${book.cover}" 
-                             alt="${book.title}" 
-                             class="book-img w-full h-full object-cover transition-premium duration-500"
+                <div class="book-card">
+                    <div class="book-img-wrap aspect-[3/4]">
+                        <img src="${book.cover}"
+                             alt="${book.title}"
+                             class="book-img"
                              loading="lazy"
-                             onerror="this.src='https://placehold.co/300x400/1F3A5F/C89B3C?text=Book'">
-                        ${book.isNew ? '<span class="absolute top-3 left-3 bg-[#C89B3C] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide shadow-sm">New</span>' : ''}
+                             onerror="this.src='https://placehold.co/300x400/1F3A5F/C89B3C?text=Book'" />
+                        ${book.isNew ? '<span class="book-badge">New</span>' : ''}
                     </div>
-                    <div class="p-4 sm:p-5 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-[13px] sm:text-sm text-[#1F3A5F] line-clamp-2 leading-snug mb-1.5 min-h-[2.5rem]">${book.title}</h3>
-                        <p class="text-[#6B7280] text-xs mb-3 truncate">${book.author || 'አርጋኖን'}</p>
-                        
-                        <div class="flex items-center gap-1.5 mb-3">
-                            <div class="flex text-[#C89B3C]">
-                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-                            </div>
-                            <span class="text-xs font-medium text-[#374151]">${book.rating}</span>
+                    <div class="card-body">
+                        <h3 class="card-title">${book.title}</h3>
+                        <p class="card-author">${book.author || 'አርጋኖን'}</p>
+                        <div class="card-rating">
+                            <span class="stars">
+                                <i data-lucide="star" class="w-3.5 h-3.5"></i>
+                            </span>
+                            <span class="rating-num">${book.rating}</span>
                         </div>
-                        
-                        <div class="mt-auto space-y-3">
-                            <p class="text-base font-bold text-[#1F3A5F]">${book.price}</p>
-                            <button onclick="openBookModal(${book.id})" 
-                                    class="w-full bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-semibold py-2.5 px-3 rounded-xl text-xs transition-premium flex items-center justify-center gap-2 shadow-sm hover:shadow-md">
-                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                                <span>View Details</span>
-                            </button>
-                        </div>
+                        <p class="card-price">${book.price}</p>
+                        <button onclick="openBookModal(${book.id})" class="card-btn">
+                            <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                            View Details
+                        </button>
                     </div>
                 </div>
             `;
         }
-        
+
         function renderBooks(booksToDisplay) {
             const grid = document.getElementById('books-grid');
             const noResults = document.getElementById('no-results');
             grid.innerHTML = '';
-            
+
             if (booksToDisplay.length === 0) {
                 noResults.classList.remove('hidden');
                 return;
             }
             noResults.classList.add('hidden');
-            
+
             booksToDisplay.forEach(book => {
                 grid.innerHTML += createBookCardHTML(book);
             });
-            
+
             lucide.createIcons();
         }
-        
+
+        // ─── Filtering ───
         function filterCategory(category) {
             currentFilter = category;
-            
+
             document.querySelectorAll('.filter-pill').forEach(btn => {
-                btn.classList.remove('active', 'bg-[#1F3A5F]', 'text-white', 'border-transparent');
-                btn.classList.add('bg-white', 'text-[#1F3A5F]', 'border', 'border-[#E5E7EB]');
+                btn.classList.remove('active');
             });
-            
-            const activeBtnId = category === 'new-week' ? 'btn-new-week' : `btn-${category}`;
-            const activeBtn = document.getElementById(activeBtnId);
-            
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-                activeBtn.classList.remove('bg-white', 'text-[#1F3A5F]', 'border', 'border-[#E5E7EB]');
-            }
-            
+
+            const idMap = {
+                'all': 'btn-all',
+                'regular': 'btn-regular',
+                'children': 'btn-children',
+                'new-week': 'btn-new-week'
+            };
+            const activeBtn = document.getElementById(idMap[category]);
+            if (activeBtn) activeBtn.classList.add('active');
+
             applyFilters();
         }
-        
+
         function searchBooks() { applyFilters(); }
-        
+
         function applyFilters() {
             const query = document.getElementById('search-input').value.toLowerCase().trim();
-            
+
             let filtered = books.filter(book => {
                 let matchesCategory = false;
                 if (currentFilter === 'all') {
@@ -940,19 +1428,20 @@
                 } else if (currentFilter === 'new-week') {
                     matchesCategory = book.isNew === true && isWithinLast7Days(book.dateAdded);
                 }
-                
-                const matchesSearch = book.title.toLowerCase().includes(query) || 
-                                     (book.author && book.author.toLowerCase().includes(query));
+
+                const matchesSearch = book.title.toLowerCase().includes(query) ||
+                    (book.author && book.author.toLowerCase().includes(query));
                 return matchesCategory && matchesSearch;
             });
-            
+
             renderBooks(filtered);
         }
-        
+
+        // ─── Modal ───
         function openBookModal(id) {
             const book = books.find(b => b.id === id);
             if (!book) return;
-            
+
             document.getElementById('modal-img').src = book.cover;
             document.getElementById('modal-title').textContent = book.title;
             document.getElementById('modal-author').textContent = `ደራሲ፡ ${book.author}`;
@@ -964,52 +1453,55 @@
             document.getElementById('modal-desc').textContent = book.description || 'ዝርዝር መግለጫ አልተሰጠም።';
             document.getElementById('modal-rating').textContent = book.rating;
             document.getElementById('modal-price').textContent = book.price;
-            
+
             const modal = document.getElementById('book-modal');
             const box = document.getElementById('modal-content-box');
-            
+
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            
+
             setTimeout(() => {
                 box.classList.remove('scale-95', 'opacity-0');
                 box.classList.add('scale-100', 'opacity-100');
             }, 10);
-            
+
             lucide.createIcons();
+            document.body.style.overflow = 'hidden';
         }
-        
+
         function closeBookModal() {
             const modal = document.getElementById('book-modal');
             const box = document.getElementById('modal-content-box');
-            
+
             box.classList.remove('scale-100', 'opacity-100');
             box.classList.add('scale-95', 'opacity-0');
-            
+
             setTimeout(() => {
                 modal.classList.remove('flex');
                 modal.classList.add('hidden');
+                document.body.style.overflow = '';
             }, 250);
         }
-        
+
         document.getElementById('book-modal').addEventListener('click', function(e) {
             if (e.target === this) closeBookModal();
         });
-        
+
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeBookModal();
         });
-        
+
+        // ─── Mobile Menu ───
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         }
-        
+
         document.getElementById('menu-btn').addEventListener('click', toggleMobileMenu);
-        
-        // Active nav highlighting
+
+        // ─── Nav active state ───
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
-        
+
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
@@ -1018,21 +1510,33 @@
                     current = section.getAttribute('id');
                 }
             });
-            
+
             navLinks.forEach(link => {
-                link.classList.remove('text-[#1F3A5F]', 'font-semibold');
-                link.classList.add('text-[#6B7280]', 'font-medium');
-                // reset underline
-                link.classList.remove('after:scale-x-100');
-                link.classList.add('after:scale-x-0');
-                
+                link.classList.remove('active');
                 if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.remove('text-[#6B7280]', 'font-medium', 'after:scale-x-0');
-                    link.classList.add('text-[#1F3A5F]', 'font-semibold', 'after:scale-x-100');
+                    link.classList.add('active');
                 }
             });
         });
-        
+
+        // ─── Newsletter ───
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletter-email').value.trim();
+            if (!email) return;
+
+            const toast = document.getElementById('toast');
+            toast.textContent = `✅ Thanks! ${email} subscribed.`;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+
+            document.getElementById('newsletter-email').value = '';
+        }
+
+        // ─── Init ───
         document.addEventListener('DOMContentLoaded', () => {
             renderBooks(books);
             lucide.createIcons();
