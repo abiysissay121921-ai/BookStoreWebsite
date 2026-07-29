@@ -1,221 +1,231 @@
 <!DOCTYPE html>
-<html lang="am" class="h-full scroll-smooth">
+<html lang="en" class="h-full scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arganon Book Store | አርጋኖን መጻሕፍት መደብር</title>
+    <title>Arganon Book Store | Premium Bookstore</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Google Fonts: Playfair Display & Inter -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FAF7F2;
-            color: #333333;
+            background-color: #F8F9FA;
+            color: #222222;
             overflow-x: hidden;
         }
-        h1, h2, h3, h4, .font-serif {
-            font-family: 'Playfair Display', serif;
+        .bg-primary { background-color: #1F3A5F; }
+        .text-primary { color: #1F3A5F; }
+        .border-primary { border-color: #1F3A5F; }
+        
+        .bg-accent { background-color: #C89B3C; }
+        .text-accent { color: #C89B3C; }
+        .border-accent { border-color: #C89B3C; }
+
+        .book-card-shadow {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
         }
-        .bg-primary { background-color: #1F4D3B; }
-        .text-primary { color: #1F4D3B; }
-        .border-primary { border-color: #1F4D3B; }
-        
-        .bg-secondary { background-color: #8B5E3C; }
-        .text-secondary { color: #8B5E3C; }
-        
-        .bg-accent { background-color: #D4AF37; }
-        .text-accent { color: #D4AF37; }
-        
-        .bg-warmwhite { background-color: #FAF7F2; }
     </style>
 </head>
-<body class="bg-warmwhite text-[#333333] antialiased selection:bg-[#1F4D3B] selection:text-white flex flex-col min-h-screen">
+<body class="bg-[#F4F4F4] text-[#222222] antialiased selection:bg-[#1F3A5F] selection:text-white flex flex-col min-h-screen">
+    
     <!-- ================= NAVIGATION BAR ================= -->
-    <header class="sticky top-0 z-50 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#8B5E3C]/20 transition-all duration-300">
+    <header class="sticky top-0 z-50 bg-[#F8F9FA]/90 backdrop-blur-md border-b border-[#E5E7EB] transition-all duration-300 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#books" class="flex items-center gap-3 group text-left cursor-pointer">
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-book-open text-accent"></i>
+                <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                    <i data-lucide="book-open" class="w-5 h-5 text-accent"></i>
                 </div>
                 <div>
-                    <span class="font-serif text-2xl font-bold tracking-wide text-primary">Arganon</span>
-                    <span class="block text-xs uppercase tracking-widest text-secondary font-semibold">Book Store</span>
+                    <span class="font-bold text-xl tracking-tight text-primary">Arganon</span>
+                    <span class="block text-[10px] uppercase tracking-widest text-[#6B7280] font-semibold">Book Store</span>
                 </div>
             </a>
-            <!-- Navigation Tabs -->
-            <nav class="hidden md:flex items-center gap-10 font-bold text-lg lg:text-xl">
-                <a href="#books" id="nav-books" class="nav-link text-primary hover:text-secondary transition-colors cursor-pointer">Books</a>
-                <a href="#about" id="nav-about" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">About</a>
-                <a href="#contact" id="nav-contact" class="nav-link text-gray-600 hover:text-secondary transition-colors cursor-pointer">Contact</a>
+            
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-base">
+                <a href="#books" id="nav-books" class="nav-link text-primary font-semibold hover:text-[#C89B3C] transition-colors cursor-pointer">Books</a>
+                <a href="#about" id="nav-about" class="nav-link text-[#6B7280] hover:text-primary transition-colors cursor-pointer">About</a>
+                <a href="#contact" id="nav-contact" class="nav-link text-[#6B7280] hover:text-primary transition-colors cursor-pointer">Contact</a>
             </nav>
-            <div class="hidden lg:flex items-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-[#8B5E3C]/20">
-                <i class="fa-solid fa-phone text-secondary"></i>
+
+            <div class="hidden lg:flex items-center gap-3 bg-white px-4 py-2 rounded-full shadow-xs border border-[#E5E7EB]">
+                <i data-lucide="phone" class="w-4 h-4 text-accent"></i>
                 <span class="text-sm font-semibold text-primary">0939437332</span>
             </div>
-            <button id="menu-btn" class="md:hidden text-primary text-2xl focus:outline-none cursor-pointer">
-                <i class="fa-solid fa-bars"></i>
+
+            <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden text-primary text-2xl focus:outline-none cursor-pointer p-2">
+                <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-[#8B5E3C]/20 px-6 py-4 space-y-3 shadow-lg">
-            <a href="#books" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">Books</a>
-            <a href="#about" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">About</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-lg py-1 hover:text-secondary">Contact</a>
-            <div class="pt-3 border-t border-gray-100 flex items-center gap-2 text-secondary font-semibold text-sm">
-                <i class="fa-solid fa-phone"></i> 0939437332
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-[#E5E7EB] px-6 py-4 space-y-3 shadow-lg">
+            <a href="#books" onclick="toggleMobileMenu()" class="block w-full text-left text-primary font-bold text-base py-1 hover:text-accent">Books</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block w-full text-left text-[#6B7280] font-medium text-base py-1 hover:text-primary">About</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block w-full text-left text-[#6B7280] font-medium text-base py-1 hover:text-primary">Contact</a>
+            <div class="pt-3 border-t border-[#E5E7EB] flex items-center gap-2 text-[#6B7280] font-semibold text-sm">
+                <i data-lucide="phone" class="w-4 h-4 text-accent"></i> 0939437332
             </div>
         </div>
     </header>
+
     <!-- ================= MAIN CONTAINER ================= -->
     <main class="flex-grow">
+        
         <!-- ================= HERO SECTION ================= -->
-        <section class="py-16 sm:py-24 bg-gradient-to-b from-[#FAF7F2] to-white border-b border-gray-200/50">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-                <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-extrabold text-primary leading-tight tracking-tight drop-shadow-sm">
-                    እንኳን ወደ አርጋኖን የመጻሕፍት ድህረ ገጽ በሰላም መጡ!
+        <section class="relative py-24 sm:py-32 bg-primary text-white overflow-hidden">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000" alt="Library Background" class="w-full h-full object-cover object-center opacity-20 scale-105 animate-pulse duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/90"></div>
+            </div>
+
+            <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-accent text-xs font-semibold tracking-wider uppercase backdrop-blur-md border border-white/10">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Welcome to Arganon
+                </span>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+                    Discover Your Next Favorite Book
                 </h1>
-                <p class="text-secondary font-serif text-xl sm:text-2xl font-medium max-w-2xl mx-auto">
-                    የንባብ ዓለምን እንዲያስሱ እና የሚወዷቸውን መጻሕፍት በቀላሉ እንዲያገኙ ተጋብዘዋል።
+                <p class="text-[#E5E7EB] text-lg sm:text-xl font-normal max-w-2xl mx-auto leading-relaxed">
+                    Explore our curated collection of spiritual, educational, and classical books tailored to enrich your mind and soul.
                 </p>
-                <div class="pt-4">
-                    <a href="#books" class="inline-flex items-center gap-3 bg-primary hover:bg-[#16372b] text-white font-serif font-bold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
-                        <span>መጻሕፍትን ያስሱ</span>
-                        <i class="fa-solid fa-arrow-down text-accent text-sm"></i>
+                <div class="pt-6 flex flex-wrap items-center justify-center gap-4">
+                    <a href="#books" class="bg-accent hover:bg-[#b08731] text-primary font-semibold text-base px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <span>Browse Books</span>
+                        <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-base px-8 py-4 rounded-xl backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5">
+                        Contact Us
                     </a>
                 </div>
             </div>
         </section>
-        <!-- ================= SECTION: BOOKS (Primary Landing Page) ================= -->
-        <section id="books" class="py-16 bg-warmwhite border-b border-gray-200/50">
+
+        <!-- ================= SECTION: BOOKS ================= -->
+        <section id="books" class="py-20 bg-[#F4F4F4]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                
                 <!-- FILTER TABS -->
-                <div class="flex flex-wrap justify-center items-center gap-3 sm:gap-4 mb-8">
-                    <button onclick="filterCategory('all')" id="btn-all" class="category-tab active-tab bg-primary text-white font-serif px-6 sm:px-8 py-3 rounded-xl shadow-md transition-all duration-300 font-semibold text-base sm:text-lg cursor-pointer transform hover:-translate-y-0.5">
-                        ሁሉም መጻሕፍት (All)
+                <div class="flex flex-wrap justify-center items-center gap-3 mb-10">
+                    <button onclick="filterCategory('all')" id="btn-all" class="category-tab active-tab bg-primary text-white px-6 py-3 rounded-full shadow-sm transition-all duration-300 font-semibold text-sm sm:text-base cursor-pointer hover:opacity-90">
+                        All Books
                     </button>
-                    <button onclick="filterCategory('regular')" id="btn-regular" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-6 sm:px-8 py-3 rounded-xl shadow-sm transition-all duration-300 font-semibold text-base sm:text-lg cursor-pointer transform hover:-translate-y-0.5">
-                        የአማርኛ መጻሕፍት
+                    <button onclick="filterCategory('regular')" id="btn-regular" class="category-tab bg-white text-[#6B7280] border border-[#E5E7EB] hover:border-primary hover:text-primary px-6 py-3 rounded-full shadow-xs transition-all duration-300 font-semibold text-sm sm:text-base cursor-pointer">
+                        Amharic Books
                     </button>
-                    <button onclick="filterCategory('children')" id="btn-children" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-6 sm:px-8 py-3 rounded-xl shadow-sm transition-all duration-300 font-semibold text-base sm:text-lg cursor-pointer transform hover:-translate-y-0.5">
+                    <button onclick="filterCategory('children')" id="btn-children" class="category-tab bg-white text-[#6B7280] border border-[#E5E7EB] hover:border-primary hover:text-primary px-6 py-3 rounded-full shadow-xs transition-all duration-300 font-semibold text-sm sm:text-base cursor-pointer">
                         English Books
                     </button>
-                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="category-tab bg-white text-primary border border-gray-200 hover:border-primary font-serif px-6 sm:px-8 py-3 rounded-xl shadow-sm transition-all duration-300 font-semibold text-base sm:text-lg cursor-pointer transform hover:-translate-y-0.5">
-                        የሳምንቱ አዲስ መጻሕፍት
+                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="category-tab bg-white text-[#6B7280] border border-[#E5E7EB] hover:border-primary hover:text-primary px-6 py-3 rounded-full shadow-xs transition-all duration-300 font-semibold text-sm sm:text-base cursor-pointer">
+                        New Arrivals
                     </button>
                 </div>
+
                 <!-- SEARCH BAR -->
-                <div class="max-w-2xl mx-auto mb-12">
+                <div class="max-w-xl mx-auto mb-16">
                     <div class="relative group">
-                        <span class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
-                            <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#6B7280] group-focus-within:text-primary transition-colors">
+                            <i data-lucide="search" class="w-5 h-5"></i>
                         </span>
-                        <input type="text" id="search-input" onkeyup="searchBooks()" placeholder="የሚፈልጉትን መጽሐፍ ወይም ደራሲ ስም ይፈልጉ..." class="w-full pl-13 pr-6 py-4 bg-white rounded-2xl border border-gray-200/80 shadow-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-base transition-all duration-300">
+                        <input type="text" id="search-input" onkeyup="searchBooks()" placeholder="Search books by title or author..." class="w-full pl-12 pr-6 py-4 bg-white rounded-full border border-[#E5E7EB] shadow-xs focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-base transition-all duration-300">
                     </div>
                 </div>
+
                 <!-- BOOKS GRID -->
-                <div id="books-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"></div>
+                <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
                 
-                <div id="no-results" class="hidden text-center py-16">
-                    <div class="text-5xl text-gray-300 mb-3"><i class="fa-solid fa-book-tanakh"></i></div>
-                    <h3 class="font-serif text-xl font-bold text-gray-700">ምንም መጽሐፍ አልተገኘም</h3>
-                    <p class="text-gray-500 text-sm mt-1">እባክዎ ፍለጋዎን ይቀይሩ ወይም ሌላ ምድብ ይምረጡ።</p>
+                <div id="no-results" class="hidden text-center py-20">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto text-[#6B7280] shadow-xs mb-4">
+                        <i data-lucide="book-x" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary">No books found</h3>
+                    <p class="text-[#6B7280] text-sm mt-1">Try adjusting your search terms or category filter.</p>
                 </div>
             </div>
         </section>
-        <!-- ================= CUSTOMER TESTIMONIALS ================= -->
-        <section class="py-20 bg-warmwhite border-b border-gray-200/50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">የደንበኞች አስተያየት</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">ደንበኞቻችን ምን ይላሉ?</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4">
-                        <div class="text-accent flex gap-1 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <p class="text-gray-700 text-sm leading-relaxed italic">"በጣም ጥራት ያላቸው መንፈሳዊ መጻሕፍትን በቀላሉ አግኝቻለሁ። የአገልግሎት ጥራታቸው አስደናቂ ነው።"</p>
-                        <h4 class="font-serif font-bold text-primary text-base">ዮሐንስ ታደሰ</h4>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4">
-                        <div class="text-accent flex gap-1 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <p class="text-gray-700 text-sm leading-relaxed italic">"ለልጆች የሚሆኑ አስተማሪ ተረቶችን እዚህ አግኝቻለሁ። ለንባብ ፍቅር ትልቅ አስተዋጽኦ አለው።"</p>
-                        <h4 class="font-serif font-bold text-primary text-base">ሄለን መኮንን</h4>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4">
-                        <div class="text-accent flex gap-1 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <p class="text-gray-700 text-sm leading-relaxed italic">"የመደብሩ አቀራረብ እና መጽሐፎቹ ጥራት እጅግ የሚወደድ ነው። ሁልጊዜም ምርጫዬ ነው።"</p>
-                        <h4 class="font-serif font-bold text-primary text-base">ዶ/ር ዳዊት መለሰ</h4>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <!-- ================= SECTION: ABOUT ================= -->
-        <section id="about" class="py-20 bg-white border-b border-gray-200/50">
+        <section id="about" class="py-20 bg-white border-y border-[#E5E7EB]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">ታሪካችን</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">ስለ አርጋኖን መጻሕፍት መደብር</h2>
+                <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+                    <span class="text-accent font-semibold uppercase tracking-widest text-xs">Our Story</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-primary">About Arganon Book Store</h2>
                 </div>
                 <div class="max-w-4xl mx-auto">
-                    <div class="space-y-8 bg-warmwhite p-8 sm:p-12 rounded-3xl border border-gray-100 shadow-sm text-center">
-                        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-primary">እውቀትን ለትውልድ ማዳረስ</h3>
-                        <p class="text-gray-700 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
-                            በታሪካዊው የአዲስ አበባ 5 ኪሎ አካባቢ የተመሰረተው አርጋኖን መጻሕፍት መደብር፤ ለአንባቢዎች ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍትን በማቅረብ ላይ ይገኛል።
+                    <div class="space-y-8 bg-[#F8F9FA] p-8 sm:p-12 rounded-3xl border border-[#E5E7EB] shadow-xs text-center">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-primary">Spreading Knowledge Across Generations</h3>
+                        <p class="text-[#6B7280] text-base sm:text-lg leading-relaxed max-w-3xl mx-auto font-normal">
+                            Located near the historic 5 Kilo area in Addis Ababa, Arganon Book Store is dedicated to providing high-quality spiritual, historical, and educational literature to enthusiastic readers and scholars.
                         </p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 text-left">
-                            <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm space-y-3">
-                                <h4 class="font-serif font-bold text-primary text-xl">ተልእኮአችን</h4>
-                                <p class="text-sm text-gray-600 leading-relaxed">የእኛ ተልዕኮ የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን መንፈሳዊ እና ታሪክ የሚያንጸባርቁ መጻሕፍትን ለሁሉም በቀላሉ ተደራሽ በማድረግ እምነትን፣ ዕውቀትን እና የንባብ ባህልን ማጠናከር ነው።</p>
+                            <div class="bg-white p-8 rounded-2xl border border-[#E5E7EB] shadow-xs space-y-3">
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                                    <i data-lucide="target" class="w-5 h-5"></i>
+                                </div>
+                                <h4 class="font-bold text-primary text-xl">Our Mission</h4>
+                                <p class="text-sm text-[#6B7280] leading-relaxed">To make spiritual and educational literature readily accessible, fostering deeper faith, knowledge, and an enduring reading culture.</p>
                             </div>
-                            <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm space-y-3">
-                                <h4 class="font-serif font-bold text-primary text-xl">ራዕያችን</h4>
-                                <p class="text-sm text-gray-600 leading-relaxed">ዕውቀትን፣ እምነትን እና የንባብ ባህልን የሚያበረታታ ተመራጭ የመጻሕፍት ማዕከል መሆን።</p>
+                            <div class="bg-white p-8 rounded-2xl border border-[#E5E7EB] shadow-xs space-y-3">
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                                    <i data-lucide="eye" class="w-5 h-5"></i>
+                                </div>
+                                <h4 class="font-bold text-primary text-xl">Our Vision</h4>
+                                <p class="text-sm text-[#6B7280] leading-relaxed">To be the premier bookstore destination that empowers minds and preserves cultural and spiritual heritage through trusted books.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
         <!-- ================= SECTION: CONTACT ================= -->
-        <section id="contact" class="py-20 bg-warmwhite">
+        <section id="contact" class="py-20 bg-[#F4F4F4]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-secondary font-semibold uppercase tracking-widest text-xs">ያግኙን</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mt-2">ከአርጋኖን ጋር ይገናኙ</h2>
+                <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+                    <span class="text-accent font-semibold uppercase tracking-widest text-xs">Get in Touch</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-primary">Connect With Us</h2>
                 </div>
                 <div class="max-w-xl mx-auto">
-                    <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-100 space-y-6">
-                        <h3 class="font-serif text-2xl font-bold text-primary">የመደብራችን አድራሻ</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            በአዲስ አበባ 5 ኪሎ ከሚገኘው መደብራችን በአካል በመገኘት ወይም ከታች ባሉት አማራጮች ያግኙን።
+                    <div class="bg-white p-8 sm:p-10 rounded-3xl book-card-shadow border border-[#E5E7EB] space-y-6">
+                        <h3 class="text-2xl font-bold text-primary">Store Information</h3>
+                        <p class="text-[#6B7280] text-sm leading-relaxed">
+                            Visit our physical store in Addis Ababa or reach out to us through our phone and official communication channels.
                         </p>
                         <div class="space-y-5 text-sm">
                             <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
                                 <div>
-                                    <h4 class="font-bold text-primary">አድራሻ</h4>
-                                    <p class="text-gray-600">አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</p>
+                                    <h4 class="font-bold text-primary">Address</h4>
+                                    <p class="text-[#6B7280]">Addis Ababa, 5 Kilo, Opposite St. Mary Church</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-phone"></i></div>
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                    <i data-lucide="phone-call" class="w-5 h-5"></i>
+                                </div>
                                 <div>
-                                    <h4 class="font-bold text-primary">ስልክ ቁጥር</h4>
-                                    <p class="text-gray-600">0939437332</p>
+                                    <h4 class="font-bold text-primary">Phone Number</h4>
+                                    <p class="text-[#6B7280]">0939437332</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-brands fa-telegram"></i></div>
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                    <i data-lucide="send" class="w-5 h-5"></i>
+                                </div>
                                 <div>
-                                    <h4 class="font-bold text-primary">ቴሌግራም ቻናል</h4>
-                                    <a href="https://t.me/corpus_mysticum" target="_blank" class="text-secondary font-semibold hover:underline flex items-center gap-1.5 mt-0.5">
-                                        @corpus_mysticum <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                    <h4 class="font-bold text-primary">Telegram Channel</h4>
+                                    <a href="https://t.me/corpus_mysticum" target="_blank" class="text-accent font-semibold hover:underline flex items-center gap-1.5 mt-0.5">
+                                        @corpus_mysticum <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                                     </a>
                                 </div>
                             </div>
@@ -225,60 +235,139 @@
             </div>
         </section>
     </main>
+
     <!-- ================= BOOK DETAILS MODAL ================= -->
     <div id="book-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-        <div id="modal-content-box" class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col transform transition-all scale-95 opacity-0">
-            <button onclick="closeBookModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full flex items-center justify-center transition-colors cursor-pointer">
-                <i class="fa-solid fa-xmark text-lg"></i>
+        <div id="modal-content-box" class="bg-white w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col transform transition-all scale-95 opacity-0">
+            <button onclick="closeBookModal()" aria-label="Close modal" class="absolute top-4 right-4 z-10 w-10 h-10 bg-[#F4F4F4] hover:bg-[#E5E7EB] text-[#222222] rounded-full flex items-center justify-center transition-colors cursor-pointer">
+                <i data-lucide="x" class="w-5 h-5"></i>
             </button>
             <div class="p-6 sm:p-10 overflow-y-auto space-y-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                    <div class="bg-warmwhite p-6 rounded-2xl flex items-center justify-center border border-gray-100">
-                        <img id="modal-img" src="" alt="Book Cover" class="max-h-80 w-auto rounded-lg shadow-md object-contain">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-[#F8F9FA] p-6 rounded-2xl flex items-center justify-center border border-[#E5E7EB]">
+                        <img id="modal-img" src="" alt="Book Cover" class="h-72 w-auto rounded-xl shadow-md object-cover">
                     </div>
                     <div class="space-y-4">
-                        <span id="modal-category" class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase"></span>
-                        <h2 id="modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-primary"></h2>
-                        <p id="modal-author" class="text-secondary font-medium text-base"></p>
-                        <div class="grid grid-cols-2 gap-3 pt-2 text-xs border-t border-b border-gray-100 py-4">
-                            <div><span class="text-gray-400 block">ቋንቋ (Language):</span> <strong id="modal-lang" class="text-gray-700"></strong></div>
-                            <div><span class="text-gray-400 block">አሳታሚ (Publisher):</span> <strong id="modal-publisher" class="text-gray-700"></strong></div>
-                            <div><span class="text-gray-400 block">ዓመተ ምህረት:</span> <strong id="modal-year" class="text-gray-700"></strong></div>
-                            <div><span class="text-gray-400 block">ገጾች:</span> <strong id="modal-pages" class="text-gray-700"></strong></div>
+                        <span id="modal-category" class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider"></span>
+                        <h2 id="modal-title" class="text-2xl sm:text-3xl font-bold text-primary"></h2>
+                        <p id="modal-author" class="text-accent font-semibold text-base"></p>
+                        <div class="flex items-center gap-1 text-amber-500 text-sm">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <span class="text-[#6B7280] text-xs ml-2">(4.9 / 5.0)</span>
+                        </div>
+                        <div class="text-2xl font-extrabold text-primary pt-2" id="modal-price">450.00 ETB</div>
+                        <div class="grid grid-cols-2 gap-3 pt-2 text-xs border-t border-b border-[#E5E7EB] py-4">
+                            <div><span class="text-[#6B7280] block">Language:</span> <strong id="modal-lang" class="text-[#222222]"></strong></div>
+                            <div><span class="text-[#6B7280] block">Publisher:</span> <strong id="modal-publisher" class="text-[#222222]"></strong></div>
+                            <div><span class="text-[#6B7280] block">Year:</span> <strong id="modal-year" class="text-[#222222]"></strong></div>
+                            <div><span class="text-[#6B7280] block">Pages:</span> <strong id="modal-pages" class="text-[#222222]"></strong></div>
                         </div>
                     </div>
                 </div>
-                <div class="space-y-2">
-                    <h3 class="font-serif text-xl font-bold text-primary">መግለጫ (Description)</h3>
-                    <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed"></p>
+                <div class="space-y-3">
+                    <h3 class="text-xl font-bold text-primary">Book Description</h3>
+                    <p id="modal-desc" class="text-[#6B7280] text-sm leading-relaxed"></p>
+                </div>
+                <div class="pt-4 border-t border-[#E5E7EB] flex justify-end gap-4">
+                    <button onclick="closeBookModal()" class="px-6 py-3 rounded-xl border border-[#E5E7EB] text-[#222222] font-semibold text-sm hover:bg-[#F8F9FA] transition-colors cursor-pointer">Close</button>
+                    <button onclick="alert('Added to cart successfully!')" class="px-8 py-3 rounded-xl bg-primary text-white font-semibold text-sm hover:opacity-90 shadow-md transition-all cursor-pointer flex items-center gap-2">
+                        <i data-lucide="shopping-cart" class="w-4 h-4"></i> Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- ================= FOOTER ================= -->
-    <footer class="bg-[#153427] text-white pt-12 pb-6 border-t border-[#8B5E3C]/30 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-400">
-            &copy; 2026 Arganon Book Store. All rights reserved. Addis Ababa, 5 Kilo.
+    <footer class="bg-primary text-white pt-16 pb-8 border-t border-[#C89B3C]/30 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-accent flex items-center justify-center text-primary shadow-sm">
+                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">Arganon</span>
+                </div>
+                <p class="text-[#E5E7EB] text-sm leading-relaxed">
+                    Your trusted destination for quality spiritual, historical, and educational literature in Addis Ababa, Ethiopia.
+                </p>
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="https://t.me/corpus_mysticum" target="_blank" class="w-9 h-9 rounded-full bg-white/10 hover:bg-accent hover:text-primary transition-colors flex items-center justify-center text-white">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-accent hover:text-primary transition-colors flex items-center justify-center text-white">
+                        <i data-lucide="facebook" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-accent hover:text-primary transition-colors flex items-center justify-center text-white">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-base mb-4 text-accent">Quick Links</h4>
+                <ul class="space-y-2.5 text-sm text-[#E5E7EB]">
+                    <li><a href="#books" class="hover:text-accent transition-colors">Browse Books</a></li>
+                    <li><a href="#about" class="hover:text-accent transition-colors">About Our Store</a></li>
+                    <li><a href="#contact" class="hover:text-accent transition-colors">Contact Information</a></li>
+                    <li><a href="https://t.me/corpus_mysticum" target="_blank" class="hover:text-accent transition-colors">Telegram Updates</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-base mb-4 text-accent">Categories</h4>
+                <ul class="space-y-2.5 text-sm text-[#E5E7EB]">
+                    <li><a href="#books" onclick="filterCategory('regular')" class="hover:text-accent transition-colors">Amharic Books</a></li>
+                    <li><a href="#books" onclick="filterCategory('children')" class="hover:text-accent transition-colors">English Books</a></li>
+                    <li><a href="#books" onclick="filterCategory('new-week')" class="hover:text-accent transition-colors">New Arrivals</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-base mb-4 text-accent">Newsletter</h4>
+                <p class="text-sm text-[#E5E7EB] mb-4">Subscribe to receive updates on new book arrivals and exclusive offers.</p>
+                <form onsubmit="event.preventDefault(); alert('Subscribed successfully!');" class="space-y-3">
+                    <input type="email" placeholder="Your email address" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-sm text-white placeholder-gray-400 focus:outline-none focus:border-accent">
+                    <button type="submit" class="w-full bg-accent hover:bg-[#b08731] text-primary font-semibold py-3 rounded-xl text-sm transition-colors cursor-pointer shadow-sm">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#E5E7EB]">
+            <p>&copy; 2026 Arganon Book Store. All rights reserved.</p>
+            <div class="flex gap-6 mt-4 sm:mt-0">
+                <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-accent transition-colors">Terms of Service</a>
+            </div>
         </div>
     </footer>
+
     <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
         const books = [
             {
                 id: 1,
                 title: "የቤተ ክርስቲያን ታሪክ",
                 author: "ብጹዕ አቡነ ጎርጎርዮስ",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/book1.jpg",
                 description: "አርትኦት፡ መምህር በአማን ነጸረ እና ተመስገን ዋና",
-                lang: "አማርኛ",
+                lang: "Amharic",
                 publisher: "Arganon",
-                year: "",
-                pages: " ",
+                year: "2015",
+                pages: "420",
+                price: "450.00 ETB",
                 isNew: false,
-                isFeatured: true,
-                isBestSeller: true,
                 dateAdded: "2026-07-20"
             },
             {
@@ -286,16 +375,15 @@
                 title: "ፈላስፋው ሰማዕት ቅዱስ ዮስጢኖስ",
                 author: "ዲ/ን መስፍን ተከሥተ",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/book2.jpg",
                 description: "የፈላስፋው ሰማዕት ቅዱስ ዮስጢኖስ ሕይወቱ እና ስራዎቹ ከ 100 - 165 ዐ.ም",
-                lang: "አማርኛ",
-                publisher: " ",
-                year: "2018 ዐ.ም ሰኔ",
-                pages: " ",
+                lang: "Amharic",
+                publisher: "Arganon",
+                year: "2018",
+                pages: "310",
+                price: "380.00 ETB",
                 isNew: true,
-                isFeatured: true,
-                isBestSeller: true,
                 dateAdded: "2026-07-29"
             },
             {
@@ -303,16 +391,15 @@
                 title: "የሐዋርያው የቅዱስ ጳውሎስ መልእክታት ቁጥር 1",
                 author: "መጋቤ ሐዲስ ስቡሕ አዳምጤ",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/book3.jpg",
                 description: "ትርጓሜ እና ጥልቅ ማብራርያ",
-                lang: "አማርኛ",
-                publisher: " ",
+                lang: "Amharic",
+                publisher: "Arganon",
                 year: "2018",
-                pages: " ",
+                pages: "500",
+                price: "520.00 ETB",
                 isNew: false,
-                isFeatured: false,
-                isBestSeller: true,
                 dateAdded: "2026-07-25"
             },
             {
@@ -320,16 +407,15 @@
                 title: "መራኁት",
                 author: "መጋቤ ጥበብ ይግዛው መኮንን",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/merahut.jpg",
                 description: "ኦርቶዶክሳዊ የትዳር እና የርካቤ ስነ-ልቡና",
-                lang: "አማርኛ",
+                lang: "Amharic",
                 publisher: "Arganon",
                 year: "2018",
-                pages: "_",
+                pages: "280",
+                price: "350.00 ETB",
                 isNew: true,
-                isFeatured: true,
-                isBestSeller: true,
                 dateAdded: "2026-07-25"
             },
             {
@@ -337,16 +423,15 @@
                 title: "ሐዋርያን አበው",
                 author: "ዲ/ን ዘሚካኤል ሐጎስ",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/book5.jpg",
                 description: "ቅዱስ ዲዮናስዮስ እና ሌሎች ታላላቅ አበው",
-                lang: "አማርኛ",
+                lang: "Amharic",
                 publisher: "Arganon",
                 year: "2018",
-                pages: " ",
+                pages: "340",
+                price: "400.00 ETB",
                 isNew: false,
-                isFeatured: false,
-                isBestSeller: false,
                 dateAdded: "2026-07-25"
             },
             {
@@ -354,16 +439,15 @@
                 title: "ቃለ አብ ሕያው",
                 author: "መምህር ሰናይ ጊዜ",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/book6.jpg",
                 description: "ነገረ ክርስቶስ",
-                lang: "አማርኛ",
+                lang: "Amharic",
                 publisher: "Arganon",
                 year: "2017",
-                pages: " ",
+                pages: "290",
+                price: "320.00 ETB",
                 isNew: false,
-                isFeatured: false,
-                isBestSeller: false,
                 dateAdded: "2026-07-25"
             }, 
             {
@@ -371,16 +455,15 @@
                 title: "ማስያስ",
                 author: "ዲ/ን ሚኪያስ አስረስ",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/book7.jpg",
                 description: "የኦርቶዶክሳዊው ነገረ መለኮት መቅድማዊ ነጥቦች",
-                lang: "አማርኛ",
+                lang: "Amharic",
                 publisher: "Arganon",
                 year: "2017",
-                pages: " ",
+                pages: "315",
+                price: "390.00 ETB",
                 isNew: false,
-                isFeatured: true,
-                isBestSeller: false,
                 dateAdded: "2026-07-25"
             },
             {
@@ -388,16 +471,15 @@
                 title: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት",
                 author: "የተለያዩ ደራሲያን",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/book8.jpg",
                 description: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት፣ ስርዓተ አምልኮ እና የውጭ ግንኙነት",
-                lang: "አማርኛ",
+                lang: "Amharic",
                 publisher: "Arganon",
                 year: "2017",
-                pages: " ",
+                pages: "450",
+                price: "480.00 ETB",
                 isNew: false,
-                isFeatured: false,
-                isBestSeller: true,
                 dateAdded: "2026-07-25"
             },
             {
@@ -405,16 +487,15 @@
                 title: "የዮሐንስ ወንጌል በቅዱስ ዮሐንስ አፈወርቅ",
                 author: "ትርጓሚ፡ ዲ/ን ሽመልስ መርጊያ",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/book9.jpg",
                 description: "ጥልቅ ትርጓሜ እና አስተምህሮ",
-                lang: "አማርኛ",
+                lang: "Amharic",
                 publisher: "Arganon",
                 year: "2017",
-                pages: " ",
+                pages: "520",
+                price: "550.00 ETB",
                 isNew: false,
-                isFeatured: false,
-                isBestSeller: false,
                 dateAdded: "2026-07-25"
             },
             {
@@ -422,16 +503,15 @@
                 title: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ቁጥር 2",
                 author: "መጋቤ ሐዲስ ስቡሕ አዳምጤ",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/book10.jpg",
                 description: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ከኤፌሶን እስከ ዕብራውያን ትርጓሜ/ማብራርያ",
-                lang: "አማርኛ",
+                lang: "Amharic",
                 publisher: "Arganon",
                 year: "2017",
-                pages: " ",
+                pages: "480",
+                price: "500.00 ETB",
                 isNew: false,
-                isFeatured: true,
-                isBestSeller: false,
                 dateAdded: "2026-07-25"
             },
             {
@@ -439,49 +519,64 @@
                 title: "ከመዝ ነአምን እንዲህ እናምናለን",
                 author: "በመምህር ገብረ መድኅን እንየው",
                 category: "regular",
-                categoryName: "የአማርኛ መጻሕፍት",
+                categoryName: "Amharic Books",
                 cover: "images/book11.jpg",
                 description: "የእምነት መሠረቶች እና ማብራርያ",
-                lang: "አማርኛ",
+                lang: "Amharic",
                 publisher: "Arganon",
                 year: "2017",
-                pages: " ",
+                pages: "360",
+                price: "410.00 ETB",
                 isNew: true,
-                isFeatured: false,
-                isBestSeller: true,
                 dateAdded: "2026-07-25"
             }
         ];
+
         function isWithinLast7Days(dateString) {
             if (!dateString) return false;
-            const today = new Date("2026-07-25");
+            const today = new Date("2026-07-29");
             const bookDate = new Date(dateString);
             const diffTime = today - bookDate;
             const diffDays = diffTime / (1000 * 60 * 60 * 24);
             return diffDays >= 0 && diffDays <= 7;
         }
+
         let currentFilter = 'all';
+
         function createBookCardHTML(book) {
             return `
-                <div class="bg-white rounded-2xl p-0 shadow-md hover:shadow-xl border border-[#8B5E3C]/15 hover:border-primary/30 transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1 overflow-hidden">
+                <div class="bg-white rounded-[18px] book-card-shadow border border-[#E5E7EB] transition-all duration-300 flex flex-col justify-between group hover:-translate-y-2 hover:shadow-2xl overflow-hidden">
                     <div>
-                        <div class="w-full h-60 sm:h-68 relative m-0 p-0 overflow-hidden bg-gray-50 border-b border-gray-100">
-                            <img src="${book.cover}" alt="${book.title}" class="w-full h-full block object-cover m-0 p-0 absolute inset-0 group-hover:scale-105 transition-transform duration-300">
+                        <div class="w-full h-72 relative overflow-hidden bg-[#F8F9FA] border-b border-[#E5E7EB]">
+                            <img src="${book.cover}" alt="${book.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         </div>
-                        <div class="p-4">
-                            <h3 class="font-serif text-sm sm:text-base font-bold text-primary mt-1 mb-1 line-clamp-2 leading-snug">${book.title}</h3>
-                            <p class="text-gray-500 text-xs mb-4 font-medium truncate">${book.author || 'አርጋኖን'}</p>
+                        <div class="p-6">
+                            <span class="text-xs font-bold text-accent uppercase tracking-wider">${book.categoryName}</span>
+                            <h3 class="text-base font-bold text-primary mt-1 mb-1 line-clamp-1 leading-snug">${book.title}</h3>
+                            <p class="text-[#6B7280] text-xs mb-3 font-medium truncate">${book.author}</p>
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-3">
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <span class="text-[#6B7280] ml-1">(4.9)</span>
+                            </div>
+                            <div class="text-lg font-bold text-primary">${book.price}</div>
                         </div>
                     </div>
-                    <div class="px-4 pb-4">
-                        <button onclick="openBookModal(${book.id})" class="w-full bg-[#FAF7F2] hover:bg-primary text-primary hover:text-white font-bold py-2.5 px-3 rounded-xl text-xs transition-all duration-300 flex items-center justify-between border border-primary/15 cursor-pointer shadow-sm">
-                            <span>ዝርዝር ይመልከቱ</span>
-                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    <div class="px-6 pb-6 pt-2 flex gap-2">
+                        <button onclick="openBookModal(${book.id})" class="flex-1 bg-[#F8F9FA] hover:bg-primary text-primary hover:text-white font-semibold py-2.5 px-3 rounded-xl text-xs transition-all duration-300 flex items-center justify-center border border-[#E5E7EB] cursor-pointer shadow-xs">
+                            <span>Details</span>
+                        </button>
+                        <button onclick="alert('Added to cart successfully!')" class="bg-primary hover:opacity-90 text-white font-semibold py-2.5 px-3 rounded-xl text-xs transition-all duration-300 flex items-center justify-center cursor-pointer shadow-xs" title="Add to Cart">
+                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
                         </button>
                     </div>
                 </div>
             `;
         }
+
         function renderBooks(booksToDisplay) {
             const grid = document.getElementById('books-grid');
             const noResults = document.getElementById('no-results');
@@ -495,24 +590,28 @@
             booksToDisplay.forEach(book => {
                 grid.innerHTML += createBookCardHTML(book);
             });
+            lucide.createIcons();
         }
+
         function filterCategory(category) {
             currentFilter = category;
             document.querySelectorAll('.category-tab').forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white', 'shadow-md');
-                btn.classList.add('bg-white', 'text-primary', 'border', 'border-gray-200');
+                btn.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-white', 'text-[#6B7280]', 'border', 'border-[#E5E7EB]');
             });
             
             const activeBtnId = category === 'new-week' ? 'btn-new-week' : `btn-${category}`;
             const activeBtn = document.getElementById(activeBtnId);
             
             if (activeBtn) {
-                activeBtn.classList.remove('bg-white', 'text-primary', 'border', 'border-gray-200');
-                activeBtn.classList.add('bg-primary', 'text-white', 'shadow-md');
+                activeBtn.classList.remove('bg-white', 'text-[#6B7280]', 'border', 'border-[#E5E7EB]');
+                activeBtn.classList.add('bg-primary', 'text-white', 'shadow-sm');
             }
             applyFilters();
         }
+
         function searchBooks() { applyFilters(); }
+
         function applyFilters() {
             const query = document.getElementById('search-input').value.toLowerCase().trim();
             let filtered = books.filter(book => {
@@ -529,18 +628,21 @@
             });
             renderBooks(filtered);
         }
+
         function openBookModal(id) {
             const book = books.find(b => b.id === id);
             if (!book) return;
             document.getElementById('modal-img').src = book.cover;
             document.getElementById('modal-title').textContent = book.title;
-            document.getElementById('modal-author').textContent = `ደራሲ፡ ${book.author}`;
+            document.getElementById('modal-author').textContent = `Author: ${book.author}`;
             document.getElementById('modal-category').textContent = book.categoryName;
             document.getElementById('modal-lang').textContent = book.lang;
             document.getElementById('modal-publisher').textContent = book.publisher;
             document.getElementById('modal-year').textContent = book.year || '-';
             document.getElementById('modal-pages').textContent = book.pages || '-';
-            document.getElementById('modal-desc').textContent = book.description || 'ዝርዝር መግለጫ አልተሰጠም።';
+            document.getElementById('modal-price').textContent = book.price;
+            document.getElementById('modal-desc').textContent = book.description || 'Detailed description not provided.';
+            
             const modal = document.getElementById('book-modal');
             const box = document.getElementById('modal-content-box');
             modal.classList.remove('hidden');
@@ -549,7 +651,9 @@
                 box.classList.remove('scale-95', 'opacity-0');
                 box.classList.add('scale-100', 'opacity-100');
             }, 10);
+            lucide.createIcons();
         }
+
         function closeBookModal() {
             const modal = document.getElementById('book-modal');
             const box = document.getElementById('modal-content-box');
@@ -560,10 +664,12 @@
                 modal.classList.add('hidden');
             }, 200);
         }
+
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         }
         document.getElementById('menu-btn').addEventListener('click', toggleMobileMenu);
+
         // Highlight active navigation link on scroll
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -576,11 +682,11 @@
                 }
             });
             navLinks.forEach(link => {
-                link.classList.remove('text-primary', 'font-bold');
-                link.classList.add('text-gray-600');
+                link.classList.remove('text-primary', 'font-semibold');
+                link.classList.add('text-[#6B7280]');
                 if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.remove('text-gray-600');
-                    link.classList.add('text-primary', 'font-bold');
+                    link.classList.remove('text-[#6B7280]');
+                    link.classList.add('text-primary', 'font-semibold');
                 }
             });
         });
