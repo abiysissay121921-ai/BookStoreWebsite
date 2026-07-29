@@ -103,34 +103,75 @@
             box-shadow: var(--shadow-xl);
         }
 
-        /* ─── Decorative blobs (very low opacity) ─── */
-        .blob-1 {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 40%, rgba(31, 58, 95, 0.035), rgba(200, 155, 60, 0.015));
-            filter: blur(90px);
-            pointer-events: none;
-            z-index: 0;
+        /* ─── New Background Colors ─── */
+        .bg-cool-white {
+            background: #F8FAFC;
         }
-        .blob-2 {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 70% 60%, rgba(200, 155, 60, 0.04), rgba(31, 58, 95, 0.015));
-            filter: blur(80px);
-            pointer-events: none;
-            z-index: 0;
+        .bg-light-blue-gray {
+            background: #F3F6FB;
+        }
+        .bg-neutral-gray {
+            background: #F7F8FC;
+        }
+        .bg-contact-gradient {
+            background: linear-gradient(180deg, #F8FAFC 0%, #EEF4FF 100%);
         }
 
+        /* ─── Decorative Blobs (soft, elegant) ─── */
         .section-blob {
             position: absolute;
             inset: 0;
             overflow: hidden;
             pointer-events: none;
             z-index: 0;
+        }
+
+        .blob-soft {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.20;
+            pointer-events: none;
+        }
+
+        /* Specific blobs per section (colors match the background) */
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle at 30% 40%, rgba(31, 58, 95, 0.06), rgba(200, 155, 60, 0.02));
+            top: -20%;
+            left: -10%;
+        }
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at 70% 60%, rgba(200, 155, 60, 0.05), rgba(31, 58, 95, 0.02));
+            bottom: -20%;
+            right: -10%;
+        }
+
+        /* For light-blue-gray section we use slightly different colors */
+        .bg-light-blue-gray .blob-1 {
+            background: radial-gradient(circle at 20% 30%, rgba(31, 58, 95, 0.08), rgba(200, 155, 60, 0.02));
+        }
+        .bg-light-blue-gray .blob-2 {
+            background: radial-gradient(circle at 80% 70%, rgba(200, 155, 60, 0.06), rgba(31, 58, 95, 0.02));
+        }
+
+        /* For neutral-gray section */
+        .bg-neutral-gray .blob-1 {
+            background: radial-gradient(circle at 40% 20%, rgba(31, 58, 95, 0.05), rgba(200, 155, 60, 0.02));
+        }
+        .bg-neutral-gray .blob-2 {
+            background: radial-gradient(circle at 60% 80%, rgba(200, 155, 60, 0.05), rgba(31, 58, 95, 0.02));
+        }
+
+        /* For contact gradient section */
+        .bg-contact-gradient .blob-1 {
+            background: radial-gradient(circle at 30% 30%, rgba(31, 58, 95, 0.07), rgba(200, 155, 60, 0.02));
+        }
+        .bg-contact-gradient .blob-2 {
+            background: radial-gradient(circle at 70% 70%, rgba(200, 155, 60, 0.05), rgba(31, 58, 95, 0.02));
         }
 
         /* ─── Book Cards ─── */
@@ -553,24 +594,7 @@
             }
         }
 
-        /* ─── Section backgrounds (refined middle sections only) ─── */
-        .section-white {
-            background: #F8FAFC; /* Soft Cool White */
-        }
-        .section-gray {
-            background: #F3F6FB; /* Very Light Blue Gray */
-        }
-        .section-alt {
-            background: #F7F8FC; /* Soft Neutral Gray */
-        }
-        .section-contact {
-            background: linear-gradient(180deg, #F8FAFC 0%, #EEF4FF 100%);
-        }
-        .section-newsletter-bg {
-            background: #F3F6FB;
-        }
-
-        /* ─── Misc ─── */
+        /* ─── Section labels, titles ─── */
         .divider-glow {
             width: 60px;
             height: 3px;
@@ -686,8 +710,8 @@
         <section class="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center overflow-hidden">
             <!-- Decorative blobs -->
             <div class="absolute inset-0 pointer-events-none z-0">
-                <div class="blob-1 top-[-20%] left-[-10%]"></div>
-                <div class="blob-2 bottom-[-20%] right-[-10%]"></div>
+                <div class="blob-soft" style="width:600px;height:600px;background:radial-gradient(circle at 30% 40%, rgba(31,58,95,0.04), rgba(200,155,60,0.02));top:-20%;left:-10%;filter:blur(80px);"></div>
+                <div class="blob-soft" style="width:400px;height:400px;background:radial-gradient(circle at 70% 60%, rgba(200,155,60,0.03), rgba(31,58,95,0.02));bottom:-20%;right:-10%;filter:blur(70px);"></div>
             </div>
 
             <!-- Background image -->
@@ -718,11 +742,11 @@
         </section>
 
         <!-- ================= BOOKS SECTION ================= -->
-        <section id="books" class="py-20 sm:py-24 section-gray relative">
+        <section id="books" class="py-20 sm:py-24 bg-cool-white relative">
             <!-- Decorative blobs -->
             <div class="section-blob">
-                <div class="blob-1 top-[-30%] right-[-15%]"></div>
-                <div class="blob-2 bottom-[-20%] left-[-10%]"></div>
+                <div class="blob-soft blob-1"></div>
+                <div class="blob-soft blob-2"></div>
             </div>
 
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -772,10 +796,10 @@
         </section>
 
         <!-- ================= TESTIMONIALS ================= -->
-        <section class="py-20 sm:py-24 section-white relative">
+        <section class="py-20 sm:py-24 bg-light-blue-gray relative">
             <div class="section-blob">
-                <div class="blob-1 top-[-20%] left-[-10%]"></div>
-                <div class="blob-2 bottom-[-20%] right-[-10%]"></div>
+                <div class="blob-soft blob-1"></div>
+                <div class="blob-soft blob-2"></div>
             </div>
 
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -838,10 +862,10 @@
         </section>
 
         <!-- ================= ABOUT ================= -->
-        <section id="about" class="py-20 sm:py-24 section-alt relative">
+        <section id="about" class="py-20 sm:py-24 bg-neutral-gray relative">
             <div class="section-blob">
-                <div class="blob-1 top-[-25%] right-[-10%]"></div>
-                <div class="blob-2 bottom-[-25%] left-[-10%]"></div>
+                <div class="blob-soft blob-1"></div>
+                <div class="blob-soft blob-2"></div>
             </div>
 
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -880,10 +904,10 @@
         </section>
 
         <!-- ================= CONTACT ================= -->
-        <section id="contact" class="py-20 sm:py-24 section-contact relative">
+        <section id="contact" class="py-20 sm:py-24 bg-contact-gradient relative">
             <div class="section-blob">
-                <div class="blob-1 top-[-20%] left-[-10%]"></div>
-                <div class="blob-2 bottom-[-20%] right-[-10%]"></div>
+                <div class="blob-soft blob-1"></div>
+                <div class="blob-soft blob-2"></div>
             </div>
 
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -940,10 +964,10 @@
         </section>
 
         <!-- ================= NEWSLETTER ================= -->
-        <section class="py-20 sm:py-24 section-newsletter-bg relative">
+        <section class="py-20 sm:py-24 bg-cool-white relative">
             <div class="section-blob">
-                <div class="blob-1 top-[-30%] right-[-15%]"></div>
-                <div class="blob-2 bottom-[-30%] left-[-15%]"></div>
+                <div class="blob-soft blob-1"></div>
+                <div class="blob-soft blob-2"></div>
             </div>
 
             <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
