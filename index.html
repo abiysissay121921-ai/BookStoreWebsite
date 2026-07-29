@@ -103,18 +103,18 @@
             box-shadow: var(--shadow-xl);
         }
 
-        /* ─── New Background Colors ─── */
+        /* ─── Refined Background Colors ─── */
         .bg-cool-white {
             background: #F8FAFC;
         }
         .bg-light-blue-gray {
-            background: #F3F6FB;
+            background: #F4F6FA;
         }
         .bg-neutral-gray {
-            background: #F7F8FC;
+            background: #F9FAFB;
         }
         .bg-contact-gradient {
-            background: linear-gradient(180deg, #F8FAFC 0%, #EEF4FF 100%);
+            background: linear-gradient(180deg, #F8FAFC 0%, #F0F4F8 100%);
         }
 
         /* ─── Decorative Blobs (soft, elegant) ─── */
@@ -150,20 +150,20 @@
             right: -10%;
         }
 
-        /* For light-blue-gray section we use slightly different colors */
+        /* For light-blue-gray section */
         .bg-light-blue-gray .blob-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(31, 58, 95, 0.08), rgba(200, 155, 60, 0.02));
+            background: radial-gradient(circle at 20% 30%, rgba(31, 58, 95, 0.05), rgba(200, 155, 60, 0.02));
         }
         .bg-light-blue-gray .blob-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(200, 155, 60, 0.06), rgba(31, 58, 95, 0.02));
+            background: radial-gradient(circle at 80% 70%, rgba(200, 155, 60, 0.05), rgba(31, 58, 95, 0.02));
         }
 
         /* For neutral-gray section */
         .bg-neutral-gray .blob-1 {
-            background: radial-gradient(circle at 40% 20%, rgba(31, 58, 95, 0.05), rgba(200, 155, 60, 0.02));
+            background: radial-gradient(circle at 40% 20%, rgba(31, 58, 95, 0.04), rgba(200, 155, 60, 0.02));
         }
         .bg-neutral-gray .blob-2 {
-            background: radial-gradient(circle at 60% 80%, rgba(200, 155, 60, 0.05), rgba(31, 58, 95, 0.02));
+            background: radial-gradient(circle at 60% 80%, rgba(200, 155, 60, 0.04), rgba(31, 58, 95, 0.02));
         }
 
         /* For contact gradient section */
@@ -434,12 +434,12 @@
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.5);
             pointer-events: none;
         }
         .newsletter-input-wrap input {
             width: 100%;
-            padding: 16px 20px 16px 52px;
+            padding: 18px 20px 18px 52px;
             border-radius: var(--radius-sm);
             border: 2px solid rgba(255, 255, 255, 0.15);
             background: rgba(255, 255, 255, 0.08);
@@ -458,11 +458,11 @@
             box-shadow: 0 0 0 4px rgba(200, 155, 60, 0.15);
         }
         .newsletter-btn {
-            padding: 16px 36px;
+            padding: 18px 44px;
             background: var(--accent);
             color: #fff;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 16px;
             border: none;
             border-radius: var(--radius-sm);
             cursor: pointer;
@@ -550,6 +550,7 @@
             .newsletter-btn {
                 width: 100%;
                 justify-content: center;
+                padding: 16px 20px;
             }
             .book-card .card-body {
                 padding: 14px 16px 16px;
@@ -959,6 +960,9 @@
                         </div>
                         <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Newsletter</h3>
                         <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+                            Subscribe to receive updates about new books, exclusive offers, and announcements.
+                        </p>
+                        <p class="text-white/50 text-sm max-w-xl mx-auto mb-8 leading-relaxed">
                             አዲስ መጻሕፍት፣ ልዩ ቅናሾች እና ዜናዎች ለመቀበል ይመዝገቡ።
                         </p>
 
@@ -981,7 +985,7 @@
 
                         <div class="newsletter-trust justify-center mt-5">
                             <i data-lucide="shield-check" class="w-4 h-4"></i>
-                            <span>We respect your privacy. No spam, unsubscribe anytime.</span>
+                            <span>We respect your privacy. No spam. Unsubscribe anytime.</span>
                         </div>
                     </div>
                 </div>
