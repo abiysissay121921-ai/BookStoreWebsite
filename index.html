@@ -19,8 +19,11 @@
     <style>
         :root {
             --primary: #1F3A5F;
+            --primary-dark: #162d4a;
             --accent: #C89B3C;
+            --accent-hover: #b58a32;
             --bg: #F8F9FA;
+            --bg-alt: #F4F4F4;
             --card: #FFFFFF;
             --text: #222222;
             --text-secondary: #6B7280;
@@ -32,7 +35,9 @@
             background-color: var(--bg);
             color: var(--text);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         .bg-primary { background-color: var(--primary); }
@@ -40,70 +45,128 @@
         .border-primary { border-color: var(--primary); }
         .bg-accent { background-color: var(--accent); }
         .text-accent { color: var(--accent); }
-        .bg-page { background-color: #F4F4F4; }
+        .bg-page { background-color: var(--bg-alt); }
         
-        /* Smooth premium transitions */
+        /* Premium transitions */
         .transition-premium {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* Card hover */
+        /* Book cards – refined floating feel */
         .book-card {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.03);
+            border-radius: 18px;
         }
         .book-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.04);
         }
         .book-card:hover .book-img {
             transform: scale(1.05);
         }
         
-        /* Pill filters */
+        /* Filter pills */
         .filter-pill {
-            transition: all 0.25s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .filter-pill.active {
             background-color: var(--primary);
             color: white;
             border-color: var(--primary);
-            box-shadow: 0 4px 14px rgba(31, 58, 95, 0.25);
+            box-shadow: 0 4px 14px rgba(31, 58, 95, 0.28);
+        }
+        .filter-pill:not(.active):hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: #fff;
         }
         
-        /* Focus states for accessibility */
+        /* Focus states */
         a:focus-visible, button:focus-visible, input:focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
         }
         
-        /* Hero overlay */
+        /* Hero overlay – richer gradient */
         .hero-overlay {
-            background: linear-gradient(to bottom, rgba(15, 30, 50, 0.75), rgba(15, 30, 50, 0.85));
+            background: linear-gradient(
+                160deg,
+                rgba(15, 30, 50, 0.78) 0%,
+                rgba(15, 30, 50, 0.82) 50%,
+                rgba(20, 40, 65, 0.88) 100%
+            );
         }
         
-        /* Fade-in animation */
+        /* Fade-in */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(24px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in {
-            animation: fadeInUp 0.7s ease-out forwards;
+            animation: fadeInUp 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
-        .animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
-        .animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
-        .animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .animate-delay-1 { animation-delay: 0.12s; opacity: 0; }
+        .animate-delay-2 { animation-delay: 0.24s; opacity: 0; }
         
-        /* Custom scrollbar for modal */
-        #modal-content-box::-webkit-scrollbar { width: 6px; }
-        #modal-content-box::-webkit-scrollbar-track { background: #f1f1f1; }
-        #modal-content-box::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
+        /* Subtle decorative blobs */
+        .decor-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Soft section dividers */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+        
+        /* Modal scrollbar */
+        #modal-content-box::-webkit-scrollbar { width: 5px; }
+        #modal-content-box::-webkit-scrollbar-track { background: transparent; }
+        #modal-content-box::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        
+        /* Newsletter input icon positioning */
+        .newsletter-input-wrap {
+            position: relative;
+        }
+        .newsletter-input-wrap .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9CA3AF;
+            pointer-events: none;
+        }
+        .newsletter-input-wrap input {
+            padding-left: 46px;
+        }
+        
+        /* Premium button elevation */
+        .btn-primary {
+            box-shadow: 0 2px 8px rgba(31, 58, 95, 0.18);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 6px 20px rgba(31, 58, 95, 0.28);
+            transform: translateY(-1px);
+        }
+        
+        .btn-accent {
+            box-shadow: 0 2px 10px rgba(200, 155, 60, 0.25);
+        }
+        .btn-accent:hover {
+            box-shadow: 0 6px 22px rgba(200, 155, 60, 0.35);
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body class="bg-page text-[#222222] antialiased selection:bg-[#1F3A5F] selection:text-white flex flex-col min-h-screen">
 
     <!-- ================= NAVIGATION ================= -->
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-[#E5E7EB] shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
+    <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-[#E5E7EB]/80 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[4.5rem] sm:h-20 flex items-center justify-between">
             <!-- Logo -->
             <a href="#books" class="flex items-center gap-3 group" aria-label="Arganon Book Store Home">
                 <div class="w-10 h-10 rounded-xl bg-[#1F3A5F] flex items-center justify-center shadow-md group-hover:scale-105 transition-premium">
@@ -111,30 +174,30 @@
                 </div>
                 <div>
                     <span class="text-xl sm:text-2xl font-bold tracking-tight text-[#1F3A5F]">Arganon</span>
-                    <span class="block text-[10px] sm:text-xs uppercase tracking-[0.2em] text-[#6B7280] font-medium">Book Store</span>
+                    <span class="block text-[10px] sm:text-xs uppercase tracking-[0.18em] text-[#6B7280] font-medium">Book Store</span>
                 </div>
             </a>
             
             <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center gap-10" aria-label="Main navigation">
-                <a href="#books" id="nav-books" class="nav-link text-[#1F3A5F] font-semibold text-[15px] hover:text-[#C89B3C] transition-premium">Books</a>
-                <a href="#about" id="nav-about" class="nav-link text-[#6B7280] font-medium text-[15px] hover:text-[#1F3A5F] transition-premium">About</a>
-                <a href="#contact" id="nav-contact" class="nav-link text-[#6B7280] font-medium text-[15px] hover:text-[#1F3A5F] transition-premium">Contact</a>
+            <nav class="hidden md:flex items-center gap-9" aria-label="Main navigation">
+                <a href="#books" id="nav-books" class="nav-link relative text-[#1F3A5F] font-semibold text-[15px] hover:text-[#C89B3C] transition-premium after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:bg-[#C89B3C] after:rounded-full after:scale-x-100 after:origin-left after:transition-transform after:duration-300">Books</a>
+                <a href="#about" id="nav-about" class="nav-link relative text-[#6B7280] font-medium text-[15px] hover:text-[#1F3A5F] transition-premium after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:bg-[#C89B3C] after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">About</a>
+                <a href="#contact" id="nav-contact" class="nav-link relative text-[#6B7280] font-medium text-[15px] hover:text-[#1F3A5F] transition-premium after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:bg-[#C89B3C] after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">Contact</a>
             </nav>
             
             <!-- Phone + CTA -->
-            <div class="hidden lg:flex items-center gap-4">
+            <div class="hidden lg:flex items-center gap-5">
                 <a href="tel:0939437332" class="flex items-center gap-2 text-sm font-medium text-[#1F3A5F] hover:text-[#C89B3C] transition-premium">
                     <i data-lucide="phone" class="w-4 h-4"></i>
                     <span>0939437332</span>
                 </a>
-                <a href="#books" class="bg-[#1F3A5F] hover:bg-[#162d4a] text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-premium">
+                <a href="#books" class="btn-primary bg-[#1F3A5F] hover:bg-[#162d4a] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-premium">
                     Browse Books
                 </a>
             </div>
             
             <!-- Mobile menu button -->
-            <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#1F3A5F] rounded-lg hover:bg-gray-100 transition-premium" aria-label="Toggle menu">
+            <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#1F3A5F] rounded-xl hover:bg-gray-100 transition-premium" aria-label="Toggle menu">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
@@ -152,8 +215,7 @@
 
     <main class="flex-grow">
         <!-- ================= HERO ================= -->
-        <section class="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center overflow-hidden">
-            <!-- Background image -->
+        <section class="relative min-h-[68vh] sm:min-h-[74vh] flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0">
                 <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
                      alt="Premium library bookshelves" 
@@ -162,18 +224,18 @@
             </div>
             
             <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.15] tracking-tight animate-fade-in">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] font-bold text-white leading-[1.12] tracking-tight animate-fade-in">
                     Discover Your Next<br class="hidden sm:block"> Favorite Book
                 </h1>
-                <p class="mt-6 text-lg sm:text-xl text-white/85 max-w-2xl mx-auto font-normal leading-relaxed animate-fade-in animate-delay-1">
+                <p class="mt-6 sm:mt-7 text-lg sm:text-xl text-white/88 max-w-2xl mx-auto font-normal leading-relaxed animate-fade-in animate-delay-1">
                     እንኳን ወደ አርጋኖን የመጻሕፍት ድህረ ገጽ በሰላም መጡ! የንባብ ዓለምን እንዲያስሱ እና የሚወዷቸውን መጻሕፍት በቀላሉ እንዲያገኙ ተጋብዘዋል።
                 </p>
-                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in animate-delay-2">
-                    <a href="#books" class="inline-flex items-center gap-2.5 bg-[#C89B3C] hover:bg-[#b58a32] text-white font-semibold text-base px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-premium transform hover:-translate-y-0.5">
+                <div class="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in animate-delay-2">
+                    <a href="#books" class="btn-accent inline-flex items-center gap-2.5 bg-[#C89B3C] hover:bg-[#b58a32] text-white font-semibold text-base px-8 py-4 rounded-xl transition-premium">
                         <i data-lucide="book-open" class="w-5 h-5"></i>
                         Browse Books
                     </a>
-                    <a href="#contact" class="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-8 py-4 rounded-xl border border-white/30 backdrop-blur-sm transition-premium">
+                    <a href="#contact" class="inline-flex items-center gap-2.5 bg-white/12 hover:bg-white/22 text-white font-semibold text-base px-8 py-4 rounded-xl border border-white/25 backdrop-blur-sm transition-premium">
                         Contact Us
                     </a>
                 </div>
@@ -181,13 +243,17 @@
         </section>
 
         <!-- ================= BOOKS SECTION ================= -->
-        <section id="books" class="py-20 sm:py-24 bg-[#F4F4F4]">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="books" class="relative py-20 sm:py-24 bg-[#F4F4F4] overflow-hidden">
+            <!-- Subtle decorative blobs -->
+            <div class="decor-blob w-[420px] h-[420px] bg-[#1F3A5F]/[0.04] -top-32 -right-32"></div>
+            <div class="decor-blob w-[300px] h-[300px] bg-[#C89B3C]/[0.05] bottom-20 -left-20"></div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Section Header -->
                 <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-widest mb-3">Our Collection</span>
+                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-[0.15em] mb-3">Our Collection</span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-[#1F3A5F] tracking-tight">Explore Our Books</h2>
-                    <p class="mt-4 text-[#6B7280] text-base sm:text-lg">ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍት</p>
+                    <p class="mt-4 text-[#6B7280] text-base sm:text-lg leading-relaxed">ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍት</p>
                 </div>
                 
                 <!-- Filter Pills -->
@@ -195,13 +261,13 @@
                     <button onclick="filterCategory('all')" id="btn-all" class="filter-pill active px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold border border-transparent cursor-pointer">
                         ሁሉም መጻሕፍት
                     </button>
-                    <button onclick="filterCategory('regular')" id="btn-regular" class="filter-pill px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-[#1F3A5F] border border-[#E5E7EB] hover:border-[#1F3A5F] cursor-pointer">
+                    <button onclick="filterCategory('regular')" id="btn-regular" class="filter-pill px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-[#1F3A5F] border border-[#E5E7EB] cursor-pointer">
                         የአማርኛ መጻሕፍት
                     </button>
-                    <button onclick="filterCategory('children')" id="btn-children" class="filter-pill px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-[#1F3A5F] border border-[#E5E7EB] hover:border-[#1F3A5F] cursor-pointer">
+                    <button onclick="filterCategory('children')" id="btn-children" class="filter-pill px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-[#1F3A5F] border border-[#E5E7EB] cursor-pointer">
                         English Books
                     </button>
-                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="filter-pill px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-[#1F3A5F] border border-[#E5E7EB] hover:border-[#1F3A5F] cursor-pointer">
+                    <button onclick="filterCategory('new-week')" id="btn-new-week" class="filter-pill px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-[#1F3A5F] border border-[#E5E7EB] cursor-pointer">
                         የሳምንቱ አዲስ መጻሕፍት
                     </button>
                 </div>
@@ -216,7 +282,7 @@
                                id="search-input" 
                                onkeyup="searchBooks()" 
                                placeholder="የሚፈልጉትን መጽሐፍ ወይም ደራሲ ስም ይፈልጉ..." 
-                               class="w-full pl-14 pr-5 py-4 bg-white rounded-2xl border border-[#E5E7EB] shadow-[0_2px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:border-[#1F3A5F] focus:ring-4 focus:ring-[#1F3A5F]/10 text-[15px] transition-premium"
+                               class="w-full pl-14 pr-5 py-4 bg-white rounded-2xl border border-[#E5E7EB] shadow-[0_2px_10px_rgba(0,0,0,0.04)] focus:outline-none focus:border-[#1F3A5F] focus:ring-4 focus:ring-[#1F3A5F]/[0.08] text-[15px] transition-premium"
                                aria-label="Search books">
                     </div>
                 </div>
@@ -236,16 +302,18 @@
         </section>
 
         <!-- ================= TESTIMONIALS ================= -->
-        <section class="py-20 sm:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="relative py-20 sm:py-24 bg-white overflow-hidden">
+            <div class="decor-blob w-[380px] h-[380px] bg-[#C89B3C]/[0.04] top-10 -right-24"></div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-14">
-                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-widest mb-3">የደንበኞች አስተያየት</span>
+                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-[0.15em] mb-3">የደንበኞች አስተያየት</span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-[#1F3A5F] tracking-tight">ደንበኞቻችን ምን ይላሉ?</h2>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                     <!-- Testimonial 1 -->
-                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] hover:shadow-lg transition-premium">
+                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)] transition-premium">
                         <div class="flex gap-1 mb-5 text-[#C89B3C]">
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -261,7 +329,7 @@
                     </div>
                     
                     <!-- Testimonial 2 -->
-                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] hover:shadow-lg transition-premium">
+                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)] transition-premium">
                         <div class="flex gap-1 mb-5 text-[#C89B3C]">
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -277,7 +345,7 @@
                     </div>
                     
                     <!-- Testimonial 3 -->
-                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] hover:shadow-lg transition-premium">
+                    <div class="bg-[#F8F9FA] p-8 rounded-2xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)] transition-premium">
                         <div class="flex gap-1 mb-5 text-[#C89B3C]">
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -296,16 +364,18 @@
         </section>
 
         <!-- ================= ABOUT ================= -->
-        <section id="about" class="py-20 sm:py-24 bg-[#F4F4F4]">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="about" class="relative py-20 sm:py-24 bg-[#F4F4F4] overflow-hidden">
+            <div class="decor-blob w-[360px] h-[360px] bg-[#1F3A5F]/[0.04] -bottom-20 -left-16"></div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-14">
-                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-widest mb-3">ታሪካችን</span>
+                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-[0.15em] mb-3">ታሪካችን</span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-[#1F3A5F] tracking-tight">ስለ አርጋኖን መጻሕፍት መደብር</h2>
                 </div>
                 
                 <div class="max-w-4xl mx-auto">
-                    <div class="bg-white p-8 sm:p-12 lg:p-14 rounded-3xl border border-[#E5E7EB] shadow-sm text-center">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-[#1F3A5F] mb-6">እውቀትን ለትውልድ ማዳረስ</h3>
+                    <div class="bg-white p-8 sm:p-12 lg:p-14 rounded-3xl border border-[#E5E7EB] shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-center">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-[#1F3A5F] mb-6 tracking-tight">እውቀትን ለትውልድ ማዳረስ</h3>
                         <p class="text-[#4B5563] text-base sm:text-lg leading-relaxed max-w-3xl mx-auto mb-10">
                             በታሪካዊው የአዲስ አበባ 5 ኪሎ አካባቢ የተመሰረተው አርጋኖን መጻሕፍት መደብር፤ ለአንባቢዎች ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍትን በማቅረብ ላይ ይገኛል።
                         </p>
@@ -332,15 +402,17 @@
         </section>
 
         <!-- ================= CONTACT ================= -->
-        <section id="contact" class="py-20 sm:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="contact" class="relative py-20 sm:py-24 bg-white overflow-hidden">
+            <div class="decor-blob w-[320px] h-[320px] bg-[#C89B3C]/[0.04] top-16 -right-20"></div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-14">
-                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-widest mb-3">ያግኙን</span>
+                    <span class="inline-block text-[#C89B3C] font-semibold text-sm uppercase tracking-[0.15em] mb-3">ያግኙን</span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-[#1F3A5F] tracking-tight">ከአርጋኖን ጋር ይገናኙ</h2>
                 </div>
                 
                 <div class="max-w-xl mx-auto">
-                    <div class="bg-[#F8F9FA] p-8 sm:p-10 rounded-3xl border border-[#E5E7EB] shadow-sm">
+                    <div class="bg-[#F8F9FA] p-8 sm:p-10 rounded-3xl border border-[#E5E7EB] shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
                         <h3 class="text-xl font-bold text-[#1F3A5F] mb-3">የመደብራችን አድራሻ</h3>
                         <p class="text-[#6B7280] text-sm leading-relaxed mb-8">
                             በአዲስ አበባ 5 ኪሎ ከሚገኘው መደብራችን በአካል በመገኘት ወይም ከታች ባሉት አማራጮች ያግኙን።
@@ -430,7 +502,7 @@
                             </div>
                         </div>
                         
-                        <button class="w-full mt-2 bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-semibold py-3.5 rounded-xl transition-premium flex items-center justify-center gap-2">
+                        <button class="btn-primary w-full mt-2 bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-semibold py-3.5 rounded-xl transition-premium flex items-center justify-center gap-2">
                             <i data-lucide="shopping-cart" class="w-4 h-4"></i>
                             Add to Cart
                         </button>
@@ -446,9 +518,9 @@
     </div>
 
     <!-- ================= FOOTER ================= -->
-    <footer class="bg-[#1F3A5F] text-white pt-16 pb-8">
+    <footer class="bg-[#1A2F4D] text-white pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-14">
                 <!-- Brand -->
                 <div class="space-y-5">
                     <div class="flex items-center gap-3">
@@ -457,10 +529,10 @@
                         </div>
                         <div>
                             <span class="text-xl font-bold">Arganon</span>
-                            <span class="block text-xs uppercase tracking-widest text-white/60">Book Store</span>
+                            <span class="block text-xs uppercase tracking-[0.18em] text-white/55">Book Store</span>
                         </div>
                     </div>
-                    <p class="text-white/70 text-sm leading-relaxed">
+                    <p class="text-white/65 text-sm leading-relaxed max-w-xs">
                         ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍትን ለአንባቢዎች በማቅረብ ላይ።
                     </p>
                     <div class="flex gap-3">
@@ -475,8 +547,8 @@
                 
                 <!-- Categories -->
                 <div>
-                    <h4 class="font-semibold text-sm uppercase tracking-wider text-white/90 mb-5">Categories</h4>
-                    <ul class="space-y-3 text-sm text-white/70">
+                    <h4 class="font-semibold text-sm uppercase tracking-[0.12em] text-white/90 mb-5">Categories</h4>
+                    <ul class="space-y-3 text-sm text-white/65">
                         <li><a href="#books" onclick="filterCategory('all')" class="hover:text-[#C89B3C] transition-premium">ሁሉም መጻሕፍት</a></li>
                         <li><a href="#books" onclick="filterCategory('regular')" class="hover:text-[#C89B3C] transition-premium">የአማርኛ መጻሕፍት</a></li>
                         <li><a href="#books" onclick="filterCategory('children')" class="hover:text-[#C89B3C] transition-premium">English Books</a></li>
@@ -486,38 +558,65 @@
                 
                 <!-- Contact -->
                 <div>
-                    <h4 class="font-semibold text-sm uppercase tracking-wider text-white/90 mb-5">Contact</h4>
-                    <ul class="space-y-3 text-sm text-white/70">
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0"></i>
+                    <h4 class="font-semibold text-sm uppercase tracking-[0.12em] text-white/90 mb-5">Contact</h4>
+                    <ul class="space-y-3.5 text-sm text-white/65">
+                        <li class="flex items-start gap-2.5">
+                            <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0 opacity-80"></i>
                             <span>አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</span>
                         </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="phone" class="w-4 h-4 shrink-0"></i>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="phone" class="w-4 h-4 shrink-0 opacity-80"></i>
                             <a href="tel:0939437332" class="hover:text-[#C89B3C] transition-premium">0939437332</a>
                         </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="send" class="w-4 h-4 shrink-0"></i>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="send" class="w-4 h-4 shrink-0 opacity-80"></i>
                             <a href="https://t.me/corpus_mysticum" target="_blank" class="hover:text-[#C89B3C] transition-premium">@corpus_mysticum</a>
                         </li>
                     </ul>
                 </div>
                 
-                <!-- Newsletter -->
+                <!-- Newsletter – completely redesigned -->
                 <div>
-                    <h4 class="font-semibold text-sm uppercase tracking-wider text-white/90 mb-5">Stay Updated</h4>
-                    <p class="text-white/70 text-sm mb-4">አዲስ መጻሕፍት እና ዜናዎች ለመቀበል ይመዝገቡ።</p>
-                    <form class="flex gap-2" onsubmit="event.preventDefault();">
-                        <input type="email" placeholder="Your email" class="flex-1 px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#C89B3C] transition-premium">
-                        <button type="submit" class="px-4 py-2.5 bg-[#C89B3C] hover:bg-[#b58a32] rounded-xl text-sm font-semibold transition-premium">
-                            Subscribe
-                        </button>
-                    </form>
+                    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#243f63] to-[#1a2f4d] p-6 border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
+                        <!-- Soft decorative shapes -->
+                        <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-[#C89B3C]/10 blur-xl pointer-events-none"></div>
+                        <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-white/5 blur-lg pointer-events-none"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="mail" class="w-4.5 h-4.5 text-[#C89B3C]"></i>
+                                <h4 class="font-semibold text-sm uppercase tracking-[0.1em] text-white">Join Our Newsletter</h4>
+                            </div>
+                            <p class="text-white/70 text-sm mb-5 leading-relaxed">
+                                አዲስ መጻሕፍት እና ዜናዎች ለመቀበል ይመዝገቡ። Get early access to new releases.
+                            </p>
+                            
+                            <form class="space-y-3" onsubmit="event.preventDefault();">
+                                <div class="newsletter-input-wrap">
+                                    <span class="input-icon">
+                                        <i data-lucide="mail" class="w-4 h-4"></i>
+                                    </span>
+                                    <input type="email" 
+                                           placeholder="Enter your email address" 
+                                           required
+                                           class="w-full py-3 pr-4 rounded-xl bg-white/10 border border-white/15 text-sm text-white placeholder-white/45 focus:outline-none focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/20 transition-premium">
+                                </div>
+                                <button type="submit" class="btn-accent w-full py-3 bg-[#C89B3C] hover:bg-[#b58a32] rounded-xl text-sm font-semibold text-white transition-premium flex items-center justify-center gap-2">
+                                    <i data-lucide="send" class="w-4 h-4"></i>
+                                    Subscribe Now
+                                </button>
+                            </form>
+                            
+                            <p class="mt-3.5 text-[11px] text-white/45 leading-snug text-center">
+                                We respect your privacy. No spam, unsubscribe anytime.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <!-- Bottom bar -->
-            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/45">
                 <p>&copy; 2026 Arganon Book Store. All rights reserved. Addis Ababa, 5 Kilo.</p>
                 <div class="flex gap-6">
                     <a href="#" class="hover:text-white transition-premium">Privacy Policy</a>
@@ -757,14 +856,14 @@
         
         function createBookCardHTML(book) {
             return `
-                <div class="book-card bg-white rounded-[18px] overflow-hidden border border-[#E5E7EB] flex flex-col h-full transition-premium group">
+                <div class="book-card bg-white overflow-hidden border border-[#E5E7EB] flex flex-col h-full transition-premium group">
                     <div class="relative w-full aspect-[3/4] overflow-hidden bg-gray-50">
                         <img src="${book.cover}" 
                              alt="${book.title}" 
                              class="book-img w-full h-full object-cover transition-premium duration-500"
                              loading="lazy"
                              onerror="this.src='https://placehold.co/300x400/1F3A5F/C89B3C?text=Book'">
-                        ${book.isNew ? '<span class="absolute top-3 left-3 bg-[#C89B3C] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">New</span>' : ''}
+                        ${book.isNew ? '<span class="absolute top-3 left-3 bg-[#C89B3C] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide shadow-sm">New</span>' : ''}
                     </div>
                     <div class="p-4 sm:p-5 flex flex-col flex-grow">
                         <h3 class="font-semibold text-[13px] sm:text-sm text-[#1F3A5F] line-clamp-2 leading-snug mb-1.5 min-h-[2.5rem]">${book.title}</h3>
@@ -780,7 +879,7 @@
                         <div class="mt-auto space-y-3">
                             <p class="text-base font-bold text-[#1F3A5F]">${book.price}</p>
                             <button onclick="openBookModal(${book.id})" 
-                                    class="w-full bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-semibold py-2.5 px-3 rounded-xl text-xs transition-premium flex items-center justify-center gap-2">
+                                    class="w-full bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-semibold py-2.5 px-3 rounded-xl text-xs transition-premium flex items-center justify-center gap-2 shadow-sm hover:shadow-md">
                                 <i data-lucide="eye" class="w-3.5 h-3.5"></i>
                                 <span>View Details</span>
                             </button>
@@ -805,7 +904,6 @@
                 grid.innerHTML += createBookCardHTML(book);
             });
             
-            // Re-initialize icons for new cards
             lucide.createIcons();
         }
         
@@ -894,12 +992,10 @@
             }, 250);
         }
         
-        // Close modal on backdrop click
         document.getElementById('book-modal').addEventListener('click', function(e) {
             if (e.target === this) closeBookModal();
         });
         
-        // Close modal on Escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeBookModal();
         });
@@ -910,7 +1006,7 @@
         
         document.getElementById('menu-btn').addEventListener('click', toggleMobileMenu);
         
-        // Active nav highlighting on scroll
+        // Active nav highlighting
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
         
@@ -926,14 +1022,17 @@
             navLinks.forEach(link => {
                 link.classList.remove('text-[#1F3A5F]', 'font-semibold');
                 link.classList.add('text-[#6B7280]', 'font-medium');
+                // reset underline
+                link.classList.remove('after:scale-x-100');
+                link.classList.add('after:scale-x-0');
+                
                 if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.remove('text-[#6B7280]', 'font-medium');
-                    link.classList.add('text-[#1F3A5F]', 'font-semibold');
+                    link.classList.remove('text-[#6B7280]', 'font-medium', 'after:scale-x-0');
+                    link.classList.add('text-[#1F3A5F]', 'font-semibold', 'after:scale-x-100');
                 }
             });
         });
         
-        // Init
         document.addEventListener('DOMContentLoaded', () => {
             renderBooks(books);
             lucide.createIcons();
