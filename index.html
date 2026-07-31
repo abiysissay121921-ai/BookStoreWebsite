@@ -972,7 +972,7 @@
                                 </div>
                             </div>
 
-                            <!-- Books Grid: 4 columns on extra large screens for smaller cards -->
+                            <!-- Books Grid: 4 columns on extra large screens -->
                             <div id="books-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6" role="list">
                                 <!-- Built safely by JavaScript -->
                             </div>
@@ -1037,7 +1037,7 @@
                 </div>
             </section>
 
-            <!-- ================= UPDATED NEWSLETTER SECTION ================= -->
+            <!-- Newsletter section (unchanged, using Telegram) -->
             <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-about">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -1055,7 +1055,6 @@
                             <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-6 leading-relaxed">
                                 Subscribe to receive updates about new books, exclusive offers, and announcements.
                             </p>
-                            <!-- UPDATED: Telegram username input -->
                             <form id="newsletter-form-about" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleTelegramSubscribe(event)" novalidate>
                                 <div class="newsletter-input-wrap w-full sm:flex-1">
                                     <span class="input-icon" aria-hidden="true"><i data-lucide="send" class="w-5 h-5"></i></span>
@@ -1156,7 +1155,7 @@
                 </div>
             </section>
 
-            <!-- ================= UPDATED NEWSLETTER SECTION ================= -->
+            <!-- Newsletter section (unchanged, using Telegram) -->
             <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-contact">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -1174,7 +1173,6 @@
                             <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-6 leading-relaxed">
                                 Subscribe to receive updates about new books, exclusive offers, and announcements.
                             </p>
-                            <!-- UPDATED: Telegram username input -->
                             <form id="newsletter-form-contact" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleTelegramSubscribe(event)" novalidate>
                                 <div class="newsletter-input-wrap w-full sm:flex-1">
                                     <span class="input-icon" aria-hidden="true"><i data-lucide="send" class="w-5 h-5"></i></span>
@@ -1611,8 +1609,12 @@
             return diffDays >= 0 && diffDays <= 7;
         }
 
+        function getPageSize() {
+            // Desktop: 15 items per page for screens >= 1024px, else 12
+            return window.innerWidth >= 1024 ? 15 : 12;
+        }
+
         // ─── State ───
-        const PAGE_SIZE = 12;
         let currentFilter = 'all';
         let currentShortLinkFilter = 'all';
         let currentPage = 1;
@@ -1789,7 +1791,7 @@
             });
         }
 
-        function renderBooks(booksToDisplay) {
+        function renderBooks(booksToDisplay, pageSize) {
             const grid = document.getElementById('books-grid');
             const noResults = document.getElementById('no-results');
             if (!grid) return;
@@ -1804,12 +1806,12 @@
             }
 
             const totalBooks = booksToDisplay.length;
-            const totalPages = Math.ceil(totalBooks / PAGE_SIZE);
+            const totalPages = Math.ceil(totalBooks / pageSize);
             if (currentPage > totalPages) currentPage = totalPages;
             if (currentPage < 1) currentPage = 1;
 
-            const start = (currentPage - 1) * PAGE_SIZE;
-            const end = Math.min(start + PAGE_SIZE, totalBooks);
+            const start = (currentPage - 1) * pageSize;
+            const end = Math.min(start + pageSize, totalBooks);
             const pageBooks = booksToDisplay.slice(start, end);
 
             pageBooks.forEach(book => {
@@ -1887,8 +1889,9 @@
         }
 
         function goToPage(page) {
+            const pageSize = getPageSize();
             const totalBooks = filteredBooks.length;
-            const totalPages = Math.ceil(totalBooks / PAGE_SIZE);
+            const totalPages = Math.ceil(totalBooks / pageSize);
             if (page < 1 || page > totalPages) return;
             currentPage = page;
             applyFilters();
@@ -1916,11 +1919,12 @@
             });
 
             filteredBooks = filtered;
-            const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+            const pageSize = getPageSize();
+            const totalPages = Math.ceil(filtered.length / pageSize);
             if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
             if (currentPage < 1) currentPage = 1;
 
-            renderBooks(filtered);
+            renderBooks(filtered, pageSize);
             renderSidebar();
         }
 
@@ -1993,7 +1997,6 @@
             const username = input ? input.value.trim() : '';
 
             if (!username) {
-                // Simple validation: show a brief toast or alert
                 const toast = document.getElementById('toast');
                 setTextContent(toast, '⚠️ Please enter your Telegram username.');
                 toast.classList.add('show');
@@ -2001,23 +2004,15 @@
                 return;
             }
 
-            // Sanitize the username (remove any dangerous characters)
             const safeUsername = username.replace(/[<>]/g, '');
 
-            // Optional: You could store the username here (e.g., send to a server)
-            // For now, we just redirect to the Telegram channel.
-            // console.log('Telegram username submitted:', safeUsername);
-
-            // Show redirect toast
             const toast = document.getElementById('toast');
             setTextContent(toast, '✅ Redirecting to Telegram...');
             toast.classList.add('show');
 
-            // Redirect to the Telegram channel after a short delay
             setTimeout(() => {
                 window.open('https://t.me/EBC_News_Official', '_blank');
                 toast.classList.remove('show');
-                // Optionally, clear the input field
                 if (input) input.value = '';
             }, 800);
         }
@@ -2026,10 +2021,14 @@
         document.addEventListener('DOMContentLoaded', function() {
             navigateTo('home');
             filteredBooks = books.slice();
-            renderBooks(filteredBooks);
+            const pageSize = getPageSize();
+            renderBooks(filteredBooks, pageSize);
             renderSidebar();
             if (typeof lucide !== 'undefined') lucide.createIcons();
         });
+
+        // Optional: re-render on resize to adjust page size (but not required)
+        // We'll just let the user refresh or filter to apply new size.
     </script>
 </body>
 </html>
