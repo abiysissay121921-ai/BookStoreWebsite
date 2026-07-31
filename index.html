@@ -3,10 +3,48 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ===== SECURITY & SEO META TAGS ===== -->
     <title>Arganon Book Store | አርጋኖን መጻሕፍት መደብር</title>
+    <meta name="description" content="Arganon Book Store offers premium spiritual, historical, and educational books in Addis Ababa, Ethiopia. Discover your next favorite book today." />
+    <link rel="canonical" href="https://arganonbookstore.com/" />
+
+    <!-- Security Headers via Meta (for static hosting) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="permissions-policy" content="geolocation=(), microphone=(), camera=(), payment=()" />
+
+    <!-- Content Security Policy (CSP) – relaxed for CDN resources -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.googletagmanager.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net;
+        img-src 'self' data: https://images.unsplash.com https://placehold.co;
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self';
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+    " />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Arganon Book Store" />
+    <meta property="og:description" content="Premium spiritual, historical, and educational books in Addis Ababa, Ethiopia." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://arganonbookstore.com/" />
+    <meta property="og:image" content="https://arganonbookstore.com/og-image.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Arganon Book Store" />
+    <meta name="twitter:description" content="Premium spiritual, historical, and educational books in Addis Ababa, Ethiopia." />
+
+    <!-- Favicon (inline SVG data URI) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231F3A5F' rx='16'/><text x='50' y='68' font-size='44' text-anchor='middle' fill='%23C89B3C' font-family='serif'>📖</text></svg>" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer>
     </script>
 
     <!-- Google Fonts: Inter -->
@@ -15,7 +53,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest">
+    <script src="https://unpkg.com/lucide@latest" defer>
     </script>
 
     <style>
@@ -295,6 +333,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow-sm);
             display: inline-block;
+            user-select: none;
         }
         .filter-pill:hover {
             border-color: var(--primary);
@@ -328,6 +367,7 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background: transparent;
+            user-select: none;
         }
         .sidebar-link:hover {
             background: #F8FAFC;
@@ -615,6 +655,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            user-select: none;
         }
         .pagination-btn:hover:not(:disabled) {
             border-color: var(--primary);
@@ -663,7 +704,6 @@
             }
         }
 
-        /* On smaller screens, sidebar goes below main content */
         @media (max-width: 1023px) {
             .books-layout {
                 display: flex;
@@ -756,7 +796,6 @@
             line-height: 1.6;
         }
 
-        /* Toast for newsletter */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -787,9 +826,8 @@
     <!-- ================= NAVIGATION ================= -->
     <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-[#E5E7EB]/60 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
-            <!-- Logo -->
             <a href="#" onclick="navigateTo('home')" class="flex items-center gap-3 group" aria-label="Arganon Book Store Home">
-                <div class="w-10 h-10 rounded-xl bg-[#1F3A5F] flex items-center justify-center shadow-md group-hover:scale-105 transition-premium">
+                <div class="w-10 h-10 rounded-xl bg-[#1F3A5F] flex items-center justify-center shadow-md group-hover:scale-105 transition-premium" aria-hidden="true">
                     <i data-lucide="book-open" class="w-5 h-5 text-[#C89B3C]"></i>
                 </div>
                 <div>
@@ -798,17 +836,15 @@
                 </div>
             </a>
 
-            <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center gap-10" aria-label="Main navigation">
-                <button onclick="navigateTo('home')" id="nav-home" class="nav-link active">Books</button>
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-link active" aria-current="page">Books</button>
                 <button onclick="navigateTo('about')" id="nav-about" class="nav-link">About</button>
                 <button onclick="navigateTo('contact')" id="nav-contact" class="nav-link">Contact</button>
             </nav>
 
-            <!-- Phone + CTA -->
             <div class="hidden lg:flex items-center gap-4">
-                <a href="tel:0939437332" class="flex items-center gap-2 text-sm font-medium text-[#1F3A5F] hover:text-[#C89B3C] transition-premium">
-                    <i data-lucide="phone" class="w-4 h-4"></i>
+                <a href="tel:0939437332" class="flex items-center gap-2 text-sm font-medium text-[#1F3A5F] hover:text-[#C89B3C] transition-premium" aria-label="Call us at 0939437332">
+                    <i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i>
                     <span>0939437332</span>
                 </a>
                 <a href="#" onclick="navigateTo('home')" class="bg-[#1F3A5F] hover:bg-[#162d4a] text-white text-sm font-semibold px-6 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-premium hover:-translate-y-0.5">
@@ -816,19 +852,17 @@
                 </a>
             </div>
 
-            <!-- Mobile menu button -->
-            <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#1F3A5F] rounded-lg hover:bg-gray-100 transition-premium" aria-label="Toggle menu">
-                <i data-lucide="menu" class="w-6 h-6"></i>
+            <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#1F3A5F] rounded-lg hover:bg-gray-100 transition-premium" aria-label="Toggle navigation menu">
+                <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
             </button>
         </div>
 
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm border-t border-[#E5E7EB] px-6 py-5 space-y-1 shadow-lg">
             <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-3 text-[#1F3A5F] font-semibold text-base hover:text-[#C89B3C] transition-premium">Books</button>
             <button onclick="navigateTo('about'); toggleMobileMenu()" class="block w-full text-left py-3 text-[#1F3A5F] font-semibold text-base hover:text-[#C89B3C] transition-premium">About</button>
             <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-3 text-[#1F3A5F] font-semibold text-base hover:text-[#C89B3C] transition-premium">Contact</button>
             <div class="pt-4 mt-2 border-t border-[#E5E7EB] flex items-center gap-2 text-[#6B7280] font-medium text-sm">
-                <i data-lucide="phone" class="w-4 h-4"></i> 0939437332
+                <i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i> 0939437332
             </div>
         </div>
     </header>
@@ -839,23 +873,21 @@
         <div id="page-home" class="page-content">
 
             <!-- ================= HERO ================= -->
-            <section class="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center overflow-hidden">
-                <!-- Decorative blobs -->
-                <div class="absolute inset-0 pointer-events-none z-0">
+            <section class="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center overflow-hidden" aria-labelledby="hero-title">
+                <div class="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
                     <div class="blob-soft" style="width:600px;height:600px;background:radial-gradient(circle at 30% 40%, rgba(31,58,95,0.04), rgba(200,155,60,0.02));top:-20%;left:-10%;filter:blur(80px);"></div>
                     <div class="blob-soft" style="width:400px;height:400px;background:radial-gradient(circle at 70% 60%, rgba(200,155,60,0.03), rgba(31,58,95,0.02));bottom:-20%;right:-10%;filter:blur(70px);"></div>
                 </div>
 
-                <!-- Background image -->
-                <div class="absolute inset-0">
+                <div class="absolute inset-0" aria-hidden="true">
                     <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                    alt="Premium library bookshelves"
+                    alt=""
                     class="w-full h-full object-cover" />
                     <div class="absolute inset-0 hero-overlay"></div>
                 </div>
 
                 <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight animate-fade-in">
+                    <h1 id="hero-title" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight animate-fade-in">
                         Discover Your Next<br class="hidden sm:block" /> Favorite Book
                     </h1>
                     <p class="mt-6 text-lg sm:text-xl text-white/85 max-w-2xl mx-auto font-light leading-relaxed animate-fade-in-delay-1">
@@ -863,7 +895,7 @@
                     </p>
                     <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-delay-2">
                         <a href="#books" class="inline-flex items-center gap-2.5 bg-[#C89B3C] hover:bg-[#b58a32] text-white font-semibold text-base px-9 py-4 rounded-xl shadow-lg hover:shadow-xl transition-premium transform hover:-translate-y-1">
-                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                            <i data-lucide="book-open" class="w-5 h-5" aria-hidden="true"></i>
                             Browse Books
                         </a>
                         <a href="#" onclick="navigateTo('contact')" class="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-9 py-4 rounded-xl border border-white/30 backdrop-blur-sm transition-premium hover:-translate-y-1">
@@ -874,50 +906,43 @@
             </section>
 
             <!-- ================= BOOKS SECTION ================= -->
-            <section id="books" class="py-20 sm:py-24 bg-cool-white relative">
-                <!-- Decorative blobs -->
-                <div class="section-blob">
+            <section id="books" class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="books-title">
+                <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
                     <div class="blob-soft blob-2"></div>
                 </div>
 
                 <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <!-- Section Header -->
                     <div class="text-center max-w-2xl mx-auto mb-14 sm:mb-18">
                         <span class="section-label">Our Collection</span>
-                        <h2 class="section-title">Explore Our Books</h2>
+                        <h2 id="books-title" class="section-title">Explore Our Books</h2>
                         <p class="section-sub">ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍት</p>
-                        <div class="divider-glow"></div>
+                        <div class="divider-glow" aria-hidden="true"></div>
                     </div>
 
-                    <!-- Sidebar + Main Content (flex/grid layout) -->
                     <div class="books-layout">
-                        <!-- Sidebar Wrapper -->
-                        <aside class="sidebar-wrapper">
+                        <aside class="sidebar-wrapper" aria-labelledby="sidebar-title">
                             <div class="bg-white p-5 rounded-2xl border border-[#E5E7EB] shadow-sm">
-                                <h3 class="font-bold text-[#1F3A5F] text-sm uppercase tracking-wider mb-1">Short Links</h3>
+                                <h3 id="sidebar-title" class="font-bold text-[#1F3A5F] text-sm uppercase tracking-wider mb-1">Short Links</h3>
                                 <p class="text-[#6B7280] text-xs mb-4">በርዕስ ያስሱ</p>
-                                <div class="h-px bg-[#E5E7EB] mb-4"></div>
-                                <nav id="short-links-list" class="space-y-1.5">
-                                    <!-- Generated by JavaScript -->
+                                <div class="h-px bg-[#E5E7EB] mb-4" aria-hidden="true"></div>
+                                <nav id="short-links-list" class="space-y-1.5" aria-label="Book topics">
+                                    <!-- Built safely by JavaScript -->
                                 </nav>
                             </div>
                         </aside>
 
-                        <!-- Main Content -->
                         <div class="main-content">
-                            <!-- Filter Pills -->
-                            <div class="flex flex-wrap justify-center items-center gap-2.5 sm:gap-3 mb-10">
-                                <button onclick="filterCategory('all')" id="btn-all" class="filter-pill active">ሁሉም መጻሕፍት</button>
-                                <button onclick="filterCategory('regular')" id="btn-regular" class="filter-pill">የአማርኛ መጻሕፍት</button>
-                                <button onclick="filterCategory('children')" id="btn-children" class="filter-pill">English Books</button>
-                                <button onclick="filterCategory('new-week')" id="btn-new-week" class="filter-pill">የሳምንቱ አዲስ</button>
+                            <div class="flex flex-wrap justify-center items-center gap-2.5 sm:gap-3 mb-10" role="group" aria-label="Book category filters">
+                                <button onclick="filterCategory('all')" id="btn-all" class="filter-pill active" aria-pressed="true">ሁሉም መጻሕፍት</button>
+                                <button onclick="filterCategory('regular')" id="btn-regular" class="filter-pill" aria-pressed="false">የአማርኛ መጻሕፍት</button>
+                                <button onclick="filterCategory('children')" id="btn-children" class="filter-pill" aria-pressed="false">English Books</button>
+                                <button onclick="filterCategory('new-week')" id="btn-new-week" class="filter-pill" aria-pressed="false">የሳምንቱ አዲስ</button>
                             </div>
 
-                            <!-- Search -->
                             <div class="max-w-xl mx-auto mb-14">
                                 <div class="relative">
-                                    <span class="search-icon">
+                                    <span class="search-icon" aria-hidden="true">
                                         <i data-lucide="search" class="w-5 h-5"></i>
                                     </span>
                                     <input type="text"
@@ -925,25 +950,26 @@
                                     onkeyup="searchBooks()"
                                     placeholder="የሚፈልጉትን መጽሐፍ ወይም ደራሲ ስም ይፈልጉ..."
                                     class="search-input"
-                                    aria-label="Search books" />
+                                    aria-label="Search books by title or author"
+                                    autocomplete="off"
+                                    spellcheck="true" />
                                 </div>
                             </div>
 
-                            <!-- Books Grid -->
-                            <div id="books-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7"></div>
+                            <div id="books-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7" role="list">
+                                <!-- Built safely by JavaScript -->
+                            </div>
 
-                            <!-- No results -->
                             <div id="no-results" class="hidden text-center py-20">
-                                <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-gray-100 flex items-center justify-center">
+                                <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-gray-100 flex items-center justify-center" aria-hidden="true">
                                     <i data-lucide="book-x" class="w-8 h-8 text-gray-400"></i>
                                 </div>
                                 <h3 class="text-xl font-bold text-[#1F3A5F]">ምንም መጽሐፍ አልተገኘም</h3>
                                 <p class="text-[#6B7280] text-sm mt-2">እባክዎ ፍለጋዎን ይቀይሩ ወይም ሌላ ምድብ ይምረጡ።</p>
                             </div>
 
-                            <!-- Pagination -->
-                            <div id="pagination-container" class="mt-10 flex justify-center items-center gap-2 flex-wrap">
-                                <!-- Generated by JavaScript -->
+                            <div id="pagination-container" class="mt-10 flex justify-center items-center gap-2 flex-wrap" role="navigation" aria-label="Book pagination">
+                                <!-- Built safely by JavaScript -->
                             </div>
                         </div>
                     </div>
@@ -953,8 +979,8 @@
 
         <!-- ================= PAGE: ABOUT ================= -->
         <div id="page-about" class="page-content hidden">
-            <section id="about" class="py-20 sm:py-24 bg-neutral-gray relative">
-                <div class="section-blob">
+            <section id="about" class="py-20 sm:py-24 bg-neutral-gray relative" aria-labelledby="about-title">
+                <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
                     <div class="blob-soft blob-2"></div>
                 </div>
@@ -962,8 +988,8 @@
                 <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center max-w-2xl mx-auto mb-14">
                         <span class="section-label">ታሪካችን</span>
-                        <h2 class="section-title">ስለ አርጋኖን መጻሕፍት መደብር</h2>
-                        <div class="divider-glow"></div>
+                        <h2 id="about-title" class="section-title">ስለ አርጋኖን መጻሕፍት መደብር</h2>
+                        <div class="divider-glow" aria-hidden="true"></div>
                     </div>
 
                     <div class="max-w-4xl mx-auto">
@@ -975,14 +1001,14 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                                 <div class="bg-[#F8F9FA] p-7 rounded-2xl border border-[#E5E7EB] hover:shadow-md transition-premium">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center mb-4">
+                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center mb-4" aria-hidden="true">
                                         <i data-lucide="target" class="w-5 h-5 text-[#1F3A5F]"></i>
                                     </div>
                                     <h4 class="font-bold text-[#1F3A5F] text-lg mb-2">ተልእኮአችን</h4>
                                     <p class="text-sm text-[#6B7280] leading-relaxed">የእኛ ተልዕኮ የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን መንፈሳዊ እና ታሪክ የሚያንጸባርቁ መጻሕፍትን ለሁሉም በቀላሉ ተደራሽ በማድረግ እምነትን፣ ዕውቀትን እና የንባብ ባህልን ማጠናከር ነው።</p>
                                 </div>
                                 <div class="bg-[#F8F9FA] p-7 rounded-2xl border border-[#E5E7EB] hover:shadow-md transition-premium">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center mb-4">
+                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center mb-4" aria-hidden="true">
                                         <i data-lucide="eye" class="w-5 h-5 text-[#1F3A5F]"></i>
                                     </div>
                                     <h4 class="font-bold text-[#1F3A5F] text-lg mb-2">ራዕያችን</h4>
@@ -994,9 +1020,8 @@
                 </div>
             </section>
 
-            <!-- Newsletter on About Page -->
-            <section class="py-20 sm:py-24 bg-cool-white relative">
-                <div class="section-blob">
+            <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-about">
+                <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
                     <div class="blob-soft blob-2"></div>
                 </div>
@@ -1004,23 +1029,23 @@
                     <div class="newsletter-wrap">
                         <div class="newsletter-content text-center">
                             <div class="flex justify-center mb-4">
-                                <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
+                                <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm" aria-hidden="true">
                                     <i data-lucide="mail" class="w-7 h-7 text-[#C89B3C]"></i>
                                 </div>
                             </div>
-                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Newsletter</h3>
+                            <h3 id="newsletter-title-about" class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Newsletter</h3>
                             <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-6 leading-relaxed">
                                 Subscribe to receive updates about new books, exclusive offers, and announcements.
                             </p>
-                            <form id="newsletter-form-about" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleNewsletter(event)">
+                            <form id="newsletter-form-about" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleNewsletter(event)" novalidate>
                                 <div class="newsletter-input-wrap w-full sm:flex-1">
-                                    <span class="input-icon"><i data-lucide="mail" class="w-5 h-5"></i></span>
-                                    <input type="email" id="newsletter-email-about" placeholder="Enter your email address" required aria-label="Email address" />
+                                    <span class="input-icon" aria-hidden="true"><i data-lucide="mail" class="w-5 h-5"></i></span>
+                                    <input type="email" id="newsletter-email-about" placeholder="Enter your email address" required aria-label="Email address" autocomplete="email" />
                                 </div>
-                                <button type="submit" class="newsletter-btn w-full sm:w-auto"><i data-lucide="send" class="w-4 h-4"></i> Subscribe Now</button>
+                                <button type="submit" class="newsletter-btn w-full sm:w-auto"><i data-lucide="send" class="w-4 h-4" aria-hidden="true"></i> Subscribe Now</button>
                             </form>
                             <div class="newsletter-trust justify-center mt-5">
-                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                <i data-lucide="shield-check" class="w-4 h-4" aria-hidden="true"></i>
                                 <span>We respect your privacy. No spam. Unsubscribe anytime.</span>
                             </div>
                         </div>
@@ -1031,8 +1056,8 @@
 
         <!-- ================= PAGE: CONTACT ================= -->
         <div id="page-contact" class="page-content hidden">
-            <section id="contact" class="py-20 sm:py-24 bg-contact-gradient relative">
-                <div class="section-blob">
+            <section id="contact" class="py-20 sm:py-24 bg-contact-gradient relative" aria-labelledby="contact-title">
+                <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
                     <div class="blob-soft blob-2"></div>
                 </div>
@@ -1040,8 +1065,8 @@
                 <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center max-w-2xl mx-auto mb-14">
                         <span class="section-label">ያግኙን</span>
-                        <h2 class="section-title">ከአርጋኖን ጋር ይገናኙ</h2>
-                        <div class="divider-glow"></div>
+                        <h2 id="contact-title" class="section-title">ከአርጋኖን ጋር ይገናኙ</h2>
+                        <div class="divider-glow" aria-hidden="true"></div>
                     </div>
 
                     <div class="max-w-xl mx-auto">
@@ -1052,9 +1077,8 @@
                             </p>
 
                             <div class="space-y-5">
-                                <!-- Existing Address -->
                                 <div class="flex items-start gap-4">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0">
+                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
                                         <i data-lucide="map-pin" class="w-5 h-5"></i>
                                     </div>
                                     <div>
@@ -1063,9 +1087,8 @@
                                     </div>
                                 </div>
 
-                                <!-- Location with Google Maps -->
                                 <div class="flex items-start gap-4">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0">
+                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
                                         <i data-lucide="map-pin" class="w-5 h-5"></i>
                                     </div>
                                     <div>
@@ -1080,15 +1103,14 @@
                                            target="_blank"
                                            rel="noopener noreferrer"
                                            class="inline-flex items-center gap-1.5 mt-2 bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-medium text-sm px-4 py-2 rounded-xl shadow-sm hover:shadow-md transition-premium hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#C89B3C] focus:ring-offset-2">
-                                            <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                            <i data-lucide="map-pin" class="w-4 h-4" aria-hidden="true"></i>
                                             View on Google Maps
                                         </a>
                                     </div>
                                 </div>
 
-                                <!-- Phone -->
                                 <div class="flex items-start gap-4">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0">
+                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
                                         <i data-lucide="phone" class="w-5 h-5"></i>
                                     </div>
                                     <div>
@@ -1097,16 +1119,15 @@
                                     </div>
                                 </div>
 
-                                <!-- Telegram -->
                                 <div class="flex items-start gap-4">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0">
+                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
                                         <i data-lucide="send" class="w-5 h-5"></i>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold text-[#1F3A5F] text-sm">ቴሌግራም ቻናል</h4>
-                                        <a href="https://t.me/corpus_mysticum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-[#C89B3C] font-medium text-sm mt-0.5 hover:underline">
+                                        <a href="https://t.me/corpus_mysticum" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[#C89B3C] font-medium text-sm mt-0.5 hover:underline">
                                             @corpus_mysticum
-                                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                            <i data-lucide="external-link" class="w-3.5 h-3.5" aria-hidden="true"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1116,9 +1137,8 @@
                 </div>
             </section>
 
-            <!-- Newsletter on Contact Page -->
-            <section class="py-20 sm:py-24 bg-cool-white relative">
-                <div class="section-blob">
+            <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-contact">
+                <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
                     <div class="blob-soft blob-2"></div>
                 </div>
@@ -1126,23 +1146,23 @@
                     <div class="newsletter-wrap">
                         <div class="newsletter-content text-center">
                             <div class="flex justify-center mb-4">
-                                <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
+                                <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm" aria-hidden="true">
                                     <i data-lucide="mail" class="w-7 h-7 text-[#C89B3C]"></i>
                                 </div>
                             </div>
-                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Newsletter</h3>
+                            <h3 id="newsletter-title-contact" class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Newsletter</h3>
                             <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-6 leading-relaxed">
                                 Subscribe to receive updates about new books, exclusive offers, and announcements.
                             </p>
-                            <form id="newsletter-form-contact" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleNewsletter(event)">
+                            <form id="newsletter-form-contact" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleNewsletter(event)" novalidate>
                                 <div class="newsletter-input-wrap w-full sm:flex-1">
-                                    <span class="input-icon"><i data-lucide="mail" class="w-5 h-5"></i></span>
-                                    <input type="email" id="newsletter-email-contact" placeholder="Enter your email address" required aria-label="Email address" />
+                                    <span class="input-icon" aria-hidden="true"><i data-lucide="mail" class="w-5 h-5"></i></span>
+                                    <input type="email" id="newsletter-email-contact" placeholder="Enter your email address" required aria-label="Email address" autocomplete="email" />
                                 </div>
-                                <button type="submit" class="newsletter-btn w-full sm:w-auto"><i data-lucide="send" class="w-4 h-4"></i> Subscribe Now</button>
+                                <button type="submit" class="newsletter-btn w-full sm:w-auto"><i data-lucide="send" class="w-4 h-4" aria-hidden="true"></i> Subscribe Now</button>
                             </form>
                             <div class="newsletter-trust justify-center mt-5">
-                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                <i data-lucide="shield-check" class="w-4 h-4" aria-hidden="true"></i>
                                 <span>We respect your privacy. No spam. Unsubscribe anytime.</span>
                             </div>
                         </div>
@@ -1157,13 +1177,13 @@
     <div id="book-modal" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div id="modal-content-box" class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col scale-95 opacity-0">
             <button onclick="closeBookModal()" class="absolute top-5 right-5 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full flex items-center justify-center transition-premium" aria-label="Close modal">
-                <i data-lucide="x" class="w-5 h-5"></i>
+                <i data-lucide="x" class="w-5 h-5" aria-hidden="true"></i>
             </button>
 
             <div class="p-6 sm:p-10 overflow-y-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-start">
                     <div class="bg-[#F8F9FA] p-6 rounded-2xl flex items-center justify-center border border-[#E5E7EB]">
-                        <img id="modal-img" src="" alt="Book Cover" class="max-h-80 w-auto rounded-lg shadow-md object-contain" />
+                        <img id="modal-img" src="" alt="" class="max-h-80 w-auto rounded-lg shadow-md object-contain" />
                     </div>
                     <div class="space-y-5">
                         <span id="modal-category" class="inline-block bg-[#1F3A5F]/10 text-[#1F3A5F] text-xs font-semibold px-3 py-1.5 rounded-full"></span>
@@ -1179,7 +1199,7 @@
                             <div><span class="text-[#9CA3AF] block text-xs mb-0.5">ገጾች</span><strong id="modal-pages" class="text-[#374151]"></strong></div>
                         </div>
                         <button class="w-full mt-2 bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-semibold py-3.5 rounded-xl transition-premium flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5">
-                            <i data-lucide="shopping-cart" class="w-4 h-4"></i> Add to Cart
+                            <i data-lucide="shopping-cart" class="w-4 h-4" aria-hidden="true"></i> Add to Cart
                         </button>
                     </div>
                 </div>
@@ -1192,16 +1212,15 @@
     </div>
 
     <!-- ================= TOAST ================= -->
-    <div id="toast" class="toast">✅ Successfully subscribed!</div>
+    <div id="toast" class="toast" role="alert" aria-live="polite">✅ Successfully subscribed!</div>
 
     <!-- ================= FOOTER ================= -->
     <footer class="bg-[#1A2D47] text-white pt-16 pb-8 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14 mb-12">
-                <!-- Brand -->
                 <div class="space-y-5">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center" aria-hidden="true">
                             <i data-lucide="book-open" class="w-5 h-5 text-[#C89B3C]"></i>
                         </div>
                         <div>
@@ -1213,16 +1232,15 @@
                         ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍትን ለአንባቢዎች በማቅረብ ላይ።
                     </p>
                     <div class="flex gap-3">
-                        <a href="https://t.me/corpus_mysticum" target="_blank" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-premium" aria-label="Telegram">
-                            <i data-lucide="send" class="w-4 h-4"></i>
+                        <a href="https://t.me/corpus_mysticum" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-premium" aria-label="Telegram channel">
+                            <i data-lucide="send" class="w-4 h-4" aria-hidden="true"></i>
                         </a>
-                        <a href="tel:0939437332" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-premium" aria-label="Phone">
-                            <i data-lucide="phone" class="w-4 h-4"></i>
+                        <a href="tel:0939437332" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-premium" aria-label="Phone number 0939437332">
+                            <i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Categories -->
                 <div>
                     <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-5">Categories</h4>
                     <ul class="space-y-3 text-sm text-white/60">
@@ -1233,38 +1251,35 @@
                     </ul>
                 </div>
 
-                <!-- Contact -->
                 <div>
                     <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-5">Contact</h4>
                     <ul class="space-y-3 text-sm text-white/60">
                         <li class="flex items-start gap-2">
-                            <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0"></i>
+                            <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"></i>
                             <span>አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i data-lucide="phone" class="w-4 h-4 shrink-0"></i>
+                            <i data-lucide="phone" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
                             <a href="tel:0939437332" class="hover:text-[#C89B3C] transition-premium">0939437332</a>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i data-lucide="send" class="w-4 h-4 shrink-0"></i>
-                            <a href="https://t.me/corpus_mysticum" target="_blank" class="hover:text-[#C89B3C] transition-premium">@corpus_mysticum</a>
+                            <i data-lucide="send" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
+                            <a href="https://t.me/corpus_mysticum" target="_blank" rel="noopener noreferrer" class="hover:text-[#C89B3C] transition-premium">@corpus_mysticum</a>
                         </li>
                     </ul>
                 </div>
 
-                <!-- About Footer -->
                 <div>
                     <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-5">About</h4>
                     <ul class="space-y-3 text-sm text-white/60">
                         <li><a href="#" onclick="navigateTo('about')" class="hover:text-[#C89B3C] transition-premium">ስለ እኛ</a></li>
                         <li><a href="#" onclick="navigateTo('contact')" class="hover:text-[#C89B3C] transition-premium">ያግኙን</a></li>
-                        <li><a href="#" class="hover:text-[#C89B3C] transition-premium">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-[#C89B3C] transition-premium">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-premium">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-premium">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Bottom bar -->
             <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
                 <p>&copy; 2026 Arganon Book Store. All rights reserved. Addis Ababa, 5 Kilo.</p>
                 <div class="flex gap-6">
@@ -1277,10 +1292,22 @@
 
     <!-- ================= JAVASCRIPT ================= -->
     <script>
-        // ─── Lucide ───
-        lucide.createIcons();
+        // ─── SECURE: Sanitization helper ───
+        function escapeText(text) {
+            if (text == null) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
 
-        // ─── Books Data with shortLink ───
+        function setTextContent(element, text) {
+            if (element) element.textContent = text != null ? text : '';
+        }
+
+        // ─── Lucide ───
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+
+        // ─── Books Data (hardcoded, trusted) ───
         const books = [{
             id: 1,
             title: "የቤተ ክርስቲያን ታሪክ",
@@ -1574,90 +1601,138 @@
         // ─── Navigation ───
         function navigateTo(page) {
             currentPageContent = page;
-            // Hide all pages
             document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
-            // Show target page
             const targetPage = document.getElementById(`page-${page}`);
             if (targetPage) {
                 targetPage.classList.remove('hidden');
-                // Re-trigger animation
                 targetPage.style.animation = 'none';
                 requestAnimationFrame(() => {
                     targetPage.style.animation = 'fadeInUp 0.5s ease-out forwards';
                 });
             }
-            // Update nav links
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             const navMap = { home: 'nav-home', about: 'nav-about', contact: 'nav-contact' };
             const activeNav = document.getElementById(navMap[page]);
             if (activeNav) activeNav.classList.add('active');
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            // Re-initialize icons
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         // ─── Scroll to Books ───
         function scrollToBooks() {
             const grid = document.getElementById('books-grid');
             if (grid) {
-                // Use a small delay to ensure DOM is updated
                 requestAnimationFrame(() => {
                     grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             }
         }
 
-        // ─── Render Sidebar ───
+        // ─── SECURE DOM Builders ───
+        function createBookCardElement(book) {
+            const card = document.createElement('div');
+            card.className = 'book-card';
+            card.setAttribute('role', 'listitem');
+
+            // Image wrap
+            const imgWrap = document.createElement('div');
+            imgWrap.className = 'book-img-wrap';
+            const img = document.createElement('img');
+            img.className = 'book-img';
+            img.src = book.cover || 'https://placehold.co/300x400/1F3A5F/C89B3C?text=Book';
+            img.alt = `Cover of ${book.title}`;
+            img.loading = 'lazy';
+            img.onerror = function() { this.src = 'https://placehold.co/300x400/1F3A5F/C89B3C?text=Book'; };
+            imgWrap.appendChild(img);
+            if (book.isNew) {
+                const badge = document.createElement('span');
+                badge.className = 'book-badge';
+                badge.textContent = 'New';
+                imgWrap.appendChild(badge);
+            }
+            card.appendChild(imgWrap);
+
+            // Body
+            const body = document.createElement('div');
+            body.className = 'card-body';
+
+            const title = document.createElement('h3');
+            title.className = 'card-title';
+            title.textContent = book.title;
+            body.appendChild(title);
+
+            const author = document.createElement('p');
+            author.className = 'card-author';
+            author.textContent = book.author || 'አርጋኖን';
+            body.appendChild(author);
+
+            const price = document.createElement('p');
+            price.className = 'card-price';
+            price.textContent = book.price;
+            body.appendChild(price);
+
+            const btn = document.createElement('button');
+            btn.className = 'card-btn';
+            btn.innerHTML = '<i data-lucide="eye" class="w-3.5 h-3.5" aria-hidden="true"></i> View Details';
+            btn.onclick = function() { openBookModal(book.id); };
+            body.appendChild(btn);
+
+            card.appendChild(body);
+
+            // Re-initialize icons for this card after DOM insertion
+            requestAnimationFrame(() => {
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            });
+
+            return card;
+        }
+
+        function createSidebarLink(link, isActive) {
+            const btn = document.createElement('button');
+            btn.className = `sidebar-link ${isActive ? 'active' : ''}`;
+            btn.textContent = link;
+            btn.setAttribute('role', 'button');
+            btn.onclick = function() { filterByShortLink(link); };
+            return btn;
+        }
+
+        function createPaginationButton(text, page, isActive, isDisabled) {
+            const btn = document.createElement('button');
+            btn.className = `pagination-btn ${isActive ? 'active' : ''} ${isNaN(page) ? 'arrow' : ''}`;
+            btn.textContent = text;
+            if (isDisabled) btn.disabled = true;
+            if (!isDisabled && !isNaN(page)) {
+                btn.onclick = function() { goToPage(page); };
+            } else if (!isDisabled && text === '← Previous') {
+                btn.onclick = function() { goToPage(currentPage - 1); };
+            } else if (!isDisabled && text === 'Next →') {
+                btn.onclick = function() { goToPage(currentPage + 1); };
+            }
+            return btn;
+        }
+
+        function createEllipsis() {
+            const span = document.createElement('span');
+            span.className = 'pagination-btn';
+            span.style.cssText = 'border:none;background:transparent;cursor:default;';
+            span.textContent = '…';
+            return span;
+        }
+
+        // ─── Render Functions ───
         function renderSidebar() {
             const shortLinks = [...new Set(books.map(b => b.shortLink).filter(Boolean))];
             const sidebar = document.getElementById('short-links-list');
             if (!sidebar) return;
-            let html = `<button onclick="filterByShortLink('all')" class="sidebar-link ${currentShortLinkFilter === 'all' ? 'active' : ''}">All Books</button>`;
+            sidebar.innerHTML = '';
+
+            const allBtn = createSidebarLink('All Books', currentShortLinkFilter === 'all');
+            sidebar.appendChild(allBtn);
+
             shortLinks.forEach(link => {
-                const active = currentShortLinkFilter === link ? 'active' : '';
-                html += `<button onclick="filterByShortLink('${link}')" class="sidebar-link ${active}">${link}</button>`;
+                const btn = createSidebarLink(link, currentShortLinkFilter === link);
+                sidebar.appendChild(btn);
             });
-            sidebar.innerHTML = html;
-        }
-
-        // ─── Filter by Short Link ───
-        function filterByShortLink(link) {
-            currentShortLinkFilter = link;
-            currentPage = 1;
-            // Update sidebar active state
-            document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
-            const btns = document.querySelectorAll('.sidebar-link');
-            btns.forEach(el => {
-                if (el.textContent === link) el.classList.add('active');
-                if (link === 'all' && el.textContent === 'All Books') el.classList.add('active');
-            });
-            applyFilters();
-        }
-
-        // ─── Render Books ───
-        function createBookCardHTML(book) {
-            return `
-                <div class="book-card">
-                    <div class="book-img-wrap">
-                        <img src="${book.cover}"
-                             alt="${book.title}"
-                             class="book-img"
-                             loading="lazy"
-                             onerror="this.src='https://placehold.co/300x400/1F3A5F/C89B3C?text=Book'" />
-                        ${book.isNew ? '<span class="book-badge">New</span>' : ''}
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">${book.title}</h3>
-                        <p class="card-author">${book.author || 'አርጋኖን'}</p>
-                        <p class="card-price">${book.price}</p>
-                        <button onclick="openBookModal(${book.id})" class="card-btn">
-                            <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                            View Details
-                        </button>
-                    </div>
-                </div>
-            `;
         }
 
         function renderBooks(booksToDisplay) {
@@ -1673,7 +1748,6 @@
             }
             noResults.classList.add('hidden');
 
-            // Pagination
             const totalBooks = booksToDisplay.length;
             const totalPages = Math.ceil(totalBooks / PAGE_SIZE);
             if (currentPage > totalPages) currentPage = totalPages;
@@ -1684,27 +1758,25 @@
             const pageBooks = booksToDisplay.slice(start, end);
 
             pageBooks.forEach(book => {
-                grid.innerHTML += createBookCardHTML(book);
+                const card = createBookCardElement(book);
+                grid.appendChild(card);
             });
 
             renderPagination(totalPages);
-            lucide.createIcons();
-
-            // Scroll to books after rendering
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             scrollToBooks();
         }
 
-        // ─── Pagination ───
         function renderPagination(totalPages) {
             const container = document.getElementById('pagination-container');
             if (!container) return;
-            if (totalPages <= 1) {
-                container.innerHTML = '';
-                return;
-            }
+            container.innerHTML = '';
 
-            let html = '';
-            html += `<button class="pagination-btn arrow" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← Previous</button>`;
+            if (totalPages <= 1) return;
+
+            // Previous
+            const prevBtn = createPaginationButton('← Previous', null, false, currentPage === 1);
+            container.appendChild(prevBtn);
 
             const maxVisible = 5;
             let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
@@ -1714,22 +1786,59 @@
             }
 
             if (startPage > 1) {
-                html += `<button class="pagination-btn" onclick="goToPage(1)">1</button>`;
-                if (startPage > 2) html += `<span class="pagination-btn" style="border:none;background:transparent;cursor:default;">…</span>`;
+                const btn1 = createPaginationButton('1', 1, false, false);
+                container.appendChild(btn1);
+                if (startPage > 2) {
+                    container.appendChild(createEllipsis());
+                }
             }
 
             for (let i = startPage; i <= endPage; i++) {
-                html += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+                const btn = createPaginationButton(String(i), i, i === currentPage, false);
+                container.appendChild(btn);
             }
 
             if (endPage < totalPages) {
-                if (endPage < totalPages - 1) html += `<span class="pagination-btn" style="border:none;background:transparent;cursor:default;">…</span>`;
-                html += `<button class="pagination-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+                if (endPage < totalPages - 1) {
+                    container.appendChild(createEllipsis());
+                }
+                const btnLast = createPaginationButton(String(totalPages), totalPages, false, false);
+                container.appendChild(btnLast);
             }
 
-            html += `<button class="pagination-btn arrow" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
+            const nextBtn = createPaginationButton('Next →', null, false, currentPage === totalPages);
+            container.appendChild(nextBtn);
+        }
 
-            container.innerHTML = html;
+        // ─── Filter Functions ───
+        function filterByShortLink(link) {
+            currentShortLinkFilter = link;
+            currentPage = 1;
+            document.querySelectorAll('.sidebar-link').forEach(el => {
+                el.classList.toggle('active', el.textContent === link || (link === 'all' && el.textContent === 'All Books'));
+            });
+            applyFilters();
+        }
+
+        function filterCategory(category) {
+            currentFilter = category;
+            currentPage = 1;
+            document.querySelectorAll('.filter-pill').forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            const idMap = { 'all': 'btn-all', 'regular': 'btn-regular', 'children': 'btn-children', 'new-week': 'btn-new-week' };
+            const activeBtn = document.getElementById(idMap[category]);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.setAttribute('aria-pressed', 'true');
+            }
+            applyFilters();
+        }
+
+        function searchBooks() {
+            currentPage = 1;
+            applyFilters();
         }
 
         function goToPage(page) {
@@ -1740,24 +1849,12 @@
             applyFilters();
         }
 
-        // ─── Filtering ───
-        function filterCategory(category) {
-            currentFilter = category;
-            currentPage = 1;
-            document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
-            const idMap = { 'all': 'btn-all', 'regular': 'btn-regular', 'children': 'btn-children', 'new-week': 'btn-new-week' };
-            const activeBtn = document.getElementById(idMap[category]);
-            if (activeBtn) activeBtn.classList.add('active');
-            applyFilters();
-        }
-
-        function searchBooks() {
-            currentPage = 1;
-            applyFilters();
-        }
-
         function applyFilters() {
-            const query = document.getElementById('search-input')?.value.toLowerCase().trim() || '';
+            const searchInput = document.getElementById('search-input');
+            const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+            // SECURE: Sanitize search input (prevent injection)
+            const safeQuery = query.replace(/[<>]/g, '');
 
             let filtered = books.filter(book => {
                 let matchesCategory = false;
@@ -1770,8 +1867,8 @@
                 }
 
                 let matchesShortLink = currentShortLinkFilter === 'all' || book.shortLink === currentShortLinkFilter;
-                let matchesSearch = book.title.toLowerCase().includes(query) ||
-                    (book.author && book.author.toLowerCase().includes(query));
+                let matchesSearch = book.title.toLowerCase().includes(safeQuery) ||
+                    (book.author && book.author.toLowerCase().includes(safeQuery));
                 return matchesCategory && matchesShortLink && matchesSearch;
             });
 
@@ -1790,15 +1887,16 @@
             if (!book) return;
 
             document.getElementById('modal-img').src = book.cover;
-            document.getElementById('modal-title').textContent = book.title;
-            document.getElementById('modal-author').textContent = `ደራሲ፡ ${book.author}`;
-            document.getElementById('modal-category').textContent = book.categoryName;
-            document.getElementById('modal-lang').textContent = book.lang || '-';
-            document.getElementById('modal-publisher').textContent = book.publisher || '-';
-            document.getElementById('modal-year').textContent = book.year || '-';
-            document.getElementById('modal-pages').textContent = book.pages || '-';
-            document.getElementById('modal-desc').textContent = book.description || 'ዝርዝር መግለጫ አልተሰጠም።';
-            document.getElementById('modal-price').textContent = book.price;
+            document.getElementById('modal-img').alt = `Cover of ${book.title}`;
+            setTextContent(document.getElementById('modal-title'), book.title);
+            setTextContent(document.getElementById('modal-author'), `ደራሲ፡ ${book.author}`);
+            setTextContent(document.getElementById('modal-category'), book.categoryName);
+            setTextContent(document.getElementById('modal-lang'), book.lang || '-');
+            setTextContent(document.getElementById('modal-publisher'), book.publisher || '-');
+            setTextContent(document.getElementById('modal-year'), book.year || '-');
+            setTextContent(document.getElementById('modal-pages'), book.pages || '-');
+            setTextContent(document.getElementById('modal-desc'), book.description || 'ዝርዝር መግለጫ አልተሰጠም።');
+            setTextContent(document.getElementById('modal-price'), book.price);
 
             const modal = document.getElementById('book-modal');
             const box = document.getElementById('modal-content-box');
@@ -1811,7 +1909,7 @@
                 box.classList.add('scale-100', 'opacity-100');
             }, 10);
 
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             document.body.style.overflow = 'hidden';
         }
 
@@ -1848,11 +1946,11 @@
         function handleNewsletter(e) {
             e.preventDefault();
             const emailInput = e.target.querySelector('input[type="email"]');
-            const email = emailInput?.value.trim();
+            const email = emailInput ? emailInput.value.trim() : '';
             if (!email) return;
 
             const toast = document.getElementById('toast');
-            toast.textContent = `✅ Thanks! ${email} subscribed.`;
+            setTextContent(toast, `✅ Thanks! ${escapeText(email)} subscribed.`);
             toast.classList.add('show');
 
             setTimeout(() => {
@@ -1863,12 +1961,12 @@
         }
 
         // ─── Init ───
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function() {
             navigateTo('home');
             filteredBooks = books.slice();
             renderBooks(filteredBooks);
             renderSidebar();
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         });
     </script>
 </body>
