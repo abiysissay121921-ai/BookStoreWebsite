@@ -1037,6 +1037,7 @@
                 </div>
             </section>
 
+            <!-- ================= UPDATED NEWSLETTER SECTION ================= -->
             <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-about">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -1047,17 +1048,18 @@
                         <div class="newsletter-content text-center">
                             <div class="flex justify-center mb-4">
                                 <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm" aria-hidden="true">
-                                    <i data-lucide="mail" class="w-7 h-7 text-[#C89B3C]"></i>
+                                    <i data-lucide="send" class="w-7 h-7 text-[#C89B3C]"></i>
                                 </div>
                             </div>
-                            <h3 id="newsletter-title-about" class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Newsletter</h3>
+                            <h3 id="newsletter-title-about" class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Telegram Channel</h3>
                             <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-6 leading-relaxed">
                                 Subscribe to receive updates about new books, exclusive offers, and announcements.
                             </p>
-                            <form id="newsletter-form-about" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleNewsletter(event)" novalidate>
+                            <!-- UPDATED: Telegram username input -->
+                            <form id="newsletter-form-about" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleTelegramSubscribe(event)" novalidate>
                                 <div class="newsletter-input-wrap w-full sm:flex-1">
-                                    <span class="input-icon" aria-hidden="true"><i data-lucide="mail" class="w-5 h-5"></i></span>
-                                    <input type="email" id="newsletter-email-about" placeholder="Enter your email address" required aria-label="Email address" autocomplete="email" />
+                                    <span class="input-icon" aria-hidden="true"><i data-lucide="send" class="w-5 h-5"></i></span>
+                                    <input type="text" id="telegram-username-about" placeholder="Enter your Telegram username" required aria-label="Telegram username" autocomplete="off" />
                                 </div>
                                 <button type="submit" class="newsletter-btn w-full sm:w-auto"><i data-lucide="send" class="w-4 h-4" aria-hidden="true"></i> Subscribe Now</button>
                             </form>
@@ -1154,6 +1156,7 @@
                 </div>
             </section>
 
+            <!-- ================= UPDATED NEWSLETTER SECTION ================= -->
             <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-contact">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -1164,17 +1167,18 @@
                         <div class="newsletter-content text-center">
                             <div class="flex justify-center mb-4">
                                 <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm" aria-hidden="true">
-                                    <i data-lucide="mail" class="w-7 h-7 text-[#C89B3C]"></i>
+                                    <i data-lucide="send" class="w-7 h-7 text-[#C89B3C]"></i>
                                 </div>
                             </div>
-                            <h3 id="newsletter-title-contact" class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Newsletter</h3>
+                            <h3 id="newsletter-title-contact" class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Telegram Channel</h3>
                             <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-6 leading-relaxed">
                                 Subscribe to receive updates about new books, exclusive offers, and announcements.
                             </p>
-                            <form id="newsletter-form-contact" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleNewsletter(event)" novalidate>
+                            <!-- UPDATED: Telegram username input -->
+                            <form id="newsletter-form-contact" class="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto" onsubmit="handleTelegramSubscribe(event)" novalidate>
                                 <div class="newsletter-input-wrap w-full sm:flex-1">
-                                    <span class="input-icon" aria-hidden="true"><i data-lucide="mail" class="w-5 h-5"></i></span>
-                                    <input type="email" id="newsletter-email-contact" placeholder="Enter your email address" required aria-label="Email address" autocomplete="email" />
+                                    <span class="input-icon" aria-hidden="true"><i data-lucide="send" class="w-5 h-5"></i></span>
+                                    <input type="text" id="telegram-username-contact" placeholder="Enter your Telegram username" required aria-label="Telegram username" autocomplete="off" />
                                 </div>
                                 <button type="submit" class="newsletter-btn w-full sm:w-auto"><i data-lucide="send" class="w-4 h-4" aria-hidden="true"></i> Subscribe Now</button>
                             </form>
@@ -1229,7 +1233,7 @@
     </div>
 
     <!-- ================= TOAST ================= -->
-    <div id="toast" class="toast" role="alert" aria-live="polite">✅ Successfully subscribed!</div>
+    <div id="toast" class="toast" role="alert" aria-live="polite">✅ Redirecting to Telegram...</div>
 
     <!-- ================= FOOTER ================= -->
     <footer class="bg-[#1A2D47] text-white pt-16 pb-8 border-t border-white/5">
@@ -1981,22 +1985,41 @@
 
         document.getElementById('menu-btn').addEventListener('click', toggleMobileMenu);
 
-        // ─── Newsletter ───
-        function handleNewsletter(e) {
-            e.preventDefault();
-            const emailInput = e.target.querySelector('input[type="email"]');
-            const email = emailInput ? emailInput.value.trim() : '';
-            if (!email) return;
+        // ─── Telegram Subscribe Handler ───
+        function handleTelegramSubscribe(event) {
+            event.preventDefault();
+            const form = event.target;
+            const input = form.querySelector('input[type="text"]');
+            const username = input ? input.value.trim() : '';
 
+            if (!username) {
+                // Simple validation: show a brief toast or alert
+                const toast = document.getElementById('toast');
+                setTextContent(toast, '⚠️ Please enter your Telegram username.');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+                return;
+            }
+
+            // Sanitize the username (remove any dangerous characters)
+            const safeUsername = username.replace(/[<>]/g, '');
+
+            // Optional: You could store the username here (e.g., send to a server)
+            // For now, we just redirect to the Telegram channel.
+            // console.log('Telegram username submitted:', safeUsername);
+
+            // Show redirect toast
             const toast = document.getElementById('toast');
-            setTextContent(toast, `✅ Thanks! ${escapeText(email)} subscribed.`);
+            setTextContent(toast, '✅ Redirecting to Telegram...');
             toast.classList.add('show');
 
+            // Redirect to the Telegram channel after a short delay
             setTimeout(() => {
+                window.open('https://t.me/EBC_News_Official', '_blank');
                 toast.classList.remove('show');
-            }, 4000);
-
-            if (emailInput) emailInput.value = '';
+                // Optionally, clear the input field
+                if (input) input.value = '';
+            }, 800);
         }
 
         // ─── Init ───
