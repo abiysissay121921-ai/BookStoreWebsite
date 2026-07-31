@@ -44,8 +44,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231F3A5F' rx='16'/><text x='50' y='68' font-size='44' text-anchor='middle' fill='%23C89B3C' font-family='serif'>📖</text></svg>" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer>
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -53,31 +52,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest" defer>
-    </script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 
     <style>
-        /* ─── Root Variables ─── */
+        /* ─── Root Variables – Refined Premium Palette ─── */
         :root {
-            --primary: #1F3A5F;
-            --primary-light: #2a4d7a;
-            --accent: #C89B3C;
-            --accent-light: #d9ad4e;
-            --bg: #F8F9FA;
-            --bg-alt: #F1F3F5;
+            --primary: #1A2F4A;
+            --primary-light: #243B5C;
+            --primary-dark: #122033;
+            --accent: #C9A227;
+            --accent-light: #D4B44A;
+            --accent-soft: rgba(201, 162, 39, 0.12);
+            --bg: #F7F8FA;
+            --bg-alt: #F0F2F5;
             --card: #FFFFFF;
-            --text: #1A1A1A;
-            --text-secondary: #6B7280;
+            --text: #111827;
+            --text-secondary: #4B5563;
             --text-muted: #9CA3AF;
             --border: #E5E7EB;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
-            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.12);
-            --radius-sm: 8px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
-            --radius-xl: 28px;
+            --border-soft: #F1F3F5;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.07);
+            --shadow-xl: 0 24px 56px rgba(0, 0, 0, 0.10);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
         }
 
         /* ─── Base ─── */
@@ -86,76 +87,45 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.65;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        .bg-primary {
-            background-color: var(--primary);
-        }
-        .text-primary {
-            color: var(--primary);
-        }
-        .border-primary {
-            border-color: var(--primary);
-        }
-        .bg-accent {
-            background-color: var(--accent);
-        }
-        .text-accent {
-            color: var(--accent);
-        }
-        .bg-page {
-            background-color: #F4F4F6;
-        }
+        .bg-primary { background-color: var(--primary); }
+        .text-primary { color: var(--primary); }
+        .border-primary { border-color: var(--primary); }
+        .bg-accent { background-color: var(--accent); }
+        .text-accent { color: var(--accent); }
+        .bg-page { background-color: #F5F6F8; }
 
         /* ─── Scrollbar ─── */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 4px;
+            background: #D1D5DB;
+            border-radius: 99px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a0a0a0;
-        }
+        ::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
 
-        /* ─── Smooth Scroll ─── */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         /* ─── Utilities ─── */
         .transition-premium {
             transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .shadow-premium {
-            box-shadow: var(--shadow-lg);
-        }
-        .shadow-premium-hover:hover {
-            box-shadow: var(--shadow-xl);
-        }
+        .shadow-premium { box-shadow: var(--shadow-lg); }
+        .shadow-premium-hover:hover { box-shadow: var(--shadow-xl); }
 
-        /* ─── Refined Background Colors ─── */
-        .bg-cool-white {
-            background: #F8FAFC;
-        }
-        .bg-light-blue-gray {
-            background: #F4F6FA;
-        }
-        .bg-neutral-gray {
-            background: #F9FAFB;
-        }
+        /* ─── Refined Backgrounds ─── */
+        .bg-cool-white { background: #F8FAFC; }
+        .bg-light-blue-gray { background: #F4F6FA; }
+        .bg-neutral-gray { background: #F9FAFB; }
         .bg-contact-gradient {
             background: linear-gradient(180deg, #F8FAFC 0%, #EEF2F7 100%);
         }
@@ -172,54 +142,52 @@
         .blob-soft {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.20;
+            filter: blur(90px);
+            opacity: 0.18;
             pointer-events: none;
         }
 
         .blob-1 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle at 30% 40%, rgba(31, 58, 95, 0.06), rgba(200, 155, 60, 0.02));
-            top: -20%;
-            left: -10%;
+            width: 640px;
+            height: 640px;
+            background: radial-gradient(circle at 30% 40%, rgba(26, 47, 74, 0.07), rgba(201, 162, 39, 0.03));
+            top: -22%;
+            left: -12%;
         }
         .blob-2 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle at 70% 60%, rgba(200, 155, 60, 0.05), rgba(31, 58, 95, 0.02));
-            bottom: -20%;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle at 70% 60%, rgba(201, 162, 39, 0.06), rgba(26, 47, 74, 0.03));
+            bottom: -18%;
             right: -10%;
         }
 
         .bg-light-blue-gray .blob-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(31, 58, 95, 0.05), rgba(200, 155, 60, 0.02));
+            background: radial-gradient(circle at 20% 30%, rgba(26, 47, 74, 0.06), rgba(201, 162, 39, 0.02));
         }
         .bg-light-blue-gray .blob-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(200, 155, 60, 0.05), rgba(31, 58, 95, 0.02));
+            background: radial-gradient(circle at 80% 70%, rgba(201, 162, 39, 0.05), rgba(26, 47, 74, 0.02));
         }
-
         .bg-neutral-gray .blob-1 {
-            background: radial-gradient(circle at 40% 20%, rgba(31, 58, 95, 0.04), rgba(200, 155, 60, 0.02));
+            background: radial-gradient(circle at 40% 20%, rgba(26, 47, 74, 0.05), rgba(201, 162, 39, 0.02));
         }
         .bg-neutral-gray .blob-2 {
-            background: radial-gradient(circle at 60% 80%, rgba(200, 155, 60, 0.04), rgba(31, 58, 95, 0.02));
+            background: radial-gradient(circle at 60% 80%, rgba(201, 162, 39, 0.04), rgba(26, 47, 74, 0.02));
         }
-
         .bg-contact-gradient .blob-1 {
-            background: radial-gradient(circle at 30% 30%, rgba(31, 58, 95, 0.07), rgba(200, 155, 60, 0.02));
+            background: radial-gradient(circle at 30% 30%, rgba(26, 47, 74, 0.08), rgba(201, 162, 39, 0.03));
         }
         .bg-contact-gradient .blob-2 {
-            background: radial-gradient(circle at 70% 70%, rgba(200, 155, 60, 0.05), rgba(31, 58, 95, 0.02));
+            background: radial-gradient(circle at 70% 70%, rgba(201, 162, 39, 0.06), rgba(26, 47, 74, 0.02));
         }
 
-        /* ─── Book Cards ─── */
+        /* ─── Book Cards – Premium ─── */
         .book-card {
             background: var(--card);
             border-radius: var(--radius-md);
             overflow: hidden;
             border: 1px solid var(--border);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.035);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
@@ -229,20 +197,20 @@
             outline: none;
         }
         .book-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.10);
-            border-color: transparent;
+            transform: translateY(-8px);
+            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.09);
+            border-color: rgba(26, 47, 74, 0.08);
         }
         .book-card:hover .book-img {
-            transform: scale(1.02);
+            transform: scale(1.04);
         }
         .book-card:focus-visible {
             outline: 2px solid var(--accent);
-            outline-offset: 2px;
+            outline-offset: 3px;
         }
         .book-card .book-img-wrap {
             overflow: hidden;
-            background: #f5f6f8;
+            background: linear-gradient(145deg, #F5F6F8, #EEF0F3);
             position: relative;
             aspect-ratio: 3/4;
         }
@@ -250,61 +218,61 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
             display: block;
-            background: #f5f6f8;
+            background: transparent;
         }
         .book-card .book-badge {
             position: absolute;
             top: 12px;
             left: 12px;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #B89120);
             color: #fff;
             font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
-            padding: 4px 14px;
+            letter-spacing: 0.06em;
+            padding: 5px 14px;
             border-radius: 100px;
-            box-shadow: 0 2px 8px rgba(200, 155, 60, 0.35);
+            box-shadow: 0 3px 12px rgba(201, 162, 39, 0.35);
             z-index: 2;
             pointer-events: none;
         }
         .book-card .card-body {
-            padding: 14px 14px 16px;
+            padding: 16px 16px 18px;
             display: flex;
             flex-direction: column;
             flex: 1;
         }
         .book-card .card-title {
             font-weight: 700;
-            font-size: 14px;
+            font-size: 14.5px;
             color: var(--primary);
             line-height: 1.4;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            min-height: 2.4rem;
-            margin-bottom: 4px;
-            letter-spacing: -0.01em;
+            min-height: 2.5rem;
+            margin-bottom: 5px;
+            letter-spacing: -0.015em;
             pointer-events: none;
         }
         .book-card .card-author {
-            font-size: 12px;
+            font-size: 12.5px;
             color: var(--text-secondary);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             pointer-events: none;
         }
         .book-card .card-price {
-            font-size: 16px;
+            font-size: 16.5px;
             font-weight: 800;
             color: var(--primary);
-            margin-bottom: 12px;
-            letter-spacing: -0.01em;
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
             pointer-events: none;
         }
         .book-card .card-btn {
@@ -312,8 +280,8 @@
             background: var(--primary);
             color: #fff;
             font-weight: 600;
-            font-size: 12px;
-            padding: 10px 0;
+            font-size: 12.5px;
+            padding: 11px 0;
             border: none;
             border-radius: var(--radius-sm);
             cursor: pointer;
@@ -325,11 +293,12 @@
             position: relative;
             z-index: 3;
             pointer-events: auto;
+            letter-spacing: 0.01em;
         }
         .book-card .card-btn:hover {
-            background: #162d4a;
+            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(31, 58, 95, 0.25);
+            box-shadow: 0 8px 22px rgba(26, 47, 74, 0.28);
         }
         .book-card .card-btn svg {
             width: 14px;
@@ -338,9 +307,9 @@
 
         /* ─── Filter Pills ─── */
         .filter-pill {
-            padding: 9px 24px;
+            padding: 10px 26px;
             border-radius: 100px;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 600;
             background: #fff;
             color: var(--text-secondary);
@@ -350,6 +319,7 @@
             box-shadow: var(--shadow-sm);
             display: inline-block;
             user-select: none;
+            letter-spacing: 0.01em;
         }
         .filter-pill:hover {
             border-color: var(--primary);
@@ -361,11 +331,11 @@
             background: var(--primary);
             color: #fff;
             border-color: var(--primary);
-            box-shadow: 0 6px 20px rgba(31, 58, 95, 0.25);
+            box-shadow: 0 6px 20px rgba(26, 47, 74, 0.25);
         }
         .filter-pill.active:hover {
-            background: #162d4a;
-            box-shadow: 0 8px 28px rgba(31, 58, 95, 0.35);
+            background: var(--primary-dark);
+            box-shadow: 0 8px 28px rgba(26, 47, 74, 0.32);
             transform: translateY(-2px);
         }
 
@@ -374,7 +344,7 @@
             display: block;
             width: 100%;
             text-align: left;
-            padding: 10px 16px;
+            padding: 11px 16px;
             border-radius: var(--radius-sm);
             font-size: 14px;
             font-weight: 500;
@@ -395,17 +365,17 @@
             background: var(--primary);
             color: #fff;
             border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(31, 58, 95, 0.15);
+            box-shadow: 0 4px 14px rgba(26, 47, 74, 0.18);
         }
         .sidebar-link.active:hover {
-            background: #162d4a;
+            background: var(--primary-dark);
             transform: translateX(4px);
         }
 
         /* ─── Search ─── */
         .search-input {
             width: 100%;
-            padding: 16px 20px 16px 56px;
+            padding: 17px 22px 17px 56px;
             background: #fff;
             border-radius: var(--radius-md);
             border: 1.5px solid var(--border);
@@ -417,7 +387,7 @@
         .search-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(31, 58, 95, 0.08), var(--shadow-md);
+            box-shadow: 0 0 0 4px rgba(26, 47, 74, 0.08), var(--shadow-md);
         }
         .search-input::placeholder {
             color: var(--text-muted);
@@ -433,36 +403,21 @@
 
         /* ─── Hero ─── */
         .hero-overlay {
-            background: linear-gradient(135deg, rgba(15, 30, 50, 0.80) 0%, rgba(15, 30, 50, 0.65) 100%);
+            background: linear-gradient(135deg, rgba(15, 28, 45, 0.82) 0%, rgba(15, 28, 45, 0.68) 100%);
         }
 
         /* ─── Animations ─── */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-12px);
-            }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         .animate-fade-in {
             animation: fadeInUp 0.7s ease-out forwards;
@@ -485,22 +440,22 @@
 
         /* ─── Newsletter ─── */
         .newsletter-wrap {
-            background: linear-gradient(145deg, #1F3A5F 0%, #1a2f4d 100%);
+            background: linear-gradient(145deg, #1A2F4A 0%, #152538 100%);
             border-radius: var(--radius-xl);
-            padding: 52px 44px;
+            padding: 56px 48px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 24px 64px rgba(31, 58, 95, 0.30);
+            box-shadow: 0 28px 64px rgba(26, 47, 74, 0.28);
         }
         .newsletter-wrap::before {
             content: '';
             position: absolute;
             top: -40%;
             right: -10%;
-            width: 500px;
-            height: 500px;
+            width: 520px;
+            height: 520px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(200, 155, 60, 0.12), transparent 70%);
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.14), transparent 70%);
             pointer-events: none;
         }
         .newsletter-wrap::after {
@@ -508,8 +463,8 @@
             position: absolute;
             bottom: -30%;
             left: -10%;
-            width: 400px;
-            height: 400px;
+            width: 420px;
+            height: 420px;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.04), transparent 70%);
             pointer-events: none;
@@ -527,35 +482,35 @@
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.45);
             pointer-events: none;
         }
         .newsletter-input-wrap input {
             width: 100%;
             padding: 18px 20px 18px 52px;
             border-radius: var(--radius-sm);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(4px);
+            border: 1.5px solid rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(6px);
             color: #fff;
             font-size: 15px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .newsletter-input-wrap input::placeholder {
-            color: rgba(255, 255, 255, 0.50);
+            color: rgba(255, 255, 255, 0.45);
         }
         .newsletter-input-wrap input:focus {
             outline: none;
             border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.14);
-            box-shadow: 0 0 0 4px rgba(200, 155, 60, 0.15);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.15);
         }
         .newsletter-btn {
             padding: 18px 44px;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #B89120);
             color: #fff;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15.5px;
             border: none;
             border-radius: var(--radius-sm);
             cursor: pointer;
@@ -564,16 +519,17 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 4px 16px rgba(200, 155, 60, 0.30);
+            box-shadow: 0 4px 18px rgba(201, 162, 39, 0.32);
+            letter-spacing: 0.01em;
         }
         .newsletter-btn:hover {
-            background: #b58a32;
+            background: linear-gradient(135deg, #B89120, #A67F15);
             transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(200, 155, 60, 0.40);
+            box-shadow: 0 8px 28px rgba(201, 162, 39, 0.40);
         }
         .newsletter-trust {
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.55);
+            color: rgba(255, 255, 255, 0.50);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -590,8 +546,8 @@
             transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .modal-backdrop {
-            background: rgba(0, 0, 0, 0.50);
-            backdrop-filter: blur(8px);
+            background: rgba(10, 16, 28, 0.55);
+            backdrop-filter: blur(10px);
         }
 
         /* ─── Nav ─── */
@@ -606,10 +562,9 @@
             background: none;
             border: none;
             padding: 0;
+            letter-spacing: 0.01em;
         }
-        .nav-link:hover {
-            color: var(--primary);
-        }
+        .nav-link:hover { color: var(--primary); }
         .nav-link.active {
             color: var(--primary);
             font-weight: 600;
@@ -637,9 +592,7 @@
             transform: scaleX(0);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .nav-link:hover::after {
-            transform: scaleX(1);
-        }
+        .nav-link:hover::after { transform: scaleX(1); }
 
         /* ─── Section Divider ─── */
         .section-divider {
@@ -657,7 +610,7 @@
 
         /* ─── Pagination ─── */
         .pagination-btn {
-            padding: 8px 14px;
+            padding: 9px 15px;
             border-radius: var(--radius-sm);
             border: 1.5px solid var(--border);
             background: #fff;
@@ -666,7 +619,7 @@
             font-size: 14px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            min-width: 40px;
+            min-width: 42px;
             text-align: center;
             display: inline-flex;
             align-items: center;
@@ -683,16 +636,16 @@
             background: var(--primary);
             color: #fff;
             border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(31, 58, 95, 0.2);
+            box-shadow: 0 4px 14px rgba(26, 47, 74, 0.22);
         }
         .pagination-btn:disabled {
-            opacity: 0.4;
+            opacity: 0.38;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
         .pagination-btn.arrow {
-            padding: 8px 16px;
+            padding: 9px 18px;
             font-weight: 600;
         }
 
@@ -700,24 +653,22 @@
         .books-layout {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.75rem;
         }
 
         @media (min-width: 1024px) {
             .books-layout {
                 display: grid;
-                grid-template-columns: 280px 1fr;
-                gap: 2rem;
+                grid-template-columns: 270px 1fr;
+                gap: 2.25rem;
                 align-items: start;
             }
             .sidebar-wrapper {
                 order: 1;
                 position: sticky;
-                top: 100px;
+                top: 108px;
             }
-            .main-content {
-                order: 2;
-            }
+            .main-content { order: 2; }
         }
 
         @media (max-width: 1023px) {
@@ -727,96 +678,83 @@
             }
             .sidebar-wrapper {
                 order: 2;
-                margin-top: 1.5rem;
+                margin-top: 1.75rem;
             }
-            .main-content {
-                order: 1;
-            }
+            .main-content { order: 1; }
         }
 
         /* ─── Responsive tweaks ─── */
         @media (max-width: 640px) {
-            .newsletter-wrap {
-                padding: 32px 20px;
-            }
+            .newsletter-wrap { padding: 36px 22px; }
             .newsletter-btn {
                 width: 100%;
                 justify-content: center;
                 padding: 16px 20px;
             }
-            .book-card .card-body {
-                padding: 12px 12px 14px;
-            }
+            .book-card .card-body { padding: 13px 13px 15px; }
             .book-card .card-title {
-                font-size: 13px;
-                min-height: 2.2rem;
+                font-size: 13.5px;
+                min-height: 2.3rem;
             }
-            .book-card .card-price {
-                font-size: 15px;
-            }
+            .book-card .card-price { font-size: 15.5px; }
             .filter-pill {
-                padding: 6px 14px;
-                font-size: 12px;
-            }
-            .book-card .book-img-wrap {
-                aspect-ratio: 3/4;
+                padding: 8px 16px;
+                font-size: 12.5px;
             }
             .sidebar-link {
-                padding: 8px 12px;
-                font-size: 13px;
+                padding: 9px 13px;
+                font-size: 13.5px;
             }
             .pagination-btn {
-                padding: 6px 10px;
-                font-size: 12px;
-                min-width: 32px;
+                padding: 7px 11px;
+                font-size: 13px;
+                min-width: 34px;
             }
         }
 
         @media (min-width: 768px) {
-            .newsletter-input-wrap {
-                min-width: 280px;
-            }
+            .newsletter-input-wrap { min-width: 280px; }
         }
 
         /* ─── Section labels, titles ─── */
         .divider-glow {
-            width: 60px;
+            width: 56px;
             height: 3px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
             border-radius: 4px;
-            margin: 0 auto 16px;
+            margin: 0 auto 18px;
         }
         .section-label {
             display: inline-block;
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.14em;
             color: var(--accent);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .section-title {
-            font-size: clamp(30px, 4vw, 44px);
+            font-size: clamp(30px, 4vw, 42px);
             font-weight: 800;
             color: var(--primary);
-            letter-spacing: -0.025em;
-            line-height: 1.12;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
         }
         .section-sub {
-            font-size: clamp(16px, 1.2vw, 19px);
+            font-size: clamp(15.5px, 1.2vw, 18px);
             color: var(--text-secondary);
-            margin-top: 12px;
+            margin-top: 14px;
             max-width: 560px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         .toast {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #1F3A5F;
+            bottom: 32px;
+            right: 32px;
+            background: var(--primary);
             color: #fff;
             padding: 16px 28px;
             border-radius: var(--radius-sm);
@@ -837,17 +775,17 @@
     </style>
 </head>
 
-<body class="bg-page text-[#1A1A1A] antialiased selection:bg-[#1F3A5F] selection:text-white flex flex-col min-h-screen">
+<body class="bg-page text-[#111827] antialiased selection:bg-[#1A2F4A] selection:text-white flex flex-col min-h-screen">
 
     <!-- ================= NAVIGATION ================= -->
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-[#E5E7EB]/60 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+    <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-[#E5E7EB]/70 shadow-[0_1px_6px_rgba(0,0,0,0.035)]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
             <a href="#" onclick="navigateTo('home')" class="flex items-center gap-3 group" aria-label="Arganon Book Store Home">
-                <div class="w-10 h-10 rounded-xl bg-[#1F3A5F] flex items-center justify-center shadow-md group-hover:scale-105 transition-premium" aria-hidden="true">
-                    <i data-lucide="book-open" class="w-5 h-5 text-[#C89B3C]"></i>
+                <div class="w-10 h-10 rounded-xl bg-[#1A2F4A] flex items-center justify-center shadow-md group-hover:scale-105 transition-premium" aria-hidden="true">
+                    <i data-lucide="book-open" class="w-5 h-5 text-[#C9A227]"></i>
                 </div>
                 <div>
-                    <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-[#1F3A5F]">Arganon</span>
+                    <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-[#1A2F4A]">Arganon</span>
                     <span class="block text-[10px] sm:text-xs uppercase tracking-[0.18em] text-[#6B7280] font-medium">Book Store</span>
                 </div>
             </a>
@@ -859,24 +797,24 @@
             </nav>
 
             <div class="hidden lg:flex items-center gap-4">
-                <a href="tel:0939437332" class="flex items-center gap-2 text-sm font-medium text-[#1F3A5F] hover:text-[#C89B3C] transition-premium" aria-label="Call us at 0939437332">
+                <a href="tel:0939437332" class="flex items-center gap-2 text-sm font-medium text-[#1A2F4A] hover:text-[#C9A227] transition-premium" aria-label="Call us at 0939437332">
                     <i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i>
                     <span>0939437332</span>
                 </a>
-                <a href="#" onclick="navigateTo('home')" class="bg-[#1F3A5F] hover:bg-[#162d4a] text-white text-sm font-semibold px-6 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-premium hover:-translate-y-0.5">
+                <a href="#" onclick="navigateTo('home')" class="bg-[#1A2F4A] hover:bg-[#122033] text-white text-sm font-semibold px-6 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-premium hover:-translate-y-0.5">
                     Browse Books
                 </a>
             </div>
 
-            <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#1F3A5F] rounded-lg hover:bg-gray-100 transition-premium" aria-label="Toggle navigation menu">
+            <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#1A2F4A] rounded-lg hover:bg-gray-100 transition-premium" aria-label="Toggle navigation menu">
                 <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
             </button>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm border-t border-[#E5E7EB] px-6 py-5 space-y-1 shadow-lg">
-            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-3 text-[#1F3A5F] font-semibold text-base hover:text-[#C89B3C] transition-premium">Books</button>
-            <button onclick="navigateTo('about'); toggleMobileMenu()" class="block w-full text-left py-3 text-[#1F3A5F] font-semibold text-base hover:text-[#C89B3C] transition-premium">About</button>
-            <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-3 text-[#1F3A5F] font-semibold text-base hover:text-[#C89B3C] transition-premium">Contact</button>
+        <div id="mobile-menu" class="hidden md:hidden bg-white/96 backdrop-blur-md border-t border-[#E5E7EB] px-6 py-5 space-y-1 shadow-lg">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-3 text-[#1A2F4A] font-semibold text-base hover:text-[#C9A227] transition-premium">Books</button>
+            <button onclick="navigateTo('about'); toggleMobileMenu()" class="block w-full text-left py-3 text-[#1A2F4A] font-semibold text-base hover:text-[#C9A227] transition-premium">About</button>
+            <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-3 text-[#1A2F4A] font-semibold text-base hover:text-[#C9A227] transition-premium">Contact</button>
             <div class="pt-4 mt-2 border-t border-[#E5E7EB] flex items-center gap-2 text-[#6B7280] font-medium text-sm">
                 <i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i> 0939437332
             </div>
@@ -891,8 +829,8 @@
             <!-- ================= HERO ================= -->
             <section class="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center overflow-hidden" aria-labelledby="hero-title">
                 <div class="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
-                    <div class="blob-soft" style="width:600px;height:600px;background:radial-gradient(circle at 30% 40%, rgba(31,58,95,0.04), rgba(200,155,60,0.02));top:-20%;left:-10%;filter:blur(80px);"></div>
-                    <div class="blob-soft" style="width:400px;height:400px;background:radial-gradient(circle at 70% 60%, rgba(200,155,60,0.03), rgba(31,58,95,0.02));bottom:-20%;right:-10%;filter:blur(70px);"></div>
+                    <div class="blob-soft" style="width:600px;height:600px;background:radial-gradient(circle at 30% 40%, rgba(26,47,74,0.05), rgba(201,162,39,0.02));top:-20%;left:-10%;filter:blur(80px);"></div>
+                    <div class="blob-soft" style="width:400px;height:400px;background:radial-gradient(circle at 70% 60%, rgba(201,162,39,0.04), rgba(26,47,74,0.02));bottom:-20%;right:-10%;filter:blur(70px);"></div>
                 </div>
 
                 <div class="absolute inset-0" aria-hidden="true">
@@ -910,7 +848,7 @@
                         እንኳን ወደ አርጋኖን የመጻሕፍት ድህረ ገጽ በሰላም መጡ! የንባብ ዓለምን እንዲያስሱ እና የሚወዷቸውን መጻሕፍት በቀላሉ እንዲያገኙ ተጋብዘዋል።
                     </p>
                     <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-delay-2">
-                        <a href="#books" class="inline-flex items-center gap-2.5 bg-[#C89B3C] hover:bg-[#b58a32] text-white font-semibold text-base px-9 py-4 rounded-xl shadow-lg hover:shadow-xl transition-premium transform hover:-translate-y-1">
+                        <a href="#books" class="inline-flex items-center gap-2.5 bg-[#C9A227] hover:bg-[#B89120] text-white font-semibold text-base px-9 py-4 rounded-xl shadow-lg hover:shadow-xl transition-premium transform hover:-translate-y-1">
                             <i data-lucide="book-open" class="w-5 h-5" aria-hidden="true"></i>
                             Browse Books
                         </a>
@@ -938,8 +876,8 @@
 
                     <div class="books-layout">
                         <aside class="sidebar-wrapper" aria-labelledby="sidebar-title">
-                            <div class="bg-white p-5 rounded-2xl border border-[#E5E7EB] shadow-sm">
-                                <h3 id="sidebar-title" class="font-bold text-[#1F3A5F] text-sm uppercase tracking-wider mb-1">Short Links</h3>
+                            <div class="bg-white p-6 rounded-2xl border border-[#E5E7EB] shadow-sm">
+                                <h3 id="sidebar-title" class="font-bold text-[#1A2F4A] text-sm uppercase tracking-wider mb-1">Short Links</h3>
                                 <p class="text-[#6B7280] text-xs mb-4">በርዕስ ያስሱ</p>
                                 <div class="h-px bg-[#E5E7EB] mb-4" aria-hidden="true"></div>
                                 <nav id="short-links-list" class="space-y-1.5" aria-label="Book topics">
@@ -981,11 +919,11 @@
                                 <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-gray-100 flex items-center justify-center" aria-hidden="true">
                                     <i data-lucide="book-x" class="w-8 h-8 text-gray-400"></i>
                                 </div>
-                                <h3 class="text-xl font-bold text-[#1F3A5F]">ምንም መጽሐፍ አልተገኘም</h3>
+                                <h3 class="text-xl font-bold text-[#1A2F4A]">ምንም መጽሐፍ አልተገኘም</h3>
                                 <p class="text-[#6B7280] text-sm mt-2">እባክዎ ፍለጋዎን ይቀይሩ ወይም ሌላ ምድብ ይምረጡ።</p>
                             </div>
 
-                            <div id="pagination-container" class="mt-10 flex justify-center items-center gap-2 flex-wrap" role="navigation" aria-label="Book pagination">
+                            <div id="pagination-container" class="mt-12 flex justify-center items-center gap-2 flex-wrap" role="navigation" aria-label="Book pagination">
                                 <!-- Built safely by JavaScript -->
                             </div>
                         </div>
@@ -1011,24 +949,24 @@
 
                     <div class="max-w-4xl mx-auto">
                         <div class="bg-white p-8 sm:p-12 lg:p-14 rounded-3xl border border-[#E5E7EB] shadow-lg hover:shadow-xl transition-premium text-center">
-                            <h3 class="text-2xl sm:text-3xl font-bold text-[#1F3A5F] mb-6">እውቀትን ለትውልድ ማዳረስ</h3>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-[#1A2F4A] mb-6">እውቀትን ለትውልድ ማዳረስ</h3>
                             <p class="text-[#4B5563] text-base sm:text-lg leading-relaxed max-w-3xl mx-auto mb-10">
                                 በታሪካዊው የአዲስ አበባ 5 ኪሎ አካባቢ የተመሰረተው አርጋኖን መጻሕፍት መደብር፤ ለአንባቢዎች ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍትን በማቅረብ ላይ ይገኛል።
                             </p>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                                 <div class="bg-[#F8F9FA] p-7 rounded-2xl border border-[#E5E7EB] hover:shadow-md transition-premium">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center mb-4" aria-hidden="true">
-                                        <i data-lucide="target" class="w-5 h-5 text-[#1F3A5F]"></i>
+                                    <div class="w-11 h-11 rounded-xl bg-[#1A2F4A]/10 flex items-center justify-center mb-4" aria-hidden="true">
+                                        <i data-lucide="target" class="w-5 h-5 text-[#1A2F4A]"></i>
                                     </div>
-                                    <h4 class="font-bold text-[#1F3A5F] text-lg mb-2">ተልእኮአችን</h4>
+                                    <h4 class="font-bold text-[#1A2F4A] text-lg mb-2">ተልእኮአችን</h4>
                                     <p class="text-sm text-[#6B7280] leading-relaxed">የእኛ ተልዕኮ የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን መንፈሳዊ እና ታሪክ የሚያንጸባርቁ መጻሕፍትን ለሁሉም በቀላሉ ተደራሽ በማድረግ እምነትን፣ ዕውቀትን እና የንባብ ባህልን ማጠናከር ነው።</p>
                                 </div>
                                 <div class="bg-[#F8F9FA] p-7 rounded-2xl border border-[#E5E7EB] hover:shadow-md transition-premium">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center mb-4" aria-hidden="true">
-                                        <i data-lucide="eye" class="w-5 h-5 text-[#1F3A5F]"></i>
+                                    <div class="w-11 h-11 rounded-xl bg-[#1A2F4A]/10 flex items-center justify-center mb-4" aria-hidden="true">
+                                        <i data-lucide="eye" class="w-5 h-5 text-[#1A2F4A]"></i>
                                     </div>
-                                    <h4 class="font-bold text-[#1F3A5F] text-lg mb-2">ራዕያችን</h4>
+                                    <h4 class="font-bold text-[#1A2F4A] text-lg mb-2">ራዕያችን</h4>
                                     <p class="text-sm text-[#6B7280] leading-relaxed">ዕውቀትን፣ እምነትን እና የንባብ ባህልን የሚያበረታታ ተመራጭ የመጻሕፍት ማዕከል መሆን።</p>
                                 </div>
                             </div>
@@ -1048,7 +986,7 @@
                         <div class="newsletter-content text-center">
                             <div class="flex justify-center mb-4">
                                 <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm" aria-hidden="true">
-                                    <i data-lucide="send" class="w-7 h-7 text-[#C89B3C]"></i>
+                                    <i data-lucide="send" class="w-7 h-7 text-[#C9A227]"></i>
                                 </div>
                             </div>
                             <h3 id="newsletter-title-about" class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Telegram Channel</h3>
@@ -1089,38 +1027,38 @@
 
                     <div class="max-w-xl mx-auto">
                         <div class="bg-white p-8 sm:p-10 rounded-3xl border border-[#E5E7EB] shadow-lg hover:shadow-xl transition-premium">
-                            <h3 class="text-xl font-bold text-[#1F3A5F] mb-3">የመደብራችን አድራሻ</h3>
+                            <h3 class="text-xl font-bold text-[#1A2F4A] mb-3">የመደብራችን አድራሻ</h3>
                             <p class="text-[#6B7280] text-sm leading-relaxed mb-8">
                                 በአዲስ አበባ 5 ኪሎ ከሚገኘው መደብራችን በአካል በመገኘት ወይም ከታች ባሉት አማራጮች ያግኙን።
                             </p>
 
                             <div class="space-y-5">
                                 <div class="flex items-start gap-4">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
+                                    <div class="w-11 h-11 rounded-xl bg-[#1A2F4A]/10 flex items-center justify-center text-[#1A2F4A] shrink-0" aria-hidden="true">
                                         <i data-lucide="map-pin" class="w-5 h-5"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-[#1F3A5F] text-sm">አድራሻ</h4>
+                                        <h4 class="font-semibold text-[#1A2F4A] text-sm">አድራሻ</h4>
                                         <p class="text-[#6B7280] text-sm mt-0.5">አዲስ አበባ፣ 5 ኪሎ፣ ቅድስት ማርያም ፊት ለፊት</p>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start gap-4">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
+                                    <div class="w-11 h-11 rounded-xl bg-[#1A2F4A]/10 flex items-center justify-center text-[#1A2F4A] shrink-0" aria-hidden="true">
                                         <i data-lucide="map-pin" class="w-5 h-5"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-[#1F3A5F] text-sm">Location</h4>
+                                        <h4 class="font-semibold text-[#1A2F4A] text-sm">Location</h4>
                                         <a href="https://maps.app.goo.gl/D9dVrzbNyWKtDPPT9"
                                            target="_blank"
                                            rel="noopener noreferrer"
-                                           class="text-[#6B7280] text-sm mt-0.5 hover:text-[#C89B3C] transition-premium block">
+                                           class="text-[#6B7280] text-sm mt-0.5 hover:text-[#C9A227] transition-premium block">
                                             Addis Ababa, Ethiopia
                                         </a>
                                         <a href="https://maps.app.goo.gl/D9dVrzbNyWKtDPPT9"
                                            target="_blank"
                                            rel="noopener noreferrer"
-                                           class="inline-flex items-center gap-1.5 mt-2 bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-medium text-sm px-4 py-2 rounded-xl shadow-sm hover:shadow-md transition-premium hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#C89B3C] focus:ring-offset-2">
+                                           class="inline-flex items-center gap-1.5 mt-2 bg-[#1A2F4A] hover:bg-[#122033] text-white font-medium text-sm px-4 py-2 rounded-xl shadow-sm hover:shadow-md transition-premium hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#C9A227] focus:ring-offset-2">
                                             <i data-lucide="map-pin" class="w-4 h-4" aria-hidden="true"></i>
                                             View on Google Maps
                                         </a>
@@ -1128,22 +1066,22 @@
                                 </div>
 
                                 <div class="flex items-start gap-4">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
+                                    <div class="w-11 h-11 rounded-xl bg-[#1A2F4A]/10 flex items-center justify-center text-[#1A2F4A] shrink-0" aria-hidden="true">
                                         <i data-lucide="phone" class="w-5 h-5"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-[#1F3A5F] text-sm">ስልክ ቁጥር</h4>
-                                        <a href="tel:0939437332" class="text-[#6B7280] text-sm mt-0.5 hover:text-[#C89B3C] transition-premium">0939437332</a>
+                                        <h4 class="font-semibold text-[#1A2F4A] text-sm">ስልክ ቁጥር</h4>
+                                        <a href="tel:0939437332" class="text-[#6B7280] text-sm mt-0.5 hover:text-[#C9A227] transition-premium">0939437332</a>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start gap-4">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
+                                    <div class="w-11 h-11 rounded-xl bg-[#1A2F4A]/10 flex items-center justify-center text-[#1A2F4A] shrink-0" aria-hidden="true">
                                         <i data-lucide="send" class="w-5 h-5"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-[#1F3A5F] text-sm">ቴሌግራም ቻናል</h4>
-                                        <a href="https://t.me/corpus_mysticum" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[#C89B3C] font-medium text-sm mt-0.5 hover:underline">
+                                        <h4 class="font-semibold text-[#1A2F4A] text-sm">ቴሌግራም ቻናል</h4>
+                                        <a href="https://t.me/corpus_mysticum" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[#C9A227] font-medium text-sm mt-0.5 hover:underline">
                                             @corpus_mysticum
                                             <i data-lucide="external-link" class="w-3.5 h-3.5" aria-hidden="true"></i>
                                         </a>
@@ -1166,7 +1104,7 @@
                         <div class="newsletter-content text-center">
                             <div class="flex justify-center mb-4">
                                 <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm" aria-hidden="true">
-                                    <i data-lucide="send" class="w-7 h-7 text-[#C89B3C]"></i>
+                                    <i data-lucide="send" class="w-7 h-7 text-[#C9A227]"></i>
                                 </div>
                             </div>
                             <h3 id="newsletter-title-contact" class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">Join Our Telegram Channel</h3>
@@ -1205,11 +1143,11 @@
                         <img id="modal-img" src="" alt="" class="max-h-80 w-auto rounded-lg shadow-md object-contain" />
                     </div>
                     <div class="space-y-5">
-                        <span id="modal-category" class="inline-block bg-[#1F3A5F]/10 text-[#1F3A5F] text-xs font-semibold px-3 py-1.5 rounded-full"></span>
-                        <h2 id="modal-title" class="text-2xl sm:text-3xl font-bold text-[#1F3A5F] leading-snug"></h2>
+                        <span id="modal-category" class="inline-block bg-[#1A2F4A]/10 text-[#1A2F4A] text-xs font-semibold px-3 py-1.5 rounded-full"></span>
+                        <h2 id="modal-title" class="text-2xl sm:text-3xl font-bold text-[#1A2F4A] leading-snug"></h2>
                         <p id="modal-author" class="text-[#6B7280] font-medium"></p>
                         <div class="flex items-center gap-4 pt-1">
-                            <span id="modal-price" class="text-lg font-bold text-[#1F3A5F]"></span>
+                            <span id="modal-price" class="text-lg font-bold text-[#1A2F4A]"></span>
                         </div>
                         <div class="grid grid-cols-2 gap-4 pt-4 border-t border-[#E5E7EB] text-sm">
                             <div><span class="text-[#9CA3AF] block text-xs mb-0.5">ቋንቋ</span><strong id="modal-lang" class="text-[#374151]"></strong></div>
@@ -1217,13 +1155,13 @@
                             <div><span class="text-[#9CA3AF] block text-xs mb-0.5">ዓመተ ምህረት</span><strong id="modal-year" class="text-[#374151]"></strong></div>
                             <div><span class="text-[#9CA3AF] block text-xs mb-0.5">ገጾች</span><strong id="modal-pages" class="text-[#374151]"></strong></div>
                         </div>
-                        <button class="w-full mt-2 bg-[#1F3A5F] hover:bg-[#162d4a] text-white font-semibold py-3.5 rounded-xl transition-premium flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                        <button class="w-full mt-2 bg-[#1A2F4A] hover:bg-[#122033] text-white font-semibold py-3.5 rounded-xl transition-premium flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5">
                             <i data-lucide="shopping-cart" class="w-4 h-4" aria-hidden="true"></i> Add to Cart
                         </button>
                     </div>
                 </div>
                 <div class="mt-8 pt-6 border-t border-[#E5E7EB]">
-                    <h3 class="text-lg font-bold text-[#1F3A5F] mb-3">መግለጫ</h3>
+                    <h3 class="text-lg font-bold text-[#1A2F4A] mb-3">መግለጫ</h3>
                     <p id="modal-desc" class="text-[#6B7280] text-[15px] leading-relaxed"></p>
                 </div>
             </div>
@@ -1234,13 +1172,13 @@
     <div id="toast" class="toast" role="alert" aria-live="polite">✅ Redirecting to Telegram...</div>
 
     <!-- ================= FOOTER ================= -->
-    <footer class="bg-[#1A2D47] text-white pt-16 pb-8 border-t border-white/5">
+    <footer class="bg-[#152538] text-white pt-16 pb-8 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14 mb-12">
                 <div class="space-y-5">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center" aria-hidden="true">
-                            <i data-lucide="book-open" class="w-5 h-5 text-[#C89B3C]"></i>
+                            <i data-lucide="book-open" class="w-5 h-5 text-[#C9A227]"></i>
                         </div>
                         <div>
                             <span class="text-xl font-extrabold">Arganon</span>
@@ -1263,10 +1201,10 @@
                 <div>
                     <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-5">Categories</h4>
                     <ul class="space-y-3 text-sm text-white/60">
-                        <li><a href="#" onclick="navigateTo('home'); filterCategory('all')" class="hover:text-[#C89B3C] transition-premium">ሁሉም መጻሕፍት</a></li>
-                        <li><a href="#" onclick="navigateTo('home'); filterCategory('regular')" class="hover:text-[#C89B3C] transition-premium">የአማርኛ መጻሕፍት</a></li>
-                        <li><a href="#" onclick="navigateTo('home'); filterCategory('children')" class="hover:text-[#C89B3C] transition-premium">English Books</a></li>
-                        <li><a href="#" onclick="navigateTo('home'); filterCategory('new-week')" class="hover:text-[#C89B3C] transition-premium">የሳምንቱ አዲስ</a></li>
+                        <li><a href="#" onclick="navigateTo('home'); filterCategory('all')" class="hover:text-[#C9A227] transition-premium">ሁሉም መጻሕፍት</a></li>
+                        <li><a href="#" onclick="navigateTo('home'); filterCategory('regular')" class="hover:text-[#C9A227] transition-premium">የአማርኛ መጻሕፍት</a></li>
+                        <li><a href="#" onclick="navigateTo('home'); filterCategory('children')" class="hover:text-[#C9A227] transition-premium">English Books</a></li>
+                        <li><a href="#" onclick="navigateTo('home'); filterCategory('new-week')" class="hover:text-[#C9A227] transition-premium">የሳምንቱ አዲስ</a></li>
                     </ul>
                 </div>
 
@@ -1279,11 +1217,11 @@
                         </li>
                         <li class="flex items-center gap-2">
                             <i data-lucide="phone" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
-                            <a href="tel:0939437332" class="hover:text-[#C89B3C] transition-premium">0939437332</a>
+                            <a href="tel:0939437332" class="hover:text-[#C9A227] transition-premium">0939437332</a>
                         </li>
                         <li class="flex items-center gap-2">
                             <i data-lucide="send" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
-                            <a href="https://t.me/corpus_mysticum" target="_blank" rel="noopener noreferrer" class="hover:text-[#C89B3C] transition-premium">@corpus_mysticum</a>
+                            <a href="https://t.me/corpus_mysticum" target="_blank" rel="noopener noreferrer" class="hover:text-[#C9A227] transition-premium">@corpus_mysticum</a>
                         </li>
                     </ul>
                 </div>
@@ -1291,8 +1229,8 @@
                 <div>
                     <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-5">About</h4>
                     <ul class="space-y-3 text-sm text-white/60">
-                        <li><a href="#" onclick="navigateTo('about')" class="hover:text-[#C89B3C] transition-premium">ስለ እኛ</a></li>
-                        <li><a href="#" onclick="navigateTo('contact')" class="hover:text-[#C89B3C] transition-premium">ያግኙን</a></li>
+                        <li><a href="#" onclick="navigateTo('about')" class="hover:text-[#C9A227] transition-premium">ስለ እኛ</a></li>
+                        <li><a href="#" onclick="navigateTo('contact')" class="hover:text-[#C9A227] transition-premium">ያግኙን</a></li>
                         <li><a href="#" class="hover:text-white transition-premium">Privacy Policy</a></li>
                         <li><a href="#" class="hover:text-white transition-premium">Terms of Service</a></li>
                     </ul>
