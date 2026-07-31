@@ -1037,7 +1037,7 @@
                 </div>
             </section>
 
-            <!-- Newsletter section (unchanged, using Telegram) -->
+            <!-- Newsletter section -->
             <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-about">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -1155,7 +1155,7 @@
                 </div>
             </section>
 
-            <!-- Newsletter section (unchanged, using Telegram) -->
+            <!-- Newsletter section -->
             <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-contact">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -1326,7 +1326,7 @@
         // ─── Lucide ───
         if (typeof lucide !== 'undefined') lucide.createIcons();
 
-        // ─── Books Data (hardcoded, trusted) ───
+        // ─── Books Data ───
         const books = [{
             id: 1,
             title: "የቤተ ክርስቲያን ታሪክ",
@@ -1610,7 +1610,6 @@
         }
 
         function getPageSize() {
-            // Desktop: 15 items per page for screens >= 1024px, else 12
             return window.innerWidth >= 1024 ? 15 : 12;
         }
 
@@ -1651,7 +1650,7 @@
             }
         }
 
-        // ─── SECURE DOM Builders ───
+        // ─── DOM Builders ───
         function createBookCardElement(book) {
             const card = document.createElement('div');
             card.className = 'book-card';
@@ -1715,7 +1714,6 @@
             body.appendChild(btn);
 
             card.appendChild(body);
-
             return card;
         }
 
@@ -1752,27 +1750,19 @@
             return btn;
         }
 
-        function createPaginationButton(text, page, isActive, isDisabled) {
+        // ─── Pagination Button (FIXED: explicit target page) ───
+        function createPaginationButton(text, targetPage, isActive, isDisabled) {
             const btn = document.createElement('button');
-            btn.className = `pagination-btn ${isActive ? 'active' : ''} ${isNaN(page) ? 'arrow' : ''}`;
+            btn.className = `pagination-btn ${isActive ? 'active' : ''} ${targetPage === null ? 'arrow' : ''}`;
             btn.textContent = text;
             if (isDisabled) btn.disabled = true;
-            if (!isDisabled && !isNaN(page)) {
-                btn.onclick = function() { goToPage(page); };
-            } else if (!isDisabled && text === '← Previous') {
-                btn.onclick = function() { goToPage(currentPage - 1); };
-            } else if (!isDisabled && text === 'Next →') {
-                btn.onclick = function() { goToPage(currentPage + 1); };
+            // If targetPage is a number, attach click handler to go to that page
+            if (typeof targetPage === 'number' && !isDisabled) {
+                btn.addEventListener('click', function() {
+                    goToPage(targetPage);
+                });
             }
             return btn;
-        }
-
-        function createEllipsis() {
-            const span = document.createElement('span');
-            span.className = 'pagination-btn';
-            span.style.cssText = 'border:none;background:transparent;cursor:default;';
-            span.textContent = '…';
-            return span;
         }
 
         // ─── Render Functions ───
@@ -1831,7 +1821,10 @@
 
             if (totalPages <= 1) return;
 
-            const prevBtn = createPaginationButton('← Previous', null, false, currentPage === 1);
+            // Previous button: target page is currentPage - 1
+            const prevTarget = currentPage - 1;
+            const prevDisabled = prevTarget < 1;
+            const prevBtn = createPaginationButton('← Previous', prevTarget, false, prevDisabled);
             container.appendChild(prevBtn);
 
             const maxVisible = 5;
@@ -1845,7 +1838,11 @@
                 const btn1 = createPaginationButton('1', 1, false, false);
                 container.appendChild(btn1);
                 if (startPage > 2) {
-                    container.appendChild(createEllipsis());
+                    const ellipsis = document.createElement('span');
+                    ellipsis.className = 'pagination-btn';
+                    ellipsis.style.cssText = 'border:none;background:transparent;cursor:default;';
+                    ellipsis.textContent = '…';
+                    container.appendChild(ellipsis);
                 }
             }
 
@@ -1856,13 +1853,20 @@
 
             if (endPage < totalPages) {
                 if (endPage < totalPages - 1) {
-                    container.appendChild(createEllipsis());
+                    const ellipsis = document.createElement('span');
+                    ellipsis.className = 'pagination-btn';
+                    ellipsis.style.cssText = 'border:none;background:transparent;cursor:default;';
+                    ellipsis.textContent = '…';
+                    container.appendChild(ellipsis);
                 }
                 const btnLast = createPaginationButton(String(totalPages), totalPages, false, false);
                 container.appendChild(btnLast);
             }
 
-            const nextBtn = createPaginationButton('Next →', null, false, currentPage === totalPages);
+            // Next button: target page is currentPage + 1
+            const nextTarget = currentPage + 1;
+            const nextDisabled = nextTarget > totalPages;
+            const nextBtn = createPaginationButton('Next →', nextTarget, false, nextDisabled);
             container.appendChild(nextBtn);
         }
 
@@ -2026,9 +2030,6 @@
             renderSidebar();
             if (typeof lucide !== 'undefined') lucide.createIcons();
         });
-
-        // Optional: re-render on resize to adjust page size (but not required)
-        // We'll just let the user refresh or filter to apply new size.
     </script>
 </body>
 </html>
