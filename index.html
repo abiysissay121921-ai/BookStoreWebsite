@@ -1634,7 +1634,6 @@
             card.className = 'book-card';
             card.setAttribute('role', 'listitem');
 
-            // Image wrap
             const imgWrap = document.createElement('div');
             imgWrap.className = 'book-img-wrap';
             const img = document.createElement('img');
@@ -1652,7 +1651,6 @@
             }
             card.appendChild(imgWrap);
 
-            // Body
             const body = document.createElement('div');
             body.className = 'card-body';
 
@@ -1679,7 +1677,6 @@
 
             card.appendChild(body);
 
-            // Re-initialize icons for this card after DOM insertion
             requestAnimationFrame(() => {
                 if (typeof lucide !== 'undefined') lucide.createIcons();
             });
@@ -1739,6 +1736,10 @@
             const grid = document.getElementById('books-grid');
             const noResults = document.getElementById('no-results');
             if (!grid) return;
+
+            // --- FIX: Reset the "No Books Found" state before rendering ---
+            // Always hide no-results initially, then show if needed
+            noResults.classList.add('hidden');
             grid.innerHTML = '';
 
             if (booksToDisplay.length === 0) {
@@ -1746,10 +1747,10 @@
                 document.getElementById('pagination-container').innerHTML = '';
                 return;
             }
-            noResults.classList.add('hidden');
 
             const totalBooks = booksToDisplay.length;
             const totalPages = Math.ceil(totalBooks / PAGE_SIZE);
+            // Adjust current page if out of bounds
             if (currentPage > totalPages) currentPage = totalPages;
             if (currentPage < 1) currentPage = 1;
 
@@ -1774,7 +1775,6 @@
 
             if (totalPages <= 1) return;
 
-            // Previous
             const prevBtn = createPaginationButton('← Previous', null, false, currentPage === 1);
             container.appendChild(prevBtn);
 
@@ -1852,11 +1852,9 @@
         function applyFilters() {
             const searchInput = document.getElementById('search-input');
             const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
-
-            // SECURE: Sanitize search input (prevent injection)
             const safeQuery = query.replace(/[<>]/g, '');
 
-            let filtered = books.filter(book => {
+            const filtered = books.filter(book => {
                 let matchesCategory = false;
                 if (currentFilter === 'all') {
                     matchesCategory = true;
@@ -1872,11 +1870,15 @@
                 return matchesCategory && matchesShortLink && matchesSearch;
             });
 
+            // Update global filteredBooks
             filteredBooks = filtered;
+
+            // Ensure currentPage is valid for the new filtered set
             const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
             if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
             if (currentPage < 1) currentPage = 1;
 
+            // Re-render everything with the new data
             renderBooks(filtered);
             renderSidebar();
         }
