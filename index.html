@@ -213,7 +213,7 @@
             background: radial-gradient(circle at 70% 70%, rgba(200, 155, 60, 0.05), rgba(31, 58, 95, 0.02));
         }
 
-        /* ─── Book Cards (REFINED: smaller, more elegant) ─── */
+        /* ─── Book Cards ─── */
         .book-card {
             background: var(--card);
             border-radius: var(--radius-md);
@@ -234,7 +234,7 @@
             border-color: transparent;
         }
         .book-card:hover .book-img {
-            transform: scale(1.06);
+            transform: scale(1.02);
         }
         .book-card:focus-visible {
             outline: 2px solid var(--accent);
@@ -271,7 +271,7 @@
             pointer-events: none;
         }
         .book-card .card-body {
-            padding: 16px 16px 18px;
+            padding: 14px 14px 16px;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -745,7 +745,7 @@
                 padding: 16px 20px;
             }
             .book-card .card-body {
-                padding: 14px 14px 16px;
+                padding: 12px 12px 14px;
             }
             .book-card .card-title {
                 font-size: 13px;
@@ -972,7 +972,8 @@
                                 </div>
                             </div>
 
-                            <div id="books-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6" role="list">
+                            <!-- Books Grid: 4 columns on extra large screens for smaller cards -->
+                            <div id="books-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6" role="list">
                                 <!-- Built safely by JavaScript -->
                             </div>
 
@@ -1652,17 +1653,10 @@
             card.setAttribute('tabindex', '0');
             card.setAttribute('aria-label', `View details for ${book.title}`);
 
-            // Click handler for the entire card
             card.addEventListener('click', function(e) {
-                // If the click is on the button, we handle it separately, but we let it bubble to ensure it works.
-                // The button has its own handler with stopPropagation to prevent double-firing.
-                // But we want the card click to work for all other areas.
-                // Actually, the button click handler stops propagation, so this won't fire for button clicks.
-                // For all other clicks, this opens the modal.
                 openBookModal(book.id);
             });
 
-            // Keyboard support: Enter or Space
             card.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -1670,7 +1664,6 @@
                 }
             });
 
-            // Image wrap
             const imgWrap = document.createElement('div');
             imgWrap.className = 'book-img-wrap';
             const img = document.createElement('img');
@@ -1679,8 +1672,6 @@
             img.alt = `Cover of ${book.title}`;
             img.loading = 'lazy';
             img.onerror = function() { this.src = 'https://placehold.co/300x400/1F3A5F/C89B3C?text=Book'; };
-            // Ensure the image doesn't trigger the card click (it's inside the card, so it will bubble)
-            // No need for stopPropagation here - the card click handler will handle it
             imgWrap.appendChild(img);
             if (book.isNew) {
                 const badge = document.createElement('span');
@@ -1690,7 +1681,6 @@
             }
             card.appendChild(imgWrap);
 
-            // Body
             const body = document.createElement('div');
             body.className = 'card-body';
 
@@ -1709,12 +1699,11 @@
             price.textContent = book.price;
             body.appendChild(price);
 
-            // Button - with stopPropagation so it doesn't trigger the card click twice
             const btn = document.createElement('button');
             btn.className = 'card-btn';
             btn.innerHTML = '<i data-lucide="eye" class="w-3.5 h-3.5" aria-hidden="true"></i> View Details';
             btn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent card click from firing
+                e.stopPropagation();
                 openBookModal(book.id);
             });
             body.appendChild(btn);
@@ -1729,13 +1718,10 @@
             btn.className = `sidebar-link ${isActive ? 'active' : ''}`;
             btn.textContent = link;
             btn.setAttribute('role', 'button');
-            // Special handling for "All Books" – reset everything
             btn.onclick = function() {
                 if (link === 'All Books') {
-                    // Reset both filters to 'all'
                     currentFilter = 'all';
                     currentShortLinkFilter = 'all';
-                    // Update UI pills
                     document.querySelectorAll('.filter-pill').forEach(p => {
                         p.classList.remove('active');
                         p.setAttribute('aria-pressed', 'false');
@@ -1745,13 +1731,11 @@
                         allBtn.classList.add('active');
                         allBtn.setAttribute('aria-pressed', 'true');
                     }
-                    // Update sidebar active state
                     document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
                     btn.classList.add('active');
                     currentPage = 1;
                     applyFilters();
                 } else {
-                    // Normal short link filter
                     currentShortLinkFilter = link;
                     document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
                     btn.classList.add('active');
@@ -1792,7 +1776,6 @@
             if (!sidebar) return;
             sidebar.innerHTML = '';
 
-            // "All Books" with special handler
             const allBtn = createSidebarLink('All Books', currentShortLinkFilter === 'all');
             sidebar.appendChild(allBtn);
 
