@@ -1574,7 +1574,7 @@
             year: "2024",
             pages: "400",
             isNew: false,
-            isFeatured: false,
+            isFeatured: true,
             isBestSeller: false,
             dateAdded: "2026-07-28",
             price: "480 ብር",
@@ -1609,8 +1609,9 @@
             return diffDays >= 0 && diffDays <= 7;
         }
 
+        // ─── Page size: 16 on desktop, 12 on mobile ───
         function getPageSize() {
-            return window.innerWidth >= 1024 ? 15 : 12;
+            return window.innerWidth >= 1024 ? 16 : 12;
         }
 
         // ─── State ───
@@ -1750,13 +1751,12 @@
             return btn;
         }
 
-        // ─── Pagination Button (FIXED: explicit target page) ───
+        // ─── Pagination Button ───
         function createPaginationButton(text, targetPage, isActive, isDisabled) {
             const btn = document.createElement('button');
             btn.className = `pagination-btn ${isActive ? 'active' : ''} ${targetPage === null ? 'arrow' : ''}`;
             btn.textContent = text;
             if (isDisabled) btn.disabled = true;
-            // If targetPage is a number, attach click handler to go to that page
             if (typeof targetPage === 'number' && !isDisabled) {
                 btn.addEventListener('click', function() {
                     goToPage(targetPage);
@@ -1821,7 +1821,7 @@
 
             if (totalPages <= 1) return;
 
-            // Previous button: target page is currentPage - 1
+            // Previous
             const prevTarget = currentPage - 1;
             const prevDisabled = prevTarget < 1;
             const prevBtn = createPaginationButton('← Previous', prevTarget, false, prevDisabled);
@@ -1863,7 +1863,7 @@
                 container.appendChild(btnLast);
             }
 
-            // Next button: target page is currentPage + 1
+            // Next
             const nextTarget = currentPage + 1;
             const nextDisabled = nextTarget > totalPages;
             const nextBtn = createPaginationButton('Next →', nextTarget, false, nextDisabled);
