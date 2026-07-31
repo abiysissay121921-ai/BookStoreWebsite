@@ -1689,7 +1689,36 @@
             btn.className = `sidebar-link ${isActive ? 'active' : ''}`;
             btn.textContent = link;
             btn.setAttribute('role', 'button');
-            btn.onclick = function() { filterByShortLink(link); };
+            // Special handling for "All Books" – reset everything
+            btn.onclick = function() {
+                if (link === 'All Books') {
+                    // Reset both filters to 'all'
+                    currentFilter = 'all';
+                    currentShortLinkFilter = 'all';
+                    // Update UI pills
+                    document.querySelectorAll('.filter-pill').forEach(p => {
+                        p.classList.remove('active');
+                        p.setAttribute('aria-pressed', 'false');
+                    });
+                    const allBtn = document.getElementById('btn-all');
+                    if (allBtn) {
+                        allBtn.classList.add('active');
+                        allBtn.setAttribute('aria-pressed', 'true');
+                    }
+                    // Update sidebar active state
+                    document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentPage = 1;
+                    applyFilters();
+                } else {
+                    // Normal short link filter
+                    currentShortLinkFilter = link;
+                    document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentPage = 1;
+                    applyFilters();
+                }
+            };
             return btn;
         }
 
@@ -1723,6 +1752,7 @@
             if (!sidebar) return;
             sidebar.innerHTML = '';
 
+            // "All Books" with special handler
             const allBtn = createSidebarLink('All Books', currentShortLinkFilter === 'all');
             sidebar.appendChild(allBtn);
 
@@ -1737,8 +1767,6 @@
             const noResults = document.getElementById('no-results');
             if (!grid) return;
 
-            // --- FIX: Reset the "No Books Found" state before rendering ---
-            // Always hide no-results initially, then show if needed
             noResults.classList.add('hidden');
             grid.innerHTML = '';
 
@@ -1750,7 +1778,6 @@
 
             const totalBooks = booksToDisplay.length;
             const totalPages = Math.ceil(totalBooks / PAGE_SIZE);
-            // Adjust current page if out of bounds
             if (currentPage > totalPages) currentPage = totalPages;
             if (currentPage < 1) currentPage = 1;
 
@@ -1812,12 +1839,8 @@
 
         // ─── Filter Functions ───
         function filterByShortLink(link) {
-            currentShortLinkFilter = link;
-            currentPage = 1;
-            document.querySelectorAll('.sidebar-link').forEach(el => {
-                el.classList.toggle('active', el.textContent === link || (link === 'all' && el.textContent === 'All Books'));
-            });
-            applyFilters();
+            // This is now handled inside createSidebarLink, but we keep for external calls if any.
+            // We'll leave it as a no-op to avoid duplication.
         }
 
         function filterCategory(category) {
@@ -1870,15 +1893,11 @@
                 return matchesCategory && matchesShortLink && matchesSearch;
             });
 
-            // Update global filteredBooks
             filteredBooks = filtered;
-
-            // Ensure currentPage is valid for the new filtered set
             const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
             if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
             if (currentPage < 1) currentPage = 1;
 
-            // Re-render everything with the new data
             renderBooks(filtered);
             renderSidebar();
         }
