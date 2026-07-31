@@ -639,7 +639,7 @@
             font-weight: 600;
         }
 
-        /* ─── Responsive Layout ─── */
+        /* ─── Desktop Grid Layout ─── */
         .books-layout {
             display: flex;
             flex-direction: column;
@@ -649,11 +649,14 @@
         @media (min-width: 1024px) {
             .books-layout {
                 display: grid;
-                grid-template-columns: 1fr 3fr;
+                grid-template-columns: 280px 1fr;
                 gap: 2rem;
+                align-items: start;
             }
             .sidebar-wrapper {
                 order: 1;
+                position: sticky;
+                top: 100px;
             }
             .main-content {
                 order: 2;
@@ -890,8 +893,8 @@
                     <!-- Sidebar + Main Content (flex/grid layout) -->
                     <div class="books-layout">
                         <!-- Sidebar Wrapper -->
-                        <aside class="sidebar-wrapper md:col-span-1">
-                            <div class="bg-white p-5 rounded-2xl border border-[#E5E7EB] shadow-sm sticky top-24">
+                        <aside class="sidebar-wrapper">
+                            <div class="bg-white p-5 rounded-2xl border border-[#E5E7EB] shadow-sm">
                                 <h3 class="font-bold text-[#1F3A5F] text-sm uppercase tracking-wider mb-1">Short Links</h3>
                                 <p class="text-[#6B7280] text-xs mb-4">በርዕስ ያስሱ</p>
                                 <div class="h-px bg-[#E5E7EB] mb-4"></div>
@@ -902,7 +905,7 @@
                         </aside>
 
                         <!-- Main Content -->
-                        <div class="main-content md:col-span-3">
+                        <div class="main-content">
                             <!-- Filter Pills -->
                             <div class="flex flex-wrap justify-center items-center gap-2.5 sm:gap-3 mb-10">
                                 <button onclick="filterCategory('all')" id="btn-all" class="filter-pill active">ሁሉም መጻሕፍት</button>
@@ -1594,6 +1597,17 @@
             lucide.createIcons();
         }
 
+        // ─── Scroll to Books ───
+        function scrollToBooks() {
+            const grid = document.getElementById('books-grid');
+            if (grid) {
+                // Use a small delay to ensure DOM is updated
+                requestAnimationFrame(() => {
+                    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+        }
+
         // ─── Render Sidebar ───
         function renderSidebar() {
             const shortLinks = [...new Set(books.map(b => b.shortLink).filter(Boolean))];
@@ -1610,10 +1624,9 @@
         // ─── Filter by Short Link ───
         function filterByShortLink(link) {
             currentShortLinkFilter = link;
-            currentPage = 1; // Reset page
+            currentPage = 1;
             // Update sidebar active state
             document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
-            // Find the clicked element
             const btns = document.querySelectorAll('.sidebar-link');
             btns.forEach(el => {
                 if (el.textContent === link) el.classList.add('active');
@@ -1663,7 +1676,6 @@
             // Pagination
             const totalBooks = booksToDisplay.length;
             const totalPages = Math.ceil(totalBooks / PAGE_SIZE);
-            // Ensure current page is within bounds
             if (currentPage > totalPages) currentPage = totalPages;
             if (currentPage < 1) currentPage = 1;
 
@@ -1675,10 +1687,11 @@
                 grid.innerHTML += createBookCardHTML(book);
             });
 
-            // Render pagination
             renderPagination(totalPages);
-
             lucide.createIcons();
+
+            // Scroll to books after rendering
+            scrollToBooks();
         }
 
         // ─── Pagination ───
@@ -1691,10 +1704,8 @@
             }
 
             let html = '';
-            // Previous
             html += `<button class="pagination-btn arrow" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← Previous</button>`;
 
-            // Page numbers
             const maxVisible = 5;
             let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
             let endPage = Math.min(totalPages, startPage + maxVisible - 1);
@@ -1716,7 +1727,6 @@
                 html += `<button class="pagination-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
             }
 
-            // Next
             html += `<button class="pagination-btn arrow" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
 
             container.innerHTML = html;
@@ -1733,7 +1743,7 @@
         // ─── Filtering ───
         function filterCategory(category) {
             currentFilter = category;
-            currentPage = 1; // Reset page
+            currentPage = 1;
             document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
             const idMap = { 'all': 'btn-all', 'regular': 'btn-regular', 'children': 'btn-children', 'new-week': 'btn-new-week' };
             const activeBtn = document.getElementById(idMap[category]);
@@ -1742,7 +1752,7 @@
         }
 
         function searchBooks() {
-            currentPage = 1; // Reset page on search
+            currentPage = 1;
             applyFilters();
         }
 
@@ -1766,7 +1776,6 @@
             });
 
             filteredBooks = filtered;
-            // Ensure current page is valid
             const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
             if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
             if (currentPage < 1) currentPage = 1;
@@ -1855,9 +1864,7 @@
 
         // ─── Init ───
         document.addEventListener('DOMContentLoaded', () => {
-            // Set default page
             navigateTo('home');
-            // Apply initial filter to set filteredBooks
             filteredBooks = books.slice();
             renderBooks(filteredBooks);
             renderSidebar();
