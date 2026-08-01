@@ -1261,7 +1261,7 @@
             background: #fff;
         }
 
-        /* Team Member Cards */
+        /* Team Member Cards (updated for images) */
         .team-card {
             background: #fff;
             border-radius: var(--radius-md);
@@ -1279,31 +1279,19 @@
             box-shadow: 0 12px 40px rgba(0,0,0,0.08);
             border-color: transparent;
         }
-        .team-card .team-avatar {
-            width: 52px;
-            height: 52px;
+        .team-card .team-photo {
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
-            background: var(--primary);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
+            object-fit: cover;
             margin-bottom: 0.75rem;
+            border: 2px solid var(--border);
             flex-shrink: 0;
+            transition: all 0.3s ease;
         }
-        .team-card .team-avatar.gold {
-            background: var(--accent);
-        }
-        .team-card .team-avatar.light {
-            background: #2a4d7a;
-        }
-        .team-card .team-avatar.teal {
-            background: #1a4a5a;
-        }
-        .team-card .team-avatar.rose {
-            background: #7a4a5a;
+        .team-card:hover .team-photo {
+            border-color: var(--accent);
+            transform: scale(1.05);
         }
         .team-card h4 {
             font-size: 1rem;
@@ -1344,6 +1332,10 @@
             }
             .team-card {
                 padding: 1rem 1rem 1.25rem;
+            }
+            .team-card .team-photo {
+                width: 48px;
+                height: 48px;
             }
         }
 
@@ -1743,7 +1735,7 @@
                         </div>
                     </div>
 
-                    <!-- Team Section -->
+                    <!-- Team Section with images -->
                     <div class="max-w-6xl mx-auto">
                         <div class="text-center mb-12">
                             <span class="section-label">Our Team</span>
@@ -1757,19 +1749,21 @@
                             <div class="lg:col-span-1">
                                 <div class="team-image-wrapper">
                                     <img id="team-image"
-                                         src="images/team-placeholder.jpg"
+                                         src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                          alt="People Behind Arganon"
                                          class="w-full h-auto aspect-[4/3] object-cover" />
                                     <div class="image-caption">People Behind Arganon</div>
                                 </div>
                             </div>
 
-                            <!-- Right: Team Cards -->
+                            <!-- Right: Team Cards with Images -->
                             <div class="lg:col-span-2">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                                     <!-- Team Member 1: Jonathan Reed -->
                                     <div class="team-card">
-                                        <div class="team-avatar">JR</div>
+                                        <img class="team-photo"
+                                             src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=face"
+                                             alt="Jonathan Reed" />
                                         <h4>Jonathan Reed</h4>
                                         <div class="team-role">Founder &amp; CEO</div>
                                         <p class="team-bio">Jonathan established Arganon with the vision of creating a trusted digital destination where readers can easily discover, explore, and enjoy high-quality books from different categories.</p>
@@ -1777,7 +1771,9 @@
 
                                     <!-- Team Member 2: Rachel Green -->
                                     <div class="team-card">
-                                        <div class="team-avatar gold">RG</div>
+                                        <img class="team-photo"
+                                             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop&crop=face"
+                                             alt="Rachel Green" />
                                         <h4>Rachel Green</h4>
                                         <div class="team-role">Content &amp; Editorial Director</div>
                                         <p class="team-bio">Rachel oversees the quality of the book collection, ensuring readers have access to carefully organized and valuable content.</p>
@@ -1785,7 +1781,9 @@
 
                                     <!-- Team Member 3: Michael Stevens -->
                                     <div class="team-card">
-                                        <div class="team-avatar light">MS</div>
+                                        <img class="team-photo"
+                                             src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&crop=face"
+                                             alt="Michael Stevens" />
                                         <h4>Michael Stevens</h4>
                                         <div class="team-role">Technology Director</div>
                                         <p class="team-bio">Michael leads the technological development of Arganon, ensuring the platform remains secure, modern, responsive, and user-friendly.</p>
@@ -1793,7 +1791,9 @@
 
                                     <!-- Team Member 4: Patricia Adams -->
                                     <div class="team-card">
-                                        <div class="team-avatar rose">PA</div>
+                                        <img class="team-photo"
+                                             src="https://images.unsplash.com/photo-1487412720507-e7ab37633c6f?w=120&h=120&fit=crop&crop=face"
+                                             alt="Patricia Adams" />
                                         <h4>Patricia Adams</h4>
                                         <div class="team-role">Community &amp; Customer Success Manager</div>
                                         <p class="team-bio">Patricia focuses on delivering exceptional customer support while building a welcoming community of passionate readers.</p>
@@ -1841,7 +1841,7 @@
             </section>
         </div>
 
-        <!-- ================= PAGE: CONTACT (UPDATED) ================= -->
+        <!-- ================= PAGE: CONTACT ================= -->
         <div id="page-contact" class="page-content hidden">
             <section id="contact" class="py-20 sm:py-24 bg-contact-gradient relative" aria-labelledby="contact-title">
                 <div class="section-blob" aria-hidden="true">
@@ -1864,7 +1864,7 @@
                             </p>
 
                             <div class="space-y-5">
-                                <!-- Updated Address (single line) -->
+                                <!-- Address -->
                                 <div class="flex items-start gap-4">
                                     <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
                                         <i data-lucide="map-pin" class="w-5 h-5"></i>
@@ -1874,7 +1874,6 @@
                                         <p class="text-[#6B7280] text-sm mt-0.5">
                                             አርጋኖን መጻሕፍት መደብር 5 ኪሎ ቅድስት ማርያም ማኅበረ ቅዱሳን ሕንፃ ግራውንድ አጠገብ።
                                         </p>
-                                        <!-- Google Maps Link -->
                                         <a href="https://maps.app.goo.gl/iMvFKor6AJBNEqzTA"
                                            target="_blank"
                                            rel="noopener noreferrer"
@@ -1885,7 +1884,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Updated Phone Numbers -->
+                                <!-- Phone Numbers -->
                                 <div class="flex items-start gap-4">
                                     <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
                                         <i data-lucide="phone" class="w-5 h-5"></i>
@@ -1897,7 +1896,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Updated Telegram Channel -->
+                                <!-- Telegram Channel -->
                                 <div class="flex items-start gap-4">
                                     <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
                                         <i data-lucide="send" class="w-5 h-5"></i>
@@ -2081,7 +2080,8 @@
     <!-- ================= JAVASCRIPT ================= -->
     <script>
         // ─── Team Image Variable ───
-        const teamImage = "images/team-placeholder.jpg";
+        // Change this path to update the main team photo on the About page
+        const teamImage = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
 
         // ─── SECURE: Sanitization helper ───
         function escapeText(text) {
@@ -2098,7 +2098,7 @@
         // ─── Lucide ───
         if (typeof lucide !== 'undefined') lucide.createIcons();
 
-        // ─── Books Data (with isPopular boolean) ───
+        // ─── Books Data ───
         const books = [{
             id: 1,
             title: "የቤተ ክርስቲያን ታሪክ",
