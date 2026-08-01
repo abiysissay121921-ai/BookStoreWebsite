@@ -836,7 +836,7 @@
         }
 
         /* ==========================================
-           NEW: HORIZONTAL BOOK SHOWCASE
+           HORIZONTAL BOOK SHOWCASE
            ========================================== */
         .horizontal-showcase {
             padding: 3rem 0;
@@ -915,7 +915,6 @@
             color: var(--primary);
             margin-top: 0.3rem;
         }
-
         .showcase-controls {
             display: flex;
             justify-content: center;
@@ -948,7 +947,6 @@
             height: 20px;
         }
 
-        /* responsive */
         @media (min-width: 640px) {
             .horizontal-showcase .showcase-item {
                 flex: 0 0 180px;
@@ -963,7 +961,7 @@
         }
 
         /* ==========================================
-           NEW: TESTIMONIALS CAROUSEL
+           TESTIMONIALS CAROUSEL (Enhanced)
            ========================================== */
         .testimonials-section {
             padding: 3rem 0;
@@ -975,10 +973,15 @@
             overflow: hidden;
             padding: 0.5rem 0;
         }
+        .testimonials-track-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
         .testimonials-track {
             display: flex;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             gap: 1.5rem;
+            will-change: transform;
         }
         .testimonial-card {
             flex: 0 0 100%;
@@ -991,6 +994,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            min-height: 220px;
         }
         .testimonial-card .quote-icon {
             color: var(--accent);
@@ -1261,7 +1265,7 @@
             </section>
 
             <!-- ============================================================
-                 NEW: HORIZONTAL BOOK SHOWCASE
+                 HORIZONTAL BOOK SHOWCASE
                  ============================================================ -->
             <section class="horizontal-showcase bg-cool-white" aria-labelledby="showcase-title">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1288,7 +1292,7 @@
             </section>
 
             <!-- ============================================================
-                 NEW: CUSTOMER TESTIMONIALS
+                 CUSTOMER TESTIMONIALS (Enhanced)
                  ============================================================ -->
             <section class="testimonials-section" aria-labelledby="testimonials-title">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1300,8 +1304,10 @@
                     </div>
 
                     <div class="testimonials-carousel">
-                        <div id="testimonials-track" class="testimonials-track">
-                            <!-- populated by JavaScript -->
+                        <div class="testimonials-track-wrapper">
+                            <div id="testimonials-track" class="testimonials-track">
+                                <!-- populated by JavaScript -->
+                            </div>
                         </div>
                         <div class="testimonials-controls">
                             <button id="testimonial-prev" aria-label="Previous testimonial">
@@ -1650,7 +1656,7 @@
         // ─── Lucide ───
         if (typeof lucide !== 'undefined') lucide.createIcons();
 
-        // ─── Books Data ───
+        // ─── Books Data (with 'popularBooks' field added to every entry) ───
         const books = [{
             id: 1,
             title: "የቤተ ክርስቲያን ታሪክ",
@@ -1668,7 +1674,8 @@
             isBestSeller: true,
             dateAdded: "2026-07-20",
             price: "320 ብር",
-            shortLink: "History"
+            shortLink: "History",
+            popularBooks: "ፈላስፋው ሰማዕት ቅዱስ ዮስጢኖስ"
         }, {
             id: 2,
             title: "ፈላስፋው ሰማዕት ቅዱስ ዮስጢኖስ",
@@ -1686,7 +1693,8 @@
             isBestSeller: true,
             dateAdded: "2026-07-29",
             price: "280 ብር",
-            shortLink: "Religion"
+            shortLink: "Religion",
+            popularBooks: "የቤተ ክርስቲያን ታሪክ"
         }, {
             id: 3,
             title: "የሐዋርያው የቅዱስ ጳውሎስ መልእክታት ቁጥር 1",
@@ -1704,7 +1712,8 @@
             isBestSeller: true,
             dateAdded: "2026-07-25",
             price: "350 ብር",
-            shortLink: "Religion"
+            shortLink: "Religion",
+            popularBooks: "መራኁት"
         }, {
             id: 4,
             title: "መራኁት",
@@ -1722,7 +1731,8 @@
             isBestSeller: true,
             dateAdded: "2026-07-25",
             price: "260 ብር",
-            shortLink: "Self Development"
+            shortLink: "Self Development",
+            popularBooks: "የሐዋርያው የቅዱስ ጳውሎስ መልእክታት ቁጥር 1"
         }, {
             id: 5,
             title: "ሐዋርያን አበው",
@@ -1740,7 +1750,8 @@
             isBestSeller: false,
             dateAdded: "2026-07-25",
             price: "240 ብር",
-            shortLink: "Religion"
+            shortLink: "Religion",
+            popularBooks: "የቤተ ክርስቲያን ታሪክ"
         }, {
             id: 6,
             title: "ቃለ አብ ሕያው",
@@ -1758,7 +1769,8 @@
             isBestSeller: false,
             dateAdded: "2026-07-25",
             price: "220 ብር",
-            shortLink: "Religion"
+            shortLink: "Religion",
+            popularBooks: "ፈላስፋው ሰማዕት ቅዱስ ዮስጢኖስ"
         }, {
             id: 7,
             title: "ማስያስ",
@@ -1776,7 +1788,8 @@
             isBestSeller: false,
             dateAdded: "2026-07-25",
             price: "290 ብር",
-            shortLink: "Religion"
+            shortLink: "Religion",
+            popularBooks: "መራኁት"
         }, {
             id: 8,
             title: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት",
@@ -1794,7 +1807,8 @@
             isBestSeller: true,
             dateAdded: "2026-07-25",
             price: "380 ብር",
-            shortLink: "Religion"
+            shortLink: "Religion",
+            popularBooks: "ሐዋርያን አበው"
         }, {
             id: 9,
             title: "የዮሐንስ ወንጌል በቅዱስ ዮሐንስ አፈወርቅ",
@@ -1812,7 +1826,8 @@
             isBestSeller: false,
             dateAdded: "2026-07-25",
             price: "310 ብር",
-            shortLink: "Religion"
+            shortLink: "Religion",
+            popularBooks: "ማስያስ"
         }, {
             id: 10,
             title: "የሐዋርያው ቅዱስ ጳውሎስ መልእክታት ቁጥር 2",
@@ -1830,7 +1845,8 @@
             isBestSeller: false,
             dateAdded: "2026-07-25",
             price: "340 ብር",
-            shortLink: "Religion"
+            shortLink: "Religion",
+            popularBooks: "የሐዋርያው የቅዱስ ጳውሎስ መልእክታት ቁጥር 1"
         }, {
             id: 11,
             title: "ከመዝ ነአምን እንዲህ እናምናለን",
@@ -1848,7 +1864,8 @@
             isBestSeller: true,
             dateAdded: "2026-07-25",
             price: "250 ብር",
-            shortLink: "Religion"
+            shortLink: "Religion",
+            popularBooks: "የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያን እምነት"
         }, {
             id: 12,
             title: "Artificial Intelligence",
@@ -1866,7 +1883,8 @@
             isBestSeller: false,
             dateAdded: "2026-07-31",
             price: "450 ብር",
-            shortLink: "Technology"
+            shortLink: "Technology",
+            popularBooks: "Python Programming"
         }, {
             id: 13,
             title: "Python Programming",
@@ -1884,7 +1902,8 @@
             isBestSeller: true,
             dateAdded: "2026-07-30",
             price: "500 ብር",
-            shortLink: "Programming"
+            shortLink: "Programming",
+            popularBooks: "Web Development"
         }, {
             id: 14,
             title: "Web Development",
@@ -1902,7 +1921,8 @@
             isBestSeller: false,
             dateAdded: "2026-07-28",
             price: "480 ብር",
-            shortLink: "Technology"
+            shortLink: "Technology",
+            popularBooks: "Artificial Intelligence"
         }, {
             id: 15,
             title: "Business Management",
@@ -1920,10 +1940,11 @@
             isBestSeller: true,
             dateAdded: "2026-07-26",
             price: "420 ብር",
-            shortLink: "Business"
+            shortLink: "Business",
+            popularBooks: "Python Programming"
         }];
 
-        // ─── Testimonials Data ───
+        // ─── Testimonials Data (20 total – added 5 new ones) ───
         const testimonials = [
             { name: "Sarah Johnson", review: "I found several books I had been searching for months. The website is clean, easy to use, and the book collection is impressive. Highly recommended!" },
             { name: "Michael Anderson", review: "This is one of the best online bookstores I've visited. Everything is organized, and finding books is incredibly simple." },
@@ -1939,7 +1960,13 @@
             { name: "Christopher Lee", review: "This has become one of my favorite places to discover new books. Everything is well organized and visually appealing." },
             { name: "Mia Hernandez", review: "I was impressed by how easy it is to browse hundreds of books. The website saves me a lot of time." },
             { name: "William Harris", review: "Excellent collection, elegant design, and smooth navigation. It feels like using an international bookstore." },
-            { name: "Charlotte Walker", review: "I genuinely enjoy visiting this website. The quality of the book collection and the professional presentation make it an outstanding resource for readers." }
+            { name: "Charlotte Walker", review: "I genuinely enjoy visiting this website. The quality of the book collection and the professional presentation make it an outstanding resource for readers." },
+            // 5 NEW TESTIMONIALS
+            { name: "Ethan Reynolds", review: "The variety of books available is truly impressive. I found titles I never would have discovered elsewhere. A fantastic resource for any book lover." },
+            { name: "Amanda Foster", review: "Navigating the site is a pleasure. The design is clean, the search is fast, and the checkout process is seamless. Highly recommend!" },
+            { name: "Nathaniel Brooks", review: "I've been using this bookstore for months now, and it never disappoints. The team clearly cares about providing a quality experience." },
+            { name: "Victoria Hayes", review: "As a teacher, I appreciate the educational books available. The website makes it easy to find materials for my students. Great job!" },
+            { name: "Samuel Ortiz", review: "The recommendations are always spot on. I've discovered so many books through this platform that have become my favorites." }
         ];
 
         // ─── Helpers ───
@@ -2366,7 +2393,7 @@
 
         // ─── Horizontal Showcase ───
         let showcaseIndex = 0;
-        const showcaseItems = books.filter(b => b.isFeatured).slice(0, 12); // show featured books
+        const showcaseItems = books.filter(b => b.isFeatured).slice(0, 12);
 
         function renderShowcase() {
             const track = document.getElementById('showcase-track');
@@ -2413,14 +2440,13 @@
             });
         }
 
-        // Showcase controls
         function setupShowcaseControls() {
             const prevBtn = document.getElementById('showcase-prev');
             const nextBtn = document.getElementById('showcase-next');
             const track = document.getElementById('showcase-track');
             if (!prevBtn || !nextBtn || !track) return;
 
-            const scrollAmount = 220; // approximate card width + gap
+            const scrollAmount = 220;
 
             prevBtn.addEventListener('click', () => {
                 track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
@@ -2429,7 +2455,6 @@
                 track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             });
 
-            // Touch / mouse drag
             let isDown = false;
             let startX;
             let scrollLeft;
@@ -2457,10 +2482,12 @@
             track.style.cursor = 'grab';
         }
 
-        // ─── Testimonials Carousel ───
+        // ─── Testimonials Carousel (Enhanced with Infinite Loop & Auto-play) ───
         let currentTestimonialIndex = 0;
         let testimonialInterval = null;
         let testimonialCardsPerView = 3;
+        let testimonialTotalSlides = 0;
+        let isTransitioning = false;
 
         function getTestimonialCardsPerView() {
             const w = window.innerWidth;
@@ -2476,12 +2503,31 @@
 
             const perView = getTestimonialCardsPerView();
             testimonialCardsPerView = perView;
+            testimonialTotalSlides = Math.ceil(testimonials.length / perView);
 
             track.innerHTML = '';
+
+            // Clone the first and last few testimonials for infinite loop
+            const cloneCount = perView;
+            const allCards = [];
+
+            // Original testimonials
             testimonials.forEach((t, idx) => {
+                allCards.push({ ...t, originalIndex: idx });
+            });
+
+            // Clone first few to the end
+            for (let i = 0; i < cloneCount; i++) {
+                const t = testimonials[i];
+                allCards.push({ ...t, originalIndex: i, isClone: true });
+            }
+
+            allCards.forEach((t, idx) => {
                 const card = document.createElement('div');
                 card.className = 'testimonial-card';
                 card.setAttribute('role', 'listitem');
+                card.dataset.originalIndex = t.originalIndex;
+                card.dataset.isClone = t.isClone || false;
 
                 const quote = document.createElement('div');
                 quote.className = 'quote-icon';
@@ -2514,10 +2560,10 @@
                 track.appendChild(card);
             });
 
-            // Dots
-            const totalSlides = Math.ceil(testimonials.length / perView);
+            // Dots (only for original slides)
+            const totalDots = testimonialTotalSlides;
             dotsContainer.innerHTML = '';
-            for (let i = 0; i < totalSlides; i++) {
+            for (let i = 0; i < totalDots; i++) {
                 const dot = document.createElement('button');
                 dot.className = 'dot' + (i === 0 ? ' active' : '');
                 dot.setAttribute('aria-label', `Go to testimonial slide ${i+1}`);
@@ -2525,39 +2571,99 @@
                 dotsContainer.appendChild(dot);
             }
 
-            // Ensure current index is valid
-            if (currentTestimonialIndex >= totalSlides) currentTestimonialIndex = 0;
-            updateTestimonialCarousel();
+            // Set initial position (start at first original slide)
+            currentTestimonialIndex = 0;
+            updateTestimonialCarousel(false);
             startTestimonialAutoplay();
         }
 
-        function updateTestimonialCarousel() {
+        function updateTestimonialCarousel(animate = true) {
             const track = document.getElementById('testimonials-track');
             const dots = document.querySelectorAll('#testimonials-dots .dot');
             if (!track) return;
-            const perView = testimonialCardsPerView;
-            const totalSlides = Math.ceil(testimonials.length / perView);
-            const maxIndex = totalSlides - 1;
-            if (currentTestimonialIndex > maxIndex) currentTestimonialIndex = maxIndex;
-            if (currentTestimonialIndex < 0) currentTestimonialIndex = 0;
 
+            const perView = testimonialCardsPerView;
+            const totalSlides = testimonials.length;
+            const maxIndex = Math.ceil(totalSlides / perView);
+
+            // Calculate the offset based on the current index
+            // We display 1 slide (with multiple cards visible)
             const cardWidth = track.querySelector('.testimonial-card')?.offsetWidth || 0;
             const gap = 24;
-            const offset = currentTestimonialIndex * (cardWidth + gap);
+            const slideWidth = (cardWidth + gap) * perView;
+            // Offset is based on currentTestimonialIndex, but we start at 0
+            const offset = currentTestimonialIndex * slideWidth;
+
+            track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
             track.style.transform = `translateX(-${offset}px)`;
 
+            // Update dots
+            const dotIndex = currentTestimonialIndex % maxIndex;
             dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentTestimonialIndex);
+                dot.classList.toggle('active', i === dotIndex);
             });
+
+            // Handle infinite loop: when we reach the clone section, snap back
+            const totalCards = track.children.length;
+            const originalCardsCount = totalSlides;
+            const cloneCount = perView;
+
+            // Check if we've scrolled to the clone area (near the end)
+            // When currentTestimonialIndex reaches the last original slide,
+            // we'll smoothly transition to the clone, then snap back
+            const lastOriginalSlide = maxIndex - 1;
+            if (currentTestimonialIndex > lastOriginalSlide) {
+                // We're in the clone area
+                const realIndex = currentTestimonialIndex % maxIndex;
+                // After transition, snap back to the real slide
+                setTimeout(() => {
+                    track.style.transition = 'none';
+                    const snapOffset = realIndex * slideWidth;
+                    track.style.transform = `translateX(-${snapOffset}px)`;
+                    currentTestimonialIndex = realIndex;
+                    // Update dots after snap
+                    const dotIndexSnap = currentTestimonialIndex % maxIndex;
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === dotIndexSnap);
+                    });
+                    // Force reflow
+                    void track.offsetHeight;
+                    track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                }, 600);
+            }
         }
 
         function goToTestimonialSlide(index) {
+            if (isTransitioning) return;
             const perView = testimonialCardsPerView;
             const totalSlides = Math.ceil(testimonials.length / perView);
-            if (index < 0) index = totalSlides - 1;
-            if (index >= totalSlides) index = 0;
-            currentTestimonialIndex = index;
-            updateTestimonialCarousel();
+            const maxIndex = totalSlides;
+
+            // Allow going beyond maxIndex for infinite loop (to clones)
+            const targetIndex = index;
+
+            // If going beyond the end, we'll handle it with the clone
+            if (targetIndex >= maxIndex) {
+                // Go to the clone at the end
+                currentTestimonialIndex = targetIndex;
+                updateTestimonialCarousel(true);
+                // The snap back will be handled in updateTestimonialCarousel
+                resetTestimonialAutoplay();
+                return;
+            }
+
+            if (targetIndex < 0) {
+                // Going backward from the beginning - go to the end of the clones
+                // We'll go to the last clone, which will snap to the last real slide
+                const cloneIndex = maxIndex + (maxIndex - 1);
+                currentTestimonialIndex = cloneIndex;
+                updateTestimonialCarousel(true);
+                resetTestimonialAutoplay();
+                return;
+            }
+
+            currentTestimonialIndex = targetIndex;
+            updateTestimonialCarousel(true);
             resetTestimonialAutoplay();
         }
 
@@ -2566,7 +2672,7 @@
             testimonialInterval = setInterval(() => {
                 const perView = testimonialCardsPerView;
                 const totalSlides = Math.ceil(testimonials.length / perView);
-                const next = (currentTestimonialIndex + 1) % totalSlides;
+                const next = (currentTestimonialIndex + 1) % (totalSlides + 1); // +1 for the clone
                 goToTestimonialSlide(next);
             }, 5000);
         }
@@ -2586,13 +2692,13 @@
         function setupTestimonialControls() {
             const prevBtn = document.getElementById('testimonial-prev');
             const nextBtn = document.getElementById('testimonial-next');
-            const track = document.getElementById('testimonials-track');
+            const trackWrapper = document.querySelector('.testimonials-track-wrapper');
 
             if (prevBtn) {
                 prevBtn.addEventListener('click', () => {
                     const perView = testimonialCardsPerView;
                     const totalSlides = Math.ceil(testimonials.length / perView);
-                    const prev = (currentTestimonialIndex - 1 + totalSlides) % totalSlides;
+                    const prev = (currentTestimonialIndex - 1 + totalSlides + 1) % (totalSlides + 1);
                     goToTestimonialSlide(prev);
                 });
             }
@@ -2600,12 +2706,12 @@
                 nextBtn.addEventListener('click', () => {
                     const perView = testimonialCardsPerView;
                     const totalSlides = Math.ceil(testimonials.length / perView);
-                    const next = (currentTestimonialIndex + 1) % totalSlides;
+                    const next = (currentTestimonialIndex + 1) % (totalSlides + 1);
                     goToTestimonialSlide(next);
                 });
             }
 
-            // Pause on hover
+            // Pause on hover (whole carousel area)
             const carousel = document.querySelector('.testimonials-carousel');
             if (carousel) {
                 carousel.addEventListener('mouseenter', stopTestimonialAutoplay);
@@ -2615,23 +2721,21 @@
             // Touch swipe
             let touchStartX = 0;
             let touchEndX = 0;
-            if (track) {
-                track.addEventListener('touchstart', (e) => {
+            if (trackWrapper) {
+                trackWrapper.addEventListener('touchstart', (e) => {
                     touchStartX = e.changedTouches[0].screenX;
                 }, { passive: true });
-                track.addEventListener('touchend', (e) => {
+                trackWrapper.addEventListener('touchend', (e) => {
                     touchEndX = e.changedTouches[0].screenX;
                     const diff = touchStartX - touchEndX;
                     if (Math.abs(diff) > 50) {
+                        const perView = testimonialCardsPerView;
+                        const totalSlides = Math.ceil(testimonials.length / perView);
                         if (diff > 0) {
-                            const perView = testimonialCardsPerView;
-                            const totalSlides = Math.ceil(testimonials.length / perView);
-                            const next = (currentTestimonialIndex + 1) % totalSlides;
+                            const next = (currentTestimonialIndex + 1) % (totalSlides + 1);
                             goToTestimonialSlide(next);
                         } else {
-                            const perView = testimonialCardsPerView;
-                            const totalSlides = Math.ceil(testimonials.length / perView);
-                            const prev = (currentTestimonialIndex - 1 + totalSlides) % totalSlides;
+                            const prev = (currentTestimonialIndex - 1 + totalSlides + 1) % (totalSlides + 1);
                             goToTestimonialSlide(prev);
                         }
                     }
@@ -2648,7 +2752,7 @@
                         testimonialCardsPerView = newPerView;
                         renderTestimonials();
                     } else {
-                        updateTestimonialCarousel();
+                        updateTestimonialCarousel(false);
                     }
                 }, 250);
             });
@@ -2662,11 +2766,9 @@
             renderBooks(filteredBooks, pageSize);
             renderSidebar();
 
-            // Render showcase
             renderShowcase();
             setupShowcaseControls();
 
-            // Render testimonials
             renderTestimonials();
             setupTestimonialControls();
 
