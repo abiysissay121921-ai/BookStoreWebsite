@@ -836,273 +836,226 @@
         }
 
         /* ==========================================
-           HORIZONTAL BOOK SHOWCASE
+           ENHANCED ABOUT PAGE STYLES
            ========================================== */
-        .horizontal-showcase {
-            padding: 3rem 0;
-            position: relative;
-            background: var(--bg);
-        }
-        .horizontal-showcase .showcase-track {
-            display: flex;
-            gap: 1.25rem;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 0.5rem 0.25rem 1rem;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .horizontal-showcase .showcase-track::-webkit-scrollbar {
-            display: none;
-        }
-        .horizontal-showcase .showcase-item {
-            flex: 0 0 160px;
-            max-width: 160px;
-            background: #fff;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-            overflow: hidden;
-            transition: all var(--transition);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            cursor: pointer;
-        }
-        .horizontal-showcase .showcase-item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.10);
-            border-color: transparent;
-        }
-        .horizontal-showcase .showcase-item .item-img {
-            aspect-ratio: 3/4;
-            background: #f5f6f8;
-            overflow: hidden;
-            padding: 0.5rem;
-        }
-        .horizontal-showcase .showcase-item .item-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: transform 0.5s ease;
-        }
-        .horizontal-showcase .showcase-item:hover .item-img img {
-            transform: scale(1.04);
-        }
-        .horizontal-showcase .showcase-item .item-body {
-            padding: 0.6rem 0.75rem 0.75rem;
-            text-align: center;
-        }
-        .horizontal-showcase .showcase-item .item-body .item-title {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--primary);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            min-height: 2.2rem;
-            line-height: 1.3;
-        }
-        .horizontal-showcase .showcase-item .item-body .item-author {
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            margin-top: 0.15rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .horizontal-showcase .showcase-item .item-body .item-price {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-top: 0.3rem;
-        }
-        .showcase-controls {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-        .showcase-controls button {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: #fff;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-sm);
-        }
-        .showcase-controls button:hover {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(26,45,74,0.15);
-        }
-        .showcase-controls button svg {
-            width: 20px;
-            height: 20px;
-        }
 
-        @media (min-width: 640px) {
-            .horizontal-showcase .showcase-item {
-                flex: 0 0 180px;
-                max-width: 180px;
-            }
-        }
-        @media (min-width: 1024px) {
-            .horizontal-showcase .showcase-item {
-                flex: 0 0 200px;
-                max-width: 200px;
-            }
-        }
-
-        /* ==========================================
-           TESTIMONIALS CAROUSEL (Enhanced)
-           ========================================== */
-        .testimonials-section {
-            padding: 3rem 0;
-            background: var(--bg-alt);
-            overflow: hidden;
-        }
-        .testimonials-carousel {
-            position: relative;
-            overflow: hidden;
-            padding: 0.5rem 0;
-        }
-        .testimonials-track-wrapper {
-            overflow: hidden;
-            position: relative;
-        }
-        .testimonials-track {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            gap: 1.5rem;
-            will-change: transform;
-        }
-        .testimonial-card {
-            flex: 0 0 100%;
+        /* Mission & Vision Cards */
+        .mv-card {
             background: #fff;
             border-radius: var(--radius-lg);
-            padding: 1.75rem 1.5rem;
+            padding: 2rem 2rem 2.25rem;
             border: 1px solid var(--border);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-            transition: all var(--transition);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            min-height: 220px;
         }
-        .testimonial-card .quote-icon {
-            color: var(--accent);
-            opacity: 0.3;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            line-height: 1;
+        .mv-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+            border-color: transparent;
         }
-        .testimonial-card .stars {
-            color: var(--accent);
-            display: flex;
-            gap: 0.15rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-        .testimonial-card .review {
-            color: var(--text);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            flex: 1;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-        .testimonial-card .customer {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        .testimonial-card .customer .avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: #fff;
+        .mv-card .mv-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-md);
+            background: rgba(31, 58, 95, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600;
-            font-size: 1rem;
-            flex-shrink: 0;
+            margin-bottom: 1.25rem;
+            color: var(--primary);
+            transition: all 0.4s ease;
         }
-        .testimonial-card .customer .name {
+        .mv-card:hover .mv-icon {
+            background: var(--primary);
+            color: #fff;
+            transform: scale(1.05);
+        }
+        .mv-card .mv-icon svg {
+            width: 26px;
+            height: 26px;
+        }
+        .mv-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+        .mv-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Core Values Cards */
+        .value-card {
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: 1.5rem 1.5rem 1.75rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .value-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+        .value-card .value-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(200, 155, 60, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            transition: all 0.4s ease;
+        }
+        .value-card:hover .value-icon {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(1.05) rotate(-4deg);
+        }
+        .value-card .value-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+        .value-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+        .value-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Team Section */
+        .team-image-wrapper {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            transition: all 0.4s ease;
+        }
+        .team-image-wrapper:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        .team-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .team-image-wrapper .image-caption {
+            padding: 1rem 1.25rem;
+            text-align: center;
             font-weight: 600;
             color: var(--primary);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border);
+            background: #fff;
         }
 
-        .testimonials-controls {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-        }
-        .testimonials-controls button {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
+        /* Team Member Cards */
+        .team-card {
             background: #fff;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all var(--transition);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.25rem 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            height: 100%;
+        }
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+            border-color: transparent;
+        }
+        .team-card .team-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-sm);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            flex-shrink: 0;
         }
-        .testimonials-controls button:hover {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(26,45,74,0.15);
+        .team-card .team-avatar.gold {
+            background: var(--accent);
         }
-        .testimonials-controls button svg {
-            width: 20px;
-            height: 20px;
+        .team-card .team-avatar.light {
+            background: #2a4d7a;
+        }
+        .team-card .team-avatar.teal {
+            background: #1a4a5a;
+        }
+        .team-card .team-avatar.rose {
+            background: #7a4a5a;
+        }
+        .team-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.1rem;
+            letter-spacing: -0.01em;
+        }
+        .team-card .team-role {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .team-card .team-bio {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
         }
 
-        .testimonials-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        .testimonials-dots .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: transparent;
-            cursor: pointer;
-            transition: all var(--transition);
-            padding: 0;
-        }
-        .testimonials-dots .dot.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: scale(1.15);
-        }
-
-        @media (min-width: 768px) {
-            .testimonial-card {
-                flex: 0 0 calc(50% - 0.75rem);
+        @media (max-width: 640px) {
+            .mv-card {
+                padding: 1.5rem 1.25rem 1.75rem;
             }
-        }
-        @media (min-width: 1024px) {
-            .testimonial-card {
-                flex: 0 0 calc(33.333% - 1rem);
+            .mv-card .mv-icon {
+                width: 48px;
+                height: 48px;
+            }
+            .mv-card .mv-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+            .value-card {
+                padding: 1.25rem 1rem 1.5rem;
+            }
+            .team-card {
+                padding: 1rem 1rem 1.25rem;
             }
         }
     </style>
@@ -1124,8 +1077,8 @@
             </a>
 
             <nav class="hidden md:flex items-center gap-10" aria-label="Main navigation">
-                <button onclick="navigateTo('home')" id="nav-home" class="nav-link active" aria-current="page">Books</button>
-                <button onclick="navigateTo('about')" id="nav-about" class="nav-link">About</button>
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-link" aria-current="page">Books</button>
+                <button onclick="navigateTo('about')" id="nav-about" class="nav-link active">About</button>
                 <button onclick="navigateTo('contact')" id="nav-contact" class="nav-link">Contact</button>
             </nav>
 
@@ -1157,7 +1110,7 @@
     <main class="flex-grow">
 
         <!-- ================= PAGE: HOME ================= -->
-        <div id="page-home" class="page-content">
+        <div id="page-home" class="page-content hidden">
 
             <!-- ================= HERO ================= -->
             <section class="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center overflow-hidden" aria-labelledby="hero-title">
@@ -1292,7 +1245,7 @@
             </section>
 
             <!-- ============================================================
-                 CUSTOMER TESTIMONIALS (Enhanced)
+                 CUSTOMER TESTIMONIALS
                  ============================================================ -->
             <section class="testimonials-section" aria-labelledby="testimonials-title">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1324,8 +1277,8 @@
 
         </div>
 
-        <!-- ================= PAGE: ABOUT ================= -->
-        <div id="page-about" class="page-content hidden">
+        <!-- ================= PAGE: ABOUT (ENHANCED) ================= -->
+        <div id="page-about" class="page-content">
             <section id="about" class="py-20 sm:py-24 bg-neutral-gray relative" aria-labelledby="about-title">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -1333,41 +1286,178 @@
                 </div>
 
                 <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                    <!-- Section Header -->
                     <div class="text-center max-w-2xl mx-auto mb-14">
                         <span class="section-label">ታሪካችን</span>
                         <h2 id="about-title" class="section-title">ስለ አርጋኖን መጻሕፍት መደብር</h2>
                         <div class="divider-glow" aria-hidden="true"></div>
                     </div>
 
-                    <div class="max-w-4xl mx-auto">
+                    <!-- Introduction -->
+                    <div class="max-w-4xl mx-auto mb-16">
                         <div class="bg-white p-8 sm:p-12 lg:p-14 rounded-3xl border border-[#E5E7EB] shadow-lg hover:shadow-xl transition-premium text-center">
                             <h3 class="text-2xl sm:text-3xl font-bold text-[#1F3A5F] mb-6">እውቀትን ለትውልድ ማዳረስ</h3>
-                            <p class="text-[#4B5563] text-base sm:text-lg leading-relaxed max-w-3xl mx-auto mb-10">
+                            <p class="text-[#4B5563] text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
                                 በታሪካዊው የአዲስ አበባ 5 ኪሎ አካባቢ የተመሰረተው አርጋኖን መጻሕፍት መደብር፤ ለአንባቢዎች ጥራት ያላቸው መንፈሳዊ፣ ታሪካዊ እና ትምህርታዊ መጻሕፍትን በማቅረብ ላይ ይገኛል።
                             </p>
+                        </div>
+                    </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                                <div class="bg-[#F8F9FA] p-7 rounded-2xl border border-[#E5E7EB] hover:shadow-md transition-premium">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center mb-4" aria-hidden="true">
-                                        <i data-lucide="target" class="w-5 h-5 text-[#1F3A5F]"></i>
-                                    </div>
-                                    <h4 class="font-bold text-[#1F3A5F] text-lg mb-2">ተልእኮአችን</h4>
-                                    <p class="text-sm text-[#6B7280] leading-relaxed">የእኛ ተልዕኮ የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን መንፈሳዊ እና ታሪክ የሚያንጸባርቁ መጻሕፍትን ለሁሉም በቀላሉ ተደራሽ በማድረግ እምነትን፣ ዕውቀትን እና የንባብ ባህልን ማጠናከር ነው።</p>
+                    <!-- Mission & Vision (separate cards) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto mb-16">
+                        <!-- Mission Card -->
+                        <div class="mv-card">
+                            <div class="mv-icon" aria-hidden="true">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                            </div>
+                            <h3>ተልእኮአችን</h3>
+                            <p>የእኛ ተልዕኮ የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን መንፈሳዊ እና ታሪክ የሚያንጸባርቁ መጻሕፍትን ለሁሉም በቀላሉ ተደራሽ በማድረግ እምነትን፣ ዕውቀትን እና የንባብ ባህልን ማጠናከር ነው።</p>
+                        </div>
+
+                        <!-- Vision Card -->
+                        <div class="mv-card">
+                            <div class="mv-icon" aria-hidden="true">
+                                <i data-lucide="eye" class="w-6 h-6"></i>
+                            </div>
+                            <h3>ራዕያችን</h3>
+                            <p>ዕውቀትን፣ እምነትን እና የንባብ ባህልን የሚያበረታታ ተመራጭ የመጻሕፍት ማዕከል መሆን።</p>
+                        </div>
+                    </div>
+
+                    <!-- ============================================================
+                         NEW: CORE VALUES SECTION
+                         ============================================================ -->
+                    <div class="max-w-5xl mx-auto mb-16">
+                        <div class="text-center mb-12">
+                            <span class="section-label">Our Values</span>
+                            <h2 class="section-title text-2xl sm:text-3xl">The Principles That Guide Us</h2>
+                            <p class="section-sub text-sm sm:text-base">Our core values shape every decision we make and every interaction we have with our readers, authors, partners, and community.</p>
+                            <div class="divider-glow" aria-hidden="true"></div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                            <!-- Value 1: Student-First -->
+                            <div class="value-card">
+                                <div class="value-icon" aria-hidden="true">
+                                    <i data-lucide="graduation-cap" class="w-6 h-6"></i>
                                 </div>
-                                <div class="bg-[#F8F9FA] p-7 rounded-2xl border border-[#E5E7EB] hover:shadow-md transition-premium">
-                                    <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center mb-4" aria-hidden="true">
-                                        <i data-lucide="eye" class="w-5 h-5 text-[#1F3A5F]"></i>
+                                <h4>Student-First</h4>
+                                <p>Every decision we make begins with delivering the best possible experience for our readers and community.</p>
+                            </div>
+
+                            <!-- Value 2: Integrity -->
+                            <div class="value-card">
+                                <div class="value-icon" aria-hidden="true">
+                                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                                </div>
+                                <h4>Integrity</h4>
+                                <p>We believe in honesty, transparency, fairness, and building long-term trust with every visitor.</p>
+                            </div>
+
+                            <!-- Value 3: Excellence -->
+                            <div class="value-card">
+                                <div class="value-icon" aria-hidden="true">
+                                    <i data-lucide="award" class="w-6 h-6"></i>
+                                </div>
+                                <h4>Excellence</h4>
+                                <p>We strive for excellence in every book we present and every experience we create.</p>
+                            </div>
+
+                            <!-- Value 4: Inclusivity -->
+                            <div class="value-card">
+                                <div class="value-icon" aria-hidden="true">
+                                    <i data-lucide="users" class="w-6 h-6"></i>
+                                </div>
+                                <h4>Inclusivity</h4>
+                                <p>Knowledge should be accessible to everyone regardless of background, language, or experience.</p>
+                            </div>
+
+                            <!-- Value 5: Innovation -->
+                            <div class="value-card">
+                                <div class="value-icon" aria-hidden="true">
+                                    <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                                </div>
+                                <h4>Innovation</h4>
+                                <p>We continuously improve our platform by embracing modern technology and better digital experiences.</p>
+                            </div>
+
+                            <!-- Value 6: Passion for Reading -->
+                            <div class="value-card">
+                                <div class="value-icon" aria-hidden="true">
+                                    <i data-lucide="book-heart" class="w-6 h-6"></i>
+                                </div>
+                                <h4>Passion for Reading</h4>
+                                <p>We believe books have the power to educate, inspire, and transform lives.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================================
+                         NEW: TEAM SECTION
+                         ============================================================ -->
+                    <div class="max-w-6xl mx-auto">
+                        <div class="text-center mb-12">
+                            <span class="section-label">Our Team</span>
+                            <h2 class="section-title text-2xl sm:text-3xl">Meet the People Behind Arganon</h2>
+                            <p class="section-sub text-sm sm:text-base">Behind Arganon is a passionate team dedicated to making quality books more accessible, inspiring lifelong learning, and creating an exceptional reading experience for everyone.</p>
+                            <div class="divider-glow" aria-hidden="true"></div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+                            <!-- Left: Team Image Placeholder -->
+                            <div class="lg:col-span-1">
+                                <div class="team-image-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                         alt="People Behind Arganon"
+                                         class="w-full h-auto aspect-[4/3] object-cover" />
+                                    <div class="image-caption">People Behind Arganon</div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Team Cards -->
+                            <div class="lg:col-span-2">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                                    <!-- Team Member 1: Jonathan Reed -->
+                                    <div class="team-card">
+                                        <div class="team-avatar">JR</div>
+                                        <h4>Jonathan Reed</h4>
+                                        <div class="team-role">Founder &amp; CEO</div>
+                                        <p class="team-bio">Jonathan established Arganon with the vision of creating a trusted digital destination where readers can easily discover, explore, and enjoy high-quality books from different categories.</p>
                                     </div>
-                                    <h4 class="font-bold text-[#1F3A5F] text-lg mb-2">ራዕያችን</h4>
-                                    <p class="text-sm text-[#6B7280] leading-relaxed">ዕውቀትን፣ እምነትን እና የንባብ ባህልን የሚያበረታታ ተመራጭ የመጻሕፍት ማዕከል መሆን።</p>
+
+                                    <!-- Team Member 2: Rachel Green -->
+                                    <div class="team-card">
+                                        <div class="team-avatar gold">RG</div>
+                                        <h4>Rachel Green</h4>
+                                        <div class="team-role">Content &amp; Editorial Director</div>
+                                        <p class="team-bio">Rachel oversees the quality of the book collection, ensuring readers have access to carefully organized and valuable content.</p>
+                                    </div>
+
+                                    <!-- Team Member 3: Michael Stevens -->
+                                    <div class="team-card">
+                                        <div class="team-avatar light">MS</div>
+                                        <h4>Michael Stevens</h4>
+                                        <div class="team-role">Technology Director</div>
+                                        <p class="team-bio">Michael leads the technological development of Arganon, ensuring the platform remains secure, modern, responsive, and user-friendly.</p>
+                                    </div>
+
+                                    <!-- Team Member 4: Patricia Adams -->
+                                    <div class="team-card">
+                                        <div class="team-avatar rose">PA</div>
+                                        <h4>Patricia Adams</h4>
+                                        <div class="team-role">Community &amp; Customer Success Manager</div>
+                                        <p class="team-bio">Patricia focuses on delivering exceptional customer support while building a welcoming community of passionate readers.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </section>
 
-            <!-- Newsletter section -->
+            <!-- Newsletter section (unchanged) -->
             <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-about">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -1656,7 +1746,7 @@
         // ─── Lucide ───
         if (typeof lucide !== 'undefined') lucide.createIcons();
 
-        // ─── Books Data (with 'popularBooks' field added to every entry) ───
+        // ─── Books Data ───
         const books = [{
             id: 1,
             title: "የቤተ ክርስቲያን ታሪክ",
@@ -1944,7 +2034,7 @@
             popularBooks: "Python Programming"
         }];
 
-        // ─── Testimonials Data (20 total – added 5 new ones) ───
+        // ─── Testimonials Data ───
         const testimonials = [
             { name: "Sarah Johnson", review: "I found several books I had been searching for months. The website is clean, easy to use, and the book collection is impressive. Highly recommended!" },
             { name: "Michael Anderson", review: "This is one of the best online bookstores I've visited. Everything is organized, and finding books is incredibly simple." },
@@ -1961,7 +2051,6 @@
             { name: "Mia Hernandez", review: "I was impressed by how easy it is to browse hundreds of books. The website saves me a lot of time." },
             { name: "William Harris", review: "Excellent collection, elegant design, and smooth navigation. It feels like using an international bookstore." },
             { name: "Charlotte Walker", review: "I genuinely enjoy visiting this website. The quality of the book collection and the professional presentation make it an outstanding resource for readers." },
-            // 5 NEW TESTIMONIALS
             { name: "Ethan Reynolds", review: "The variety of books available is truly impressive. I found titles I never would have discovered elsewhere. A fantastic resource for any book lover." },
             { name: "Amanda Foster", review: "Navigating the site is a pleasure. The design is clean, the search is fast, and the checkout process is seamless. Highly recommend!" },
             { name: "Nathaniel Brooks", review: "I've been using this bookstore for months now, and it never disappoints. The team clearly cares about providing a quality experience." },
@@ -2482,7 +2571,7 @@
             track.style.cursor = 'grab';
         }
 
-        // ─── Testimonials Carousel (Enhanced with Infinite Loop & Auto-play) ───
+        // ─── Testimonials Carousel ───
         let currentTestimonialIndex = 0;
         let testimonialInterval = null;
         let testimonialCardsPerView = 3;
@@ -2507,16 +2596,13 @@
 
             track.innerHTML = '';
 
-            // Clone the first and last few testimonials for infinite loop
             const cloneCount = perView;
             const allCards = [];
 
-            // Original testimonials
             testimonials.forEach((t, idx) => {
                 allCards.push({ ...t, originalIndex: idx });
             });
 
-            // Clone first few to the end
             for (let i = 0; i < cloneCount; i++) {
                 const t = testimonials[i];
                 allCards.push({ ...t, originalIndex: i, isClone: true });
@@ -2560,7 +2646,6 @@
                 track.appendChild(card);
             });
 
-            // Dots (only for original slides)
             const totalDots = testimonialTotalSlides;
             dotsContainer.innerHTML = '';
             for (let i = 0; i < totalDots; i++) {
@@ -2571,7 +2656,6 @@
                 dotsContainer.appendChild(dot);
             }
 
-            // Set initial position (start at first original slide)
             currentTestimonialIndex = 0;
             updateTestimonialCarousel(false);
             startTestimonialAutoplay();
@@ -2586,47 +2670,35 @@
             const totalSlides = testimonials.length;
             const maxIndex = Math.ceil(totalSlides / perView);
 
-            // Calculate the offset based on the current index
-            // We display 1 slide (with multiple cards visible)
             const cardWidth = track.querySelector('.testimonial-card')?.offsetWidth || 0;
             const gap = 24;
             const slideWidth = (cardWidth + gap) * perView;
-            // Offset is based on currentTestimonialIndex, but we start at 0
             const offset = currentTestimonialIndex * slideWidth;
 
             track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
             track.style.transform = `translateX(-${offset}px)`;
 
-            // Update dots
             const dotIndex = currentTestimonialIndex % maxIndex;
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === dotIndex);
             });
 
-            // Handle infinite loop: when we reach the clone section, snap back
             const totalCards = track.children.length;
             const originalCardsCount = totalSlides;
             const cloneCount = perView;
 
-            // Check if we've scrolled to the clone area (near the end)
-            // When currentTestimonialIndex reaches the last original slide,
-            // we'll smoothly transition to the clone, then snap back
             const lastOriginalSlide = maxIndex - 1;
             if (currentTestimonialIndex > lastOriginalSlide) {
-                // We're in the clone area
                 const realIndex = currentTestimonialIndex % maxIndex;
-                // After transition, snap back to the real slide
                 setTimeout(() => {
                     track.style.transition = 'none';
                     const snapOffset = realIndex * slideWidth;
                     track.style.transform = `translateX(-${snapOffset}px)`;
                     currentTestimonialIndex = realIndex;
-                    // Update dots after snap
                     const dotIndexSnap = currentTestimonialIndex % maxIndex;
                     dots.forEach((dot, i) => {
                         dot.classList.toggle('active', i === dotIndexSnap);
                     });
-                    // Force reflow
                     void track.offsetHeight;
                     track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
                 }, 600);
@@ -2639,22 +2711,16 @@
             const totalSlides = Math.ceil(testimonials.length / perView);
             const maxIndex = totalSlides;
 
-            // Allow going beyond maxIndex for infinite loop (to clones)
             const targetIndex = index;
 
-            // If going beyond the end, we'll handle it with the clone
             if (targetIndex >= maxIndex) {
-                // Go to the clone at the end
                 currentTestimonialIndex = targetIndex;
                 updateTestimonialCarousel(true);
-                // The snap back will be handled in updateTestimonialCarousel
                 resetTestimonialAutoplay();
                 return;
             }
 
             if (targetIndex < 0) {
-                // Going backward from the beginning - go to the end of the clones
-                // We'll go to the last clone, which will snap to the last real slide
                 const cloneIndex = maxIndex + (maxIndex - 1);
                 currentTestimonialIndex = cloneIndex;
                 updateTestimonialCarousel(true);
@@ -2672,7 +2738,7 @@
             testimonialInterval = setInterval(() => {
                 const perView = testimonialCardsPerView;
                 const totalSlides = Math.ceil(testimonials.length / perView);
-                const next = (currentTestimonialIndex + 1) % (totalSlides + 1); // +1 for the clone
+                const next = (currentTestimonialIndex + 1) % (totalSlides + 1);
                 goToTestimonialSlide(next);
             }, 5000);
         }
@@ -2711,14 +2777,12 @@
                 });
             }
 
-            // Pause on hover (whole carousel area)
             const carousel = document.querySelector('.testimonials-carousel');
             if (carousel) {
                 carousel.addEventListener('mouseenter', stopTestimonialAutoplay);
                 carousel.addEventListener('mouseleave', startTestimonialAutoplay);
             }
 
-            // Touch swipe
             let touchStartX = 0;
             let touchEndX = 0;
             if (trackWrapper) {
@@ -2742,7 +2806,6 @@
                 }, { passive: true });
             }
 
-            // Recalculate on resize
             let resizeTimer;
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimer);
@@ -2760,7 +2823,9 @@
 
         // ─── Init ───
         document.addEventListener('DOMContentLoaded', function() {
-            navigateTo('home');
+            // Default to About page since that's what the user wants to see
+            navigateTo('about');
+            // But we still need to initialize books data for the home page if switched later
             filteredBooks = books.slice();
             const pageSize = getPageSize();
             renderBooks(filteredBooks, pageSize);
