@@ -836,6 +836,277 @@
         }
 
         /* ==========================================
+           HORIZONTAL BOOK SHOWCASE
+           ========================================== */
+        .horizontal-showcase {
+            padding: 3rem 0;
+            position: relative;
+            background: var(--bg);
+        }
+        .horizontal-showcase .showcase-track {
+            display: flex;
+            gap: 1.25rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 0.5rem 0.25rem 1rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .horizontal-showcase .showcase-track::-webkit-scrollbar {
+            display: none;
+        }
+        .horizontal-showcase .showcase-item {
+            flex: 0 0 160px;
+            max-width: 160px;
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            cursor: pointer;
+        }
+        .horizontal-showcase .showcase-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+            border-color: transparent;
+        }
+        .horizontal-showcase .showcase-item .item-img {
+            aspect-ratio: 3/4;
+            background: #f5f6f8;
+            overflow: hidden;
+            padding: 0.5rem;
+        }
+        .horizontal-showcase .showcase-item .item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        .horizontal-showcase .showcase-item:hover .item-img img {
+            transform: scale(1.04);
+        }
+        .horizontal-showcase .showcase-item .item-body {
+            padding: 0.6rem 0.75rem 0.75rem;
+            text-align: center;
+        }
+        .horizontal-showcase .showcase-item .item-body .item-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.2rem;
+            line-height: 1.3;
+        }
+        .horizontal-showcase .showcase-item .item-body .item-author {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            margin-top: 0.15rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .horizontal-showcase .showcase-item .item-body .item-price {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 0.3rem;
+        }
+        .showcase-controls {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .showcase-controls button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .showcase-controls button:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(26,45,74,0.15);
+        }
+        .showcase-controls button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (min-width: 640px) {
+            .horizontal-showcase .showcase-item {
+                flex: 0 0 180px;
+                max-width: 180px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .horizontal-showcase .showcase-item {
+                flex: 0 0 200px;
+                max-width: 200px;
+            }
+        }
+
+        /* ==========================================
+           TESTIMONIALS CAROUSEL (Enhanced)
+           ========================================== */
+        .testimonials-section {
+            padding: 3rem 0;
+            background: var(--bg-alt);
+            overflow: hidden;
+        }
+        .testimonials-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 0.5rem 0;
+        }
+        .testimonials-track-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 1.5rem;
+            will-change: transform;
+        }
+        .testimonial-card {
+            flex: 0 0 100%;
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 1.75rem 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 220px;
+        }
+        .testimonial-card .quote-icon {
+            color: var(--accent);
+            opacity: 0.3;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        .testimonial-card .stars {
+            color: var(--accent);
+            display: flex;
+            gap: 0.15rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .testimonial-card .review {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        .testimonial-card .customer {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .testimonial-card .customer .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .testimonial-card .customer .name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .testimonials-controls {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .testimonials-controls button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .testimonials-controls button:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(26,45,74,0.15);
+        }
+        .testimonials-controls button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .testimonials-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .testimonials-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            padding: 0;
+        }
+        .testimonials-dots .dot.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.15);
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-card {
+                flex: 0 0 calc(50% - 0.75rem);
+            }
+        }
+        @media (min-width: 1024px) {
+            .testimonial-card {
+                flex: 0 0 calc(33.333% - 1rem);
+            }
+        }
+
+        /* ==========================================
            ENHANCED ABOUT PAGE STYLES
            ========================================== */
 
@@ -1077,8 +1348,8 @@
             </a>
 
             <nav class="hidden md:flex items-center gap-10" aria-label="Main navigation">
-                <button onclick="navigateTo('home')" id="nav-home" class="nav-link" aria-current="page">Books</button>
-                <button onclick="navigateTo('about')" id="nav-about" class="nav-link active">About</button>
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-link active" aria-current="page">Books</button>
+                <button onclick="navigateTo('about')" id="nav-about" class="nav-link">About</button>
                 <button onclick="navigateTo('contact')" id="nav-contact" class="nav-link">Contact</button>
             </nav>
 
@@ -1110,7 +1381,7 @@
     <main class="flex-grow">
 
         <!-- ================= PAGE: HOME ================= -->
-        <div id="page-home" class="page-content hidden">
+        <div id="page-home" class="page-content">
 
             <!-- ================= HERO ================= -->
             <section class="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center overflow-hidden" aria-labelledby="hero-title">
@@ -1245,7 +1516,7 @@
             </section>
 
             <!-- ============================================================
-                 CUSTOMER TESTIMONIALS
+                 CUSTOMER TESTIMONIALS (Enhanced)
                  ============================================================ -->
             <section class="testimonials-section" aria-labelledby="testimonials-title">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1278,7 +1549,8 @@
         </div>
 
         <!-- ================= PAGE: ABOUT (ENHANCED) ================= -->
-        <div id="page-about" class="page-content">
+        <div id="page-about" class="page-content hidden">
+            <!-- Enhanced About Section -->
             <section id="about" class="py-20 sm:py-24 bg-neutral-gray relative" aria-labelledby="about-title">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -1746,7 +2018,7 @@
         // ─── Lucide ───
         if (typeof lucide !== 'undefined') lucide.createIcons();
 
-        // ─── Books Data ───
+        // ─── Books Data (with 'popularBooks' field added to every entry) ───
         const books = [{
             id: 1,
             title: "የቤተ ክርስቲያን ታሪክ",
@@ -2034,7 +2306,7 @@
             popularBooks: "Python Programming"
         }];
 
-        // ─── Testimonials Data ───
+        // ─── Testimonials Data (20 total – added 5 new ones) ───
         const testimonials = [
             { name: "Sarah Johnson", review: "I found several books I had been searching for months. The website is clean, easy to use, and the book collection is impressive. Highly recommended!" },
             { name: "Michael Anderson", review: "This is one of the best online bookstores I've visited. Everything is organized, and finding books is incredibly simple." },
@@ -2051,6 +2323,7 @@
             { name: "Mia Hernandez", review: "I was impressed by how easy it is to browse hundreds of books. The website saves me a lot of time." },
             { name: "William Harris", review: "Excellent collection, elegant design, and smooth navigation. It feels like using an international bookstore." },
             { name: "Charlotte Walker", review: "I genuinely enjoy visiting this website. The quality of the book collection and the professional presentation make it an outstanding resource for readers." },
+            // 5 NEW TESTIMONIALS
             { name: "Ethan Reynolds", review: "The variety of books available is truly impressive. I found titles I never would have discovered elsewhere. A fantastic resource for any book lover." },
             { name: "Amanda Foster", review: "Navigating the site is a pleasure. The design is clean, the search is fast, and the checkout process is seamless. Highly recommend!" },
             { name: "Nathaniel Brooks", review: "I've been using this bookstore for months now, and it never disappoints. The team clearly cares about providing a quality experience." },
@@ -2571,7 +2844,7 @@
             track.style.cursor = 'grab';
         }
 
-        // ─── Testimonials Carousel ───
+        // ─── Testimonials Carousel (Enhanced with Infinite Loop & Auto-play) ───
         let currentTestimonialIndex = 0;
         let testimonialInterval = null;
         let testimonialCardsPerView = 3;
@@ -2596,13 +2869,16 @@
 
             track.innerHTML = '';
 
+            // Clone the first and last few testimonials for infinite loop
             const cloneCount = perView;
             const allCards = [];
 
+            // Original testimonials
             testimonials.forEach((t, idx) => {
                 allCards.push({ ...t, originalIndex: idx });
             });
 
+            // Clone first few to the end
             for (let i = 0; i < cloneCount; i++) {
                 const t = testimonials[i];
                 allCards.push({ ...t, originalIndex: i, isClone: true });
@@ -2646,6 +2922,7 @@
                 track.appendChild(card);
             });
 
+            // Dots (only for original slides)
             const totalDots = testimonialTotalSlides;
             dotsContainer.innerHTML = '';
             for (let i = 0; i < totalDots; i++) {
@@ -2656,6 +2933,7 @@
                 dotsContainer.appendChild(dot);
             }
 
+            // Set initial position (start at first original slide)
             currentTestimonialIndex = 0;
             updateTestimonialCarousel(false);
             startTestimonialAutoplay();
@@ -2670,35 +2948,47 @@
             const totalSlides = testimonials.length;
             const maxIndex = Math.ceil(totalSlides / perView);
 
+            // Calculate the offset based on the current index
+            // We display 1 slide (with multiple cards visible)
             const cardWidth = track.querySelector('.testimonial-card')?.offsetWidth || 0;
             const gap = 24;
             const slideWidth = (cardWidth + gap) * perView;
+            // Offset is based on currentTestimonialIndex, but we start at 0
             const offset = currentTestimonialIndex * slideWidth;
 
             track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
             track.style.transform = `translateX(-${offset}px)`;
 
+            // Update dots
             const dotIndex = currentTestimonialIndex % maxIndex;
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === dotIndex);
             });
 
+            // Handle infinite loop: when we reach the clone section, snap back
             const totalCards = track.children.length;
             const originalCardsCount = totalSlides;
             const cloneCount = perView;
 
+            // Check if we've scrolled to the clone area (near the end)
+            // When currentTestimonialIndex reaches the last original slide,
+            // we'll smoothly transition to the clone, then snap back
             const lastOriginalSlide = maxIndex - 1;
             if (currentTestimonialIndex > lastOriginalSlide) {
+                // We're in the clone area
                 const realIndex = currentTestimonialIndex % maxIndex;
+                // After transition, snap back to the real slide
                 setTimeout(() => {
                     track.style.transition = 'none';
                     const snapOffset = realIndex * slideWidth;
                     track.style.transform = `translateX(-${snapOffset}px)`;
                     currentTestimonialIndex = realIndex;
+                    // Update dots after snap
                     const dotIndexSnap = currentTestimonialIndex % maxIndex;
                     dots.forEach((dot, i) => {
                         dot.classList.toggle('active', i === dotIndexSnap);
                     });
+                    // Force reflow
                     void track.offsetHeight;
                     track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
                 }, 600);
@@ -2711,16 +3001,22 @@
             const totalSlides = Math.ceil(testimonials.length / perView);
             const maxIndex = totalSlides;
 
+            // Allow going beyond maxIndex for infinite loop (to clones)
             const targetIndex = index;
 
+            // If going beyond the end, we'll handle it with the clone
             if (targetIndex >= maxIndex) {
+                // Go to the clone at the end
                 currentTestimonialIndex = targetIndex;
                 updateTestimonialCarousel(true);
+                // The snap back will be handled in updateTestimonialCarousel
                 resetTestimonialAutoplay();
                 return;
             }
 
             if (targetIndex < 0) {
+                // Going backward from the beginning - go to the end of the clones
+                // We'll go to the last clone, which will snap to the last real slide
                 const cloneIndex = maxIndex + (maxIndex - 1);
                 currentTestimonialIndex = cloneIndex;
                 updateTestimonialCarousel(true);
@@ -2738,7 +3034,7 @@
             testimonialInterval = setInterval(() => {
                 const perView = testimonialCardsPerView;
                 const totalSlides = Math.ceil(testimonials.length / perView);
-                const next = (currentTestimonialIndex + 1) % (totalSlides + 1);
+                const next = (currentTestimonialIndex + 1) % (totalSlides + 1); // +1 for the clone
                 goToTestimonialSlide(next);
             }, 5000);
         }
@@ -2777,12 +3073,14 @@
                 });
             }
 
+            // Pause on hover (whole carousel area)
             const carousel = document.querySelector('.testimonials-carousel');
             if (carousel) {
                 carousel.addEventListener('mouseenter', stopTestimonialAutoplay);
                 carousel.addEventListener('mouseleave', startTestimonialAutoplay);
             }
 
+            // Touch swipe
             let touchStartX = 0;
             let touchEndX = 0;
             if (trackWrapper) {
@@ -2806,6 +3104,7 @@
                 }, { passive: true });
             }
 
+            // Recalculate on resize
             let resizeTimer;
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimer);
@@ -2823,9 +3122,7 @@
 
         // ─── Init ───
         document.addEventListener('DOMContentLoaded', function() {
-            // Default to About page since that's what the user wants to see
-            navigateTo('about');
-            // But we still need to initialize books data for the home page if switched later
+            navigateTo('home');
             filteredBooks = books.slice();
             const pageSize = getPageSize();
             renderBooks(filteredBooks, pageSize);
