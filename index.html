@@ -834,6 +834,273 @@
             transform: translateY(0);
             pointer-events: auto;
         }
+
+        /* ==========================================
+           NEW: HORIZONTAL BOOK SHOWCASE
+           ========================================== */
+        .horizontal-showcase {
+            padding: 3rem 0;
+            position: relative;
+            background: var(--bg);
+        }
+        .horizontal-showcase .showcase-track {
+            display: flex;
+            gap: 1.25rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 0.5rem 0.25rem 1rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .horizontal-showcase .showcase-track::-webkit-scrollbar {
+            display: none;
+        }
+        .horizontal-showcase .showcase-item {
+            flex: 0 0 160px;
+            max-width: 160px;
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            cursor: pointer;
+        }
+        .horizontal-showcase .showcase-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+            border-color: transparent;
+        }
+        .horizontal-showcase .showcase-item .item-img {
+            aspect-ratio: 3/4;
+            background: #f5f6f8;
+            overflow: hidden;
+            padding: 0.5rem;
+        }
+        .horizontal-showcase .showcase-item .item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        .horizontal-showcase .showcase-item:hover .item-img img {
+            transform: scale(1.04);
+        }
+        .horizontal-showcase .showcase-item .item-body {
+            padding: 0.6rem 0.75rem 0.75rem;
+            text-align: center;
+        }
+        .horizontal-showcase .showcase-item .item-body .item-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.2rem;
+            line-height: 1.3;
+        }
+        .horizontal-showcase .showcase-item .item-body .item-author {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            margin-top: 0.15rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .horizontal-showcase .showcase-item .item-body .item-price {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 0.3rem;
+        }
+
+        .showcase-controls {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .showcase-controls button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .showcase-controls button:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(26,45,74,0.15);
+        }
+        .showcase-controls button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* responsive */
+        @media (min-width: 640px) {
+            .horizontal-showcase .showcase-item {
+                flex: 0 0 180px;
+                max-width: 180px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .horizontal-showcase .showcase-item {
+                flex: 0 0 200px;
+                max-width: 200px;
+            }
+        }
+
+        /* ==========================================
+           NEW: TESTIMONIALS CAROUSEL
+           ========================================== */
+        .testimonials-section {
+            padding: 3rem 0;
+            background: var(--bg-alt);
+            overflow: hidden;
+        }
+        .testimonials-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 0.5rem 0;
+        }
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 1.5rem;
+        }
+        .testimonial-card {
+            flex: 0 0 100%;
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 1.75rem 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .testimonial-card .quote-icon {
+            color: var(--accent);
+            opacity: 0.3;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        .testimonial-card .stars {
+            color: var(--accent);
+            display: flex;
+            gap: 0.15rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .testimonial-card .review {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        .testimonial-card .customer {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .testimonial-card .customer .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .testimonial-card .customer .name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .testimonials-controls {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .testimonials-controls button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .testimonials-controls button:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(26,45,74,0.15);
+        }
+        .testimonials-controls button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .testimonials-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .testimonials-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            padding: 0;
+        }
+        .testimonials-dots .dot.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.15);
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-card {
+                flex: 0 0 calc(50% - 0.75rem);
+            }
+        }
+        @media (min-width: 1024px) {
+            .testimonial-card {
+                flex: 0 0 calc(33.333% - 1rem);
+            }
+        }
     </style>
 </head>
 
@@ -992,6 +1259,63 @@
                     </div>
                 </div>
             </section>
+
+            <!-- ============================================================
+                 NEW: HORIZONTAL BOOK SHOWCASE
+                 ============================================================ -->
+            <section class="horizontal-showcase bg-cool-white" aria-labelledby="showcase-title">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-8">
+                        <span class="section-label">Featured</span>
+                        <h2 id="showcase-title" class="section-title text-2xl sm:text-3xl">Popular Books</h2>
+                        <div class="divider-glow" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="showcase-wrapper relative">
+                        <div id="showcase-track" class="showcase-track">
+                            <!-- populated by JavaScript -->
+                        </div>
+                        <div class="showcase-controls">
+                            <button id="showcase-prev" aria-label="Scroll left">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                            </button>
+                            <button id="showcase-next" aria-label="Scroll right">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================
+                 NEW: CUSTOMER TESTIMONIALS
+                 ============================================================ -->
+            <section class="testimonials-section" aria-labelledby="testimonials-title">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <span class="section-label">የደንበኞች አስተያየት</span>
+                        <h2 id="testimonials-title" class="section-title text-2xl sm:text-3xl">ድንበኞች ምን ይላሉ</h2>
+                        <p class="section-sub text-sm sm:text-base">See what our valued readers say about their experience with our bookstore.</p>
+                        <div class="divider-glow" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="testimonials-carousel">
+                        <div id="testimonials-track" class="testimonials-track">
+                            <!-- populated by JavaScript -->
+                        </div>
+                        <div class="testimonials-controls">
+                            <button id="testimonial-prev" aria-label="Previous testimonial">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                            </button>
+                            <button id="testimonial-next" aria-label="Next testimonial">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                            </button>
+                        </div>
+                        <div id="testimonials-dots" class="testimonials-dots"></div>
+                    </div>
+                </div>
+            </section>
+
         </div>
 
         <!-- ================= PAGE: ABOUT ================= -->
@@ -1599,6 +1923,25 @@
             shortLink: "Business"
         }];
 
+        // ─── Testimonials Data ───
+        const testimonials = [
+            { name: "Sarah Johnson", review: "I found several books I had been searching for months. The website is clean, easy to use, and the book collection is impressive. Highly recommended!" },
+            { name: "Michael Anderson", review: "This is one of the best online bookstores I've visited. Everything is organized, and finding books is incredibly simple." },
+            { name: "Emily Carter", review: "I love the professional design and smooth browsing experience. I discovered amazing books for both learning and personal growth." },
+            { name: "Daniel Thompson", review: "The search feature works perfectly, and the book categories make it very easy to explore. Excellent website!" },
+            { name: "Sophia Martinez", review: "I appreciate the wide variety of books available. The website feels modern, fast, and very user-friendly." },
+            { name: "James Wilson", review: "Every visit helps me discover something new. The book details are clear, and the overall experience is outstanding." },
+            { name: "Olivia Brown", review: "This bookstore exceeded my expectations. The interface is beautiful, and browsing books is enjoyable." },
+            { name: "Benjamin Clark", review: "I've recommended this website to many of my friends. It's reliable, professional, and easy to navigate." },
+            { name: "Isabella Moore", review: "The collection continues to grow, and I always find valuable books. Great work on creating such a wonderful platform." },
+            { name: "David Miller", review: "The website looks premium and performs smoothly on both my phone and laptop. A fantastic digital library." },
+            { name: "Ava Robinson", review: "I enjoy exploring the different categories. The recommendations are helpful, and the overall experience feels very professional." },
+            { name: "Christopher Lee", review: "This has become one of my favorite places to discover new books. Everything is well organized and visually appealing." },
+            { name: "Mia Hernandez", review: "I was impressed by how easy it is to browse hundreds of books. The website saves me a lot of time." },
+            { name: "William Harris", review: "Excellent collection, elegant design, and smooth navigation. It feels like using an international bookstore." },
+            { name: "Charlotte Walker", review: "I genuinely enjoy visiting this website. The quality of the book collection and the professional presentation make it an outstanding resource for readers." }
+        ];
+
         // ─── Helpers ───
         function isWithinLast7Days(dateString) {
             if (!dateString) return false;
@@ -2021,6 +2364,296 @@
             }, 800);
         }
 
+        // ─── Horizontal Showcase ───
+        let showcaseIndex = 0;
+        const showcaseItems = books.filter(b => b.isFeatured).slice(0, 12); // show featured books
+
+        function renderShowcase() {
+            const track = document.getElementById('showcase-track');
+            if (!track) return;
+            track.innerHTML = '';
+            showcaseItems.forEach(book => {
+                const item = document.createElement('div');
+                item.className = 'showcase-item';
+                item.setAttribute('role', 'listitem');
+                item.addEventListener('click', () => openBookModal(book.id));
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault();
+                        openBookModal(book.id); }
+                });
+                item.setAttribute('tabindex', '0');
+
+                const imgWrap = document.createElement('div');
+                imgWrap.className = 'item-img';
+                const img = document.createElement('img');
+                img.src = book.cover || 'https://placehold.co/160x213/1F3A5F/C89B3C?text=Book';
+                img.alt = `Cover of ${book.title}`;
+                img.loading = 'lazy';
+                img.onerror = function() { this.src = 'https://placehold.co/160x213/1F3A5F/C89B3C?text=Book'; };
+                imgWrap.appendChild(img);
+                item.appendChild(imgWrap);
+
+                const body = document.createElement('div');
+                body.className = 'item-body';
+                const title = document.createElement('div');
+                title.className = 'item-title';
+                title.textContent = book.title;
+                body.appendChild(title);
+                const author = document.createElement('div');
+                author.className = 'item-author';
+                author.textContent = book.author || 'Arganon';
+                body.appendChild(author);
+                const price = document.createElement('div');
+                price.className = 'item-price';
+                price.textContent = book.price;
+                body.appendChild(price);
+                item.appendChild(body);
+
+                track.appendChild(item);
+            });
+        }
+
+        // Showcase controls
+        function setupShowcaseControls() {
+            const prevBtn = document.getElementById('showcase-prev');
+            const nextBtn = document.getElementById('showcase-next');
+            const track = document.getElementById('showcase-track');
+            if (!prevBtn || !nextBtn || !track) return;
+
+            const scrollAmount = 220; // approximate card width + gap
+
+            prevBtn.addEventListener('click', () => {
+                track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+            nextBtn.addEventListener('click', () => {
+                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+
+            // Touch / mouse drag
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+                track.style.cursor = 'grabbing';
+            });
+            track.addEventListener('mouseleave', () => {
+                isDown = false;
+                track.style.cursor = 'grab';
+            });
+            track.addEventListener('mouseup', () => {
+                isDown = false;
+                track.style.cursor = 'grab';
+            });
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                track.scrollLeft = scrollLeft - walk;
+            });
+            track.style.cursor = 'grab';
+        }
+
+        // ─── Testimonials Carousel ───
+        let currentTestimonialIndex = 0;
+        let testimonialInterval = null;
+        let testimonialCardsPerView = 3;
+
+        function getTestimonialCardsPerView() {
+            const w = window.innerWidth;
+            if (w >= 1024) return 3;
+            if (w >= 768) return 2;
+            return 1;
+        }
+
+        function renderTestimonials() {
+            const track = document.getElementById('testimonials-track');
+            const dotsContainer = document.getElementById('testimonials-dots');
+            if (!track || !dotsContainer) return;
+
+            const perView = getTestimonialCardsPerView();
+            testimonialCardsPerView = perView;
+
+            track.innerHTML = '';
+            testimonials.forEach((t, idx) => {
+                const card = document.createElement('div');
+                card.className = 'testimonial-card';
+                card.setAttribute('role', 'listitem');
+
+                const quote = document.createElement('div');
+                quote.className = 'quote-icon';
+                quote.textContent = '“';
+                card.appendChild(quote);
+
+                const stars = document.createElement('div');
+                stars.className = 'stars';
+                stars.textContent = '★★★★★';
+                card.appendChild(stars);
+
+                const review = document.createElement('p');
+                review.className = 'review';
+                review.textContent = t.review;
+                card.appendChild(review);
+
+                const customer = document.createElement('div');
+                customer.className = 'customer';
+                const avatar = document.createElement('div');
+                avatar.className = 'avatar';
+                const initials = t.name.split(' ').map(n => n[0]).join('');
+                avatar.textContent = initials;
+                customer.appendChild(avatar);
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'name';
+                nameDiv.textContent = t.name;
+                customer.appendChild(nameDiv);
+                card.appendChild(customer);
+
+                track.appendChild(card);
+            });
+
+            // Dots
+            const totalSlides = Math.ceil(testimonials.length / perView);
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Go to testimonial slide ${i+1}`);
+                dot.addEventListener('click', () => goToTestimonialSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            // Ensure current index is valid
+            if (currentTestimonialIndex >= totalSlides) currentTestimonialIndex = 0;
+            updateTestimonialCarousel();
+            startTestimonialAutoplay();
+        }
+
+        function updateTestimonialCarousel() {
+            const track = document.getElementById('testimonials-track');
+            const dots = document.querySelectorAll('#testimonials-dots .dot');
+            if (!track) return;
+            const perView = testimonialCardsPerView;
+            const totalSlides = Math.ceil(testimonials.length / perView);
+            const maxIndex = totalSlides - 1;
+            if (currentTestimonialIndex > maxIndex) currentTestimonialIndex = maxIndex;
+            if (currentTestimonialIndex < 0) currentTestimonialIndex = 0;
+
+            const cardWidth = track.querySelector('.testimonial-card')?.offsetWidth || 0;
+            const gap = 24;
+            const offset = currentTestimonialIndex * (cardWidth + gap);
+            track.style.transform = `translateX(-${offset}px)`;
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentTestimonialIndex);
+            });
+        }
+
+        function goToTestimonialSlide(index) {
+            const perView = testimonialCardsPerView;
+            const totalSlides = Math.ceil(testimonials.length / perView);
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            currentTestimonialIndex = index;
+            updateTestimonialCarousel();
+            resetTestimonialAutoplay();
+        }
+
+        function startTestimonialAutoplay() {
+            stopTestimonialAutoplay();
+            testimonialInterval = setInterval(() => {
+                const perView = testimonialCardsPerView;
+                const totalSlides = Math.ceil(testimonials.length / perView);
+                const next = (currentTestimonialIndex + 1) % totalSlides;
+                goToTestimonialSlide(next);
+            }, 5000);
+        }
+
+        function stopTestimonialAutoplay() {
+            if (testimonialInterval) {
+                clearInterval(testimonialInterval);
+                testimonialInterval = null;
+            }
+        }
+
+        function resetTestimonialAutoplay() {
+            stopTestimonialAutoplay();
+            startTestimonialAutoplay();
+        }
+
+        function setupTestimonialControls() {
+            const prevBtn = document.getElementById('testimonial-prev');
+            const nextBtn = document.getElementById('testimonial-next');
+            const track = document.getElementById('testimonials-track');
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    const perView = testimonialCardsPerView;
+                    const totalSlides = Math.ceil(testimonials.length / perView);
+                    const prev = (currentTestimonialIndex - 1 + totalSlides) % totalSlides;
+                    goToTestimonialSlide(prev);
+                });
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const perView = testimonialCardsPerView;
+                    const totalSlides = Math.ceil(testimonials.length / perView);
+                    const next = (currentTestimonialIndex + 1) % totalSlides;
+                    goToTestimonialSlide(next);
+                });
+            }
+
+            // Pause on hover
+            const carousel = document.querySelector('.testimonials-carousel');
+            if (carousel) {
+                carousel.addEventListener('mouseenter', stopTestimonialAutoplay);
+                carousel.addEventListener('mouseleave', startTestimonialAutoplay);
+            }
+
+            // Touch swipe
+            let touchStartX = 0;
+            let touchEndX = 0;
+            if (track) {
+                track.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                track.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    const diff = touchStartX - touchEndX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                            const perView = testimonialCardsPerView;
+                            const totalSlides = Math.ceil(testimonials.length / perView);
+                            const next = (currentTestimonialIndex + 1) % totalSlides;
+                            goToTestimonialSlide(next);
+                        } else {
+                            const perView = testimonialCardsPerView;
+                            const totalSlides = Math.ceil(testimonials.length / perView);
+                            const prev = (currentTestimonialIndex - 1 + totalSlides) % totalSlides;
+                            goToTestimonialSlide(prev);
+                        }
+                    }
+                }, { passive: true });
+            }
+
+            // Recalculate on resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    const newPerView = getTestimonialCardsPerView();
+                    if (newPerView !== testimonialCardsPerView) {
+                        testimonialCardsPerView = newPerView;
+                        renderTestimonials();
+                    } else {
+                        updateTestimonialCarousel();
+                    }
+                }, 250);
+            });
+        }
+
         // ─── Init ───
         document.addEventListener('DOMContentLoaded', function() {
             navigateTo('home');
@@ -2028,6 +2661,15 @@
             const pageSize = getPageSize();
             renderBooks(filteredBooks, pageSize);
             renderSidebar();
+
+            // Render showcase
+            renderShowcase();
+            setupShowcaseControls();
+
+            // Render testimonials
+            renderTestimonials();
+            setupTestimonialControls();
+
             if (typeof lucide !== 'undefined') lucide.createIcons();
         });
     </script>
