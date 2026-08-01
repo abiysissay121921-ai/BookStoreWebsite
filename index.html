@@ -887,8 +887,6 @@
         .horizontal-showcase .showcase-item:hover .item-img img {
             transform: scale(1.04);
         }
-
-        /* Overlay for hover */
         .horizontal-showcase .showcase-item .item-overlay {
             position: absolute;
             inset: 0;
@@ -936,7 +934,6 @@
             font-weight: 700;
             color: var(--accent);
         }
-
         .showcase-controls {
             display: flex;
             justify-content: center;
@@ -983,7 +980,7 @@
         }
 
         /* ==========================================
-           TESTIMONIALS CAROUSEL (Enhanced)
+           TESTIMONIALS CAROUSEL
            ========================================== */
         .testimonials-section {
             padding: 3rem 0;
@@ -1062,7 +1059,6 @@
             font-weight: 600;
             color: var(--primary);
         }
-
         .testimonials-controls {
             display: flex;
             justify-content: center;
@@ -1094,7 +1090,6 @@
             width: 20px;
             height: 20px;
         }
-
         .testimonials-dots {
             display: flex;
             justify-content: center;
@@ -1574,7 +1569,7 @@
             </section>
 
             <!-- ============================================================
-                 POPULAR BOOKS SHOWCASE (Updated with isPopular)
+                 POPULAR BOOKS SHOWCASE
                  ============================================================ -->
             <section class="horizontal-showcase bg-cool-white" aria-labelledby="showcase-title">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1601,7 +1596,7 @@
             </section>
 
             <!-- ============================================================
-                 CUSTOMER TESTIMONIALS (Enhanced)
+                 CUSTOMER TESTIMONIALS
                  ============================================================ -->
             <section class="testimonials-section" aria-labelledby="testimonials-title">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1748,7 +1743,7 @@
                         </div>
                     </div>
 
-                    <!-- Team Section with dynamic image -->
+                    <!-- Team Section -->
                     <div class="max-w-6xl mx-auto">
                         <div class="text-center mb-12">
                             <span class="section-label">Our Team</span>
@@ -1811,7 +1806,7 @@
                 </div>
             </section>
 
-            <!-- Newsletter section (unchanged) -->
+            <!-- Newsletter section -->
             <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-about">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -1846,7 +1841,7 @@
             </section>
         </div>
 
-        <!-- ================= PAGE: CONTACT (Updated) ================= -->
+        <!-- ================= PAGE: CONTACT (UPDATED) ================= -->
         <div id="page-contact" class="page-content hidden">
             <section id="contact" class="py-20 sm:py-24 bg-contact-gradient relative" aria-labelledby="contact-title">
                 <div class="section-blob" aria-hidden="true">
@@ -1869,7 +1864,7 @@
                             </p>
 
                             <div class="space-y-5">
-                                <!-- Updated Address -->
+                                <!-- Updated Address (single line) -->
                                 <div class="flex items-start gap-4">
                                     <div class="w-11 h-11 rounded-xl bg-[#1F3A5F]/10 flex items-center justify-center text-[#1F3A5F] shrink-0" aria-hidden="true">
                                         <i data-lucide="map-pin" class="w-5 h-5"></i>
@@ -1877,12 +1872,16 @@
                                     <div>
                                         <h4 class="font-semibold text-[#1F3A5F] text-sm">አድራሻ</h4>
                                         <p class="text-[#6B7280] text-sm mt-0.5">
-                                            አርጋኖን መጻሕፍት መደብር<br>
-                                            5 ኪሎ<br>
-                                            ቅድስት ማርያም<br>
-                                            ማኅበረ ቅዱሳን ሕንፃ<br>
-                                            ግራውንድ አጠገብ
+                                            አርጋኖን መጻሕፍት መደብር 5 ኪሎ ቅድስት ማርያም ማኅበረ ቅዱሳን ሕንፃ ግራውንድ አጠገብ።
                                         </p>
+                                        <!-- Google Maps Link -->
+                                        <a href="https://maps.app.goo.gl/iMvFKor6AJBNEqzTA"
+                                           target="_blank"
+                                           rel="noopener noreferrer"
+                                           class="inline-flex items-center gap-1.5 mt-2 text-[#C89B3C] font-medium text-sm hover:underline transition-premium">
+                                            <i data-lucide="map-pin" class="w-4 h-4" aria-hidden="true"></i>
+                                            See our location on Google Maps
+                                        </a>
                                     </div>
                                 </div>
 
@@ -1917,7 +1916,7 @@
                 </div>
             </section>
 
-            <!-- Newsletter section (updated Telegram link) -->
+            <!-- Newsletter section -->
             <section class="py-20 sm:py-24 bg-cool-white relative" aria-labelledby="newsletter-title-contact">
                 <div class="section-blob" aria-hidden="true">
                     <div class="blob-soft blob-1"></div>
@@ -2045,7 +2044,7 @@
                     <ul class="space-y-3 text-sm text-white/60">
                         <li class="flex items-start gap-2">
                             <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"></i>
-                            <span>አርጋኖን መጻሕፍት መደብር, 5 ኪሎ, ቅድስት ማርያም, ማኅበረ ቅዱሳን ሕንፃ, ግራውንድ አጠገብ</span>
+                            <span>አርጋኖን መጻሕፍት መደብር 5 ኪሎ ቅድስት ማርያም ማኅበረ ቅዱሳን ሕንፃ ግራውንድ አጠገብ።</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <i data-lucide="phone" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
@@ -2081,8 +2080,8 @@
 
     <!-- ================= JAVASCRIPT ================= -->
     <script>
-        // ─── Team Image Variable (change this path to update the team photo) ───
-        const teamImage = "images/team-placeholder.jpg"; // Replace with your own image path
+        // ─── Team Image Variable ───
+        const teamImage = "images/team-placeholder.jpg";
 
         // ─── SECURE: Sanitization helper ───
         function escapeText(text) {
@@ -2099,7 +2098,7 @@
         // ─── Lucide ───
         if (typeof lucide !== 'undefined') lucide.createIcons();
 
-        // ─── Books Data (with isPopular boolean, removed popularBooks field) ───
+        // ─── Books Data (with isPopular boolean) ───
         const books = [{
             id: 1,
             title: "የቤተ ክርስቲያን ታሪክ",
@@ -2153,7 +2152,7 @@
             isNew: false,
             isFeatured: false,
             isBestSeller: true,
-            isPopular: true,
+            isPopular: false,
             dateAdded: "2026-07-25",
             price: "350 ብር",
             shortLink: "Religion"
@@ -2191,7 +2190,7 @@
             isNew: false,
             isFeatured: false,
             isBestSeller: false,
-            isPopular: true,
+            isPopular: false,
             dateAdded: "2026-07-25",
             price: "240 ብር",
             shortLink: "Religion"
@@ -2210,7 +2209,7 @@
             isNew: false,
             isFeatured: false,
             isBestSeller: false,
-            isPopular: true,
+            isPopular: false,
             dateAdded: "2026-07-25",
             price: "220 ብር",
             shortLink: "Religion"
@@ -2387,7 +2386,7 @@
             shortLink: "Business"
         }];
 
-        // ─── Testimonials Data (20 total) ───
+        // ─── Testimonials Data ───
         const testimonials = [
             { name: "Sarah Johnson", review: "I found several books I had been searching for months. The website is clean, easy to use, and the book collection is impressive. Highly recommended!" },
             { name: "Michael Anderson", review: "This is one of the best online bookstores I've visited. Everything is organized, and finding books is incredibly simple." },
@@ -2633,7 +2632,6 @@
 
             if (totalPages <= 1) return;
 
-            // Previous
             const prevTarget = currentPage - 1;
             const prevDisabled = prevTarget < 1;
             const prevBtn = createPaginationButton('← Previous', prevTarget, false, prevDisabled);
@@ -2675,7 +2673,6 @@
                 container.appendChild(btnLast);
             }
 
-            // Next
             const nextTarget = currentPage + 1;
             const nextDisabled = nextTarget > totalPages;
             const nextBtn = createPaginationButton('Next →', nextTarget, false, nextDisabled);
@@ -2805,7 +2802,7 @@
 
         document.getElementById('menu-btn').addEventListener('click', toggleMobileMenu);
 
-        // ─── Telegram Subscribe Handler (updated redirect) ───
+        // ─── Telegram Subscribe Handler ───
         function handleTelegramSubscribe(event) {
             event.preventDefault();
             const form = event.target;
@@ -2833,7 +2830,7 @@
             }, 800);
         }
 
-        // ─── Popular Showcase (using isPopular) ───
+        // ─── Popular Showcase ───
         let showcaseIndex = 0;
         const showcaseItems = books.filter(b => b.isPopular === true);
 
@@ -2852,7 +2849,6 @@
                 });
                 item.setAttribute('tabindex', '0');
 
-                // Image
                 const imgWrap = document.createElement('div');
                 imgWrap.className = 'item-img';
                 const img = document.createElement('img');
@@ -2863,7 +2859,6 @@
                 imgWrap.appendChild(img);
                 item.appendChild(imgWrap);
 
-                // Overlay with text (hidden by default, shown on hover)
                 const overlay = document.createElement('div');
                 overlay.className = 'item-overlay';
 
@@ -2934,7 +2929,7 @@
             track.style.cursor = 'grab';
         }
 
-        // ─── Testimonials Carousel (Enhanced with Infinite Loop & Auto-play) ───
+        // ─── Testimonials Carousel ───
         let currentTestimonialIndex = 0;
         let testimonialInterval = null;
         let testimonialCardsPerView = 3;
@@ -2959,16 +2954,13 @@
 
             track.innerHTML = '';
 
-            // Clone the first and last few testimonials for infinite loop
             const cloneCount = perView;
             const allCards = [];
 
-            // Original testimonials
             testimonials.forEach((t, idx) => {
                 allCards.push({ ...t, originalIndex: idx });
             });
 
-            // Clone first few to the end
             for (let i = 0; i < cloneCount; i++) {
                 const t = testimonials[i];
                 allCards.push({ ...t, originalIndex: i, isClone: true });
@@ -3012,7 +3004,6 @@
                 track.appendChild(card);
             });
 
-            // Dots (only for original slides)
             const totalDots = testimonialTotalSlides;
             dotsContainer.innerHTML = '';
             for (let i = 0; i < totalDots; i++) {
@@ -3023,7 +3014,6 @@
                 dotsContainer.appendChild(dot);
             }
 
-            // Set initial position (start at first original slide)
             currentTestimonialIndex = 0;
             updateTestimonialCarousel(false);
             startTestimonialAutoplay();
@@ -3038,47 +3028,35 @@
             const totalSlides = testimonials.length;
             const maxIndex = Math.ceil(totalSlides / perView);
 
-            // Calculate the offset based on the current index
-            // We display 1 slide (with multiple cards visible)
             const cardWidth = track.querySelector('.testimonial-card')?.offsetWidth || 0;
             const gap = 24;
             const slideWidth = (cardWidth + gap) * perView;
-            // Offset is based on currentTestimonialIndex, but we start at 0
             const offset = currentTestimonialIndex * slideWidth;
 
             track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
             track.style.transform = `translateX(-${offset}px)`;
 
-            // Update dots
             const dotIndex = currentTestimonialIndex % maxIndex;
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === dotIndex);
             });
 
-            // Handle infinite loop: when we reach the clone section, snap back
             const totalCards = track.children.length;
             const originalCardsCount = totalSlides;
             const cloneCount = perView;
 
-            // Check if we've scrolled to the clone area (near the end)
-            // When currentTestimonialIndex reaches the last original slide,
-            // we'll smoothly transition to the clone, then snap back
             const lastOriginalSlide = maxIndex - 1;
             if (currentTestimonialIndex > lastOriginalSlide) {
-                // We're in the clone area
                 const realIndex = currentTestimonialIndex % maxIndex;
-                // After transition, snap back to the real slide
                 setTimeout(() => {
                     track.style.transition = 'none';
                     const snapOffset = realIndex * slideWidth;
                     track.style.transform = `translateX(-${snapOffset}px)`;
                     currentTestimonialIndex = realIndex;
-                    // Update dots after snap
                     const dotIndexSnap = currentTestimonialIndex % maxIndex;
                     dots.forEach((dot, i) => {
                         dot.classList.toggle('active', i === dotIndexSnap);
                     });
-                    // Force reflow
                     void track.offsetHeight;
                     track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
                 }, 600);
@@ -3091,22 +3069,16 @@
             const totalSlides = Math.ceil(testimonials.length / perView);
             const maxIndex = totalSlides;
 
-            // Allow going beyond maxIndex for infinite loop (to clones)
             const targetIndex = index;
 
-            // If going beyond the end, we'll handle it with the clone
             if (targetIndex >= maxIndex) {
-                // Go to the clone at the end
                 currentTestimonialIndex = targetIndex;
                 updateTestimonialCarousel(true);
-                // The snap back will be handled in updateTestimonialCarousel
                 resetTestimonialAutoplay();
                 return;
             }
 
             if (targetIndex < 0) {
-                // Going backward from the beginning - go to the end of the clones
-                // We'll go to the last clone, which will snap to the last real slide
                 const cloneIndex = maxIndex + (maxIndex - 1);
                 currentTestimonialIndex = cloneIndex;
                 updateTestimonialCarousel(true);
@@ -3124,7 +3096,7 @@
             testimonialInterval = setInterval(() => {
                 const perView = testimonialCardsPerView;
                 const totalSlides = Math.ceil(testimonials.length / perView);
-                const next = (currentTestimonialIndex + 1) % (totalSlides + 1); // +1 for the clone
+                const next = (currentTestimonialIndex + 1) % (totalSlides + 1);
                 goToTestimonialSlide(next);
             }, 5000);
         }
@@ -3163,14 +3135,12 @@
                 });
             }
 
-            // Pause on hover (whole carousel area)
             const carousel = document.querySelector('.testimonials-carousel');
             if (carousel) {
                 carousel.addEventListener('mouseenter', stopTestimonialAutoplay);
                 carousel.addEventListener('mouseleave', startTestimonialAutoplay);
             }
 
-            // Touch swipe
             let touchStartX = 0;
             let touchEndX = 0;
             if (trackWrapper) {
@@ -3194,7 +3164,6 @@
                 }, { passive: true });
             }
 
-            // Recalculate on resize
             let resizeTimer;
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimer);
@@ -3212,7 +3181,6 @@
 
         // ─── Init ───
         document.addEventListener('DOMContentLoaded', function() {
-            // Set team image
             const teamImg = document.getElementById('team-image');
             if (teamImg) {
                 teamImg.src = teamImage;
